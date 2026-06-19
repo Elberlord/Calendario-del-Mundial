@@ -1,6 +1,9 @@
 let calendarData = null;
 let matches = [];
 
+const YOUTUBE_SUBSCRIBE_URL = "https://www.youtube.com/@Elberlord?sub_confirmation=1";
+const WATCH_ONLINE_URL = "https://acortar.link/z5HpjD";
+
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => Array.from(document.querySelectorAll(s));
 
@@ -196,7 +199,7 @@ function renderGroupedMatches(data) {
           <div class="teamscore">${match.score || "VS"}</div>
           <strong>${match.away}</strong>
           <div class="meta">${match.timeET}<br>${match.venue}</div>
-          <a class="watch-btn" href="${whatsappMatchLink(match)}" target="_blank" rel="noopener">Ver</a>
+          <button class="watch-btn" type="button">Ver</button>
         </article>
       `).join("")}
     </section>
@@ -221,6 +224,54 @@ function goToNextMatch() {
     setTimeout(() => document.getElementById(next.id)?.scrollIntoView({ behavior: "smooth", block: "center" }), 120);
   }
 }
+
+
+function openWatchModal() {
+  const modal = $("#watchModal");
+  const subscribeBtn = $("#youtubeSubscribeBtn");
+  const onlineBtn = $("#onlineWatchBtn");
+  const hint = $("#unlockHint");
+
+  subscribeBtn.href = YOUTUBE_SUBSCRIBE_URL;
+  onlineBtn.href = WATCH_ONLINE_URL;
+  onlineBtn.classList.add("hidden-link");
+  hint.textContent = "Primero toca “Suscribirse al canal”.";
+
+  modal.classList.remove("hidden");
+  modal.setAttribute("aria-hidden", "false");
+}
+
+function closeWatchModal() {
+  const modal = $("#watchModal");
+  modal.classList.add("hidden");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+function unlockOnlineButton() {
+  const onlineBtn = $("#onlineWatchBtn");
+  const hint = $("#unlockHint");
+
+  onlineBtn.classList.remove("hidden-link");
+  hint.textContent = "Listo. Ya puedes tocar “Ver partido online”.";
+}
+
+document.addEventListener("click", (event) => {
+  const watchButton = event.target.closest(".watch-btn");
+  if (watchButton) {
+    event.preventDefault();
+    openWatchModal();
+    return;
+  }
+
+  if (event.target.id === "closeWatchModal" || event.target.id === "watchModal") {
+    closeWatchModal();
+    return;
+  }
+
+  if (event.target.id === "youtubeSubscribeBtn") {
+    unlockOnlineButton();
+  }
+});
 
 $$(".tab-btn").forEach(button => {
   button.addEventListener("click", () => {

@@ -266,3 +266,120 @@ code {
   filter: brightness(1.08);
   border-color: rgba(245,200,91,.9);
 }
+
+
+.match .watch-btn,
+.watch-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border-radius: 14px;
+  background: #05070b;
+  color: var(--gold);
+  border: 1px solid rgba(245,200,91,.55);
+  text-decoration: none;
+  font-weight: 950;
+  letter-spacing: .02em;
+  box-shadow:
+    inset 0 0 18px rgba(245,200,91,.08),
+    0 8px 20px rgba(0,0,0,.22);
+  transition: transform .15s ease, filter .15s ease, border-color .15s ease;
+}
+
+.match .watch-btn:hover,
+.watch-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  border-color: rgba(245,200,91,.9);
+}
+
+.watch-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0, 0, 0, .72);
+  backdrop-filter: blur(10px);
+}
+
+.watch-modal.hidden {
+  display: none;
+}
+
+.watch-modal-card {
+  position: relative;
+  width: min(460px, 100%);
+  border-radius: 28px;
+  border: 1px solid rgba(245, 200, 91, .38);
+  background:
+    radial-gradient(circle at top right, rgba(245, 200, 91, .14), transparent 16rem),
+    #0b1119;
+  padding: 26px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, .55);
+}
+
+.watch-modal-card h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+}
+
+.modal-copy,
+.unlock-hint {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.modal-copy strong {
+  color: var(--gold);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .06);
+  color: var(--gold);
+  border: 1px solid rgba(245, 200, 91, .24);
+  font-size: 1.5rem;
+}
+
+.youtube-sub-btn,
+.online-watch-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  width: 100%;
+  margin-top: 12px;
+  border-radius: 16px;
+  font-weight: 950;
+  text-decoration: none;
+  letter-spacing: .02em;
+}
+
+.youtube-sub-btn {
+  background: #05070b;
+  color: var(--gold);
+  border: 1px solid rgba(245, 200, 91, .65);
+  box-shadow:
+    inset 0 0 18px rgba(245, 200, 91, .08),
+    0 8px 20px rgba(0, 0, 0, .22);
+}
+
+.online-watch-btn {
+  background: linear-gradient(135deg, var(--gold), #ffe59a);
+  color: #12151b;
+  border: 0;
+}
+
+.hidden-link {
+  display: none;
+}

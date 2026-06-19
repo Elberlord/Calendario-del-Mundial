@@ -67,3 +67,50 @@ El botón abre WhatsApp al número `+506 6430 5227` con el mensaje:
 ```txt
 como puedo ver el partido
 ```
+
+
+## Flujo Suscripción → Ver partido online
+
+El botón `Ver` abre un modal.
+
+Dentro del modal:
+1. Se muestra `Suscribirse al canal`.
+2. Al tocar ese botón, aparece `Ver partido online`.
+3. El botón `Ver partido online` apunta por defecto a `https://www.youtube.com/@Elberlord`.
+
+Para cambiar el link final, edita en `app.js`:
+
+```js
+const WATCH_ONLINE_URL = "https://www.youtube.com/@Elberlord";
+```
+
+Nota: la web no puede verificar por sí sola si la persona completó la suscripción; solo desbloquea el botón después del clic.
+
+
+## Dónde poner tu link para ver el partido online
+
+Abre el archivo:
+
+```txt
+app.js
+```
+
+Busca esta línea:
+
+```js
+const WATCH_ONLINE_URL = "PON_AQUI_TU_LINK_DEL_PARTIDO_ONLINE";
+```
+
+Y reemplázala por tu link final, por ejemplo:
+
+```js
+const WATCH_ONLINE_URL = "https://tu-link-final.com";
+```
+
+No toques el link de YouTube si solo quieres cambiar el destino final del botón `Ver partido online`.
+
+El link de suscripción está aquí:
+
+```js
+const YOUTUBE_SUBSCRIBE_URL = "https://www.youtube.com/@Elberlord?sub_confirmation=1";
+```
