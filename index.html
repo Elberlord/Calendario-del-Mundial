@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendario Mundial 2026</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">FIFA World Cup 2026</p>
+        <h1>Calendario del Mundial</h1>
+        <p class="sub">
+          Núcleo limpio por rondas: fase de grupos, Round of 32, octavos, cuartos, semifinales, tercer lugar y final.
+        </p>
+      </div>
+      <div class="scorebox">
+        <strong id="matchCount">104</strong>
+        <span>partidos</span>
+      </div>
+    </header>
+
+    <section class="toolbar">
+      <input id="searchInput" placeholder="Buscar equipo, ronda, grupo, ciudad..." />
+      <select id="stageFilter">
+        <option value="all">Todas las rondas</option>
+      </select>
+      <select id="groupFilter">
+        <option value="all">Todos los grupos</option>
+      </select>
+      <button id="refreshBtn">Recargar JSON</button>
+    </section>
+
+    <section class="overview" id="stageOverview"></section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2 id="calendarTitle">Calendario completo</h2>
+          <p id="statusLine">Cargando calendario...</p>
+        </div>
+        <button id="todayBtn" class="ghost">Ir al próximo partido</button>
+      </div>
+      <div id="calendarList" class="calendar-list"></div>
+    </section>
+
+    <section class="panel muted-panel">
+      <h2>Formato de actualización futura</h2>
+      <p>
+        El calendario vive en <code>worldcup_calendar_2026.json</code>. Más adelante podemos conectar una API o backend que genere el mismo formato y la interfaz se actualiza sin rehacer la app.
+      </p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
