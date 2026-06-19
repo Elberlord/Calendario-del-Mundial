@@ -216,3 +216,30 @@ scripts/update-worldcup-public.js
 ## Importante
 
 `openfootball/worldcup.json` no requiere API key, pero su README aclara que no es live en tiempo real; funciona más como datos abiertos actualizados manualmente. Por eso el script intenta primero `worldcup26.ir/get/games` y deja `openfootball` como respaldo.
+
+
+## Ajuste del modal de suscripción
+
+El modal ahora usa un texto más claro para usuarios nuevos y usuarios que ya están suscritos:
+
+- Botón: `Suscribirse / confirmar`
+- Mensaje: si ya está suscrito, puede tocar el botón como confirmación.
+- Después aparece `Ver partido online`.
+
+El link final del botón `Ver partido online` sigue configurable en `app.js`:
+
+```js
+const WATCH_ONLINE_URL = "PON_AQUI_TU_LINK_DEL_PARTIDO_ONLINE";
+```
+
+
+## Ajuste de mensaje del modal
+
+El modal ya no se presenta como verificación estricta de suscripción.
+
+Ahora usa un lenguaje más honesto:
+
+- Título: `Apoya mi canal`
+- Botón: `Apoyar mi canal`
+- Mensaje: si ya está suscrito, puede tocarlo como confirmación.
+- Luego aparece `Ver partido online`.

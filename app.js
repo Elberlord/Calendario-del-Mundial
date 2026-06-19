@@ -235,7 +235,7 @@ function openWatchModal() {
   subscribeBtn.href = YOUTUBE_SUBSCRIBE_URL;
   onlineBtn.href = WATCH_ONLINE_URL;
   onlineBtn.classList.add("hidden-link");
-  hint.textContent = "Primero toca “Suscribirse al canal”.";
+  hint.textContent = "Primero toca “Apoyar mi canal”.";
 
   modal.classList.remove("hidden");
   modal.setAttribute("aria-hidden", "false");
