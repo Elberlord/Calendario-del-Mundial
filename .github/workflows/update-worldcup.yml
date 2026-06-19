@@ -1,0 +1,45 @@
+name: Actualizar Mundial en horario de partido
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mundial-calendar-update
+  cancel-in-progress: false
+
+jobs:
+  update-calendar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repo
+        uses: actions/checkout@v4
+
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Actualizar calendario solo si hay partido
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          API_FOOTBALL_LEAGUE_ID: ${{ secrets.API_FOOTBALL_LEAGUE_ID }}
+          API_FOOTBALL_SEASON: "2026"
+          API_FOOTBALL_HOST: "v3.football.api-sports.io"
+          CALENDAR_FILE: "worldcup_calendar_2026.json"
+          UPDATE_BEFORE_MINUTES: "30"
+          UPDATE_AFTER_MINUTES: "150"
+        run: node scripts/update-worldcup-smart.js
+
+      - name: Guardar cambios si hubo actualización
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add worldcup_calendar_2026.json
+          git commit -m "Actualizar calendario mundial" || echo "Sin cambios para guardar"
+          git push
