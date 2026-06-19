@@ -2,6 +2,7 @@ let calendarData = null;
 let matches = [];
 
 const $ = (s) => document.querySelector(s);
+const $$ = (s) => Array.from(document.querySelectorAll(s));
 
 async function loadCalendar() {
   const response = await fetch("worldcup_calendar_2026.json", { cache: "no-store" });
@@ -15,14 +16,116 @@ async function loadCalendar() {
 function setupFilters() {
   const stageFilter = $("#stageFilter");
   const groupFilter = $("#groupFilter");
+  const standingsGroupFilter = $("#standingsGroupFilter");
 
   const stages = [...new Set(matches.map(m => m.stage))];
   stageFilter.innerHTML = `<option value="all">Todas las rondas</option>` + stages.map(s => `<option value="${s}">${s}</option>`).join("");
 
   const groups = [...new Set(matches.map(m => m.group).filter(Boolean))].sort();
-  groupFilter.innerHTML = `<option value="all">Todos los grupos</option>` + groups.map(g => `<option value="${g}">${g}</option>`).join("");
+  const groupOptions = `<option value="all">Todos los grupos</option>` + groups.map(g => `<option value="${g}">${g}</option>`).join("");
+  groupFilter.innerHTML = groupOptions;
+  standingsGroupFilter.innerHTML = groupOptions;
 
   $("#matchCount").textContent = matches.length;
+}
+
+function parseScore(score) {
+  if (!score || !score.includes("-")) return null;
+  const [home, away] = score.split("-").map(Number);
+  if (!Number.isFinite(home) || !Number.isFinite(away)) return null;
+  return { home, away };
+}
+
+function calculateStandings() {
+  const table = {};
+
+  matches.filter(m => m.group).forEach(match => {
+    table[match.group] ||= {};
+    [match.home, match.away].forEach(team => {
+      table[match.group][team] ||= {
+        team, group: match.group, played: 0, wins: 0, draws: 0, losses: 0,
+        gf: 0, ga: 0, gd: 0, points: 0
+      };
+    });
+
+    if (match.status !== "complete") return;
+    const score = parseScore(match.score);
+    if (!score) return;
+
+    const home = table[match.group][match.home];
+    const away = table[match.group][match.away];
+
+    home.played += 1;
+    away.played += 1;
+
+    home.gf += score.home;
+    home.ga += score.away;
+    away.gf += score.away;
+    away.ga += score.home;
+
+    if (score.home > score.away) {
+      home.wins += 1; home.points += 3;
+      away.losses += 1;
+    } else if (score.home < score.away) {
+      away.wins += 1; away.points += 3;
+      home.losses += 1;
+    } else {
+      home.draws += 1; away.draws += 1;
+      home.points += 1; away.points += 1;
+    }
+
+    home.gd = home.gf - home.ga;
+    away.gd = away.gf - away.ga;
+  });
+
+  Object.keys(table).forEach(group => {
+    table[group] = Object.values(table[group]).sort((a, b) =>
+      b.points - a.points ||
+      b.gd - a.gd ||
+      b.gf - a.gf ||
+      a.team.localeCompare(b.team)
+    );
+  });
+
+  return table;
+}
+
+function renderStandings() {
+  const standings = calculateStandings();
+  const q = $("#standingsSearchInput").value.trim().toLowerCase();
+  const selectedGroup = $("#standingsGroupFilter").value;
+  const container = $("#standingsList");
+
+  const visibleGroups = Object.entries(standings).filter(([group, rows]) => {
+    const text = `${group} ${rows.map(r => r.team).join(" ")}`.toLowerCase();
+    return (selectedGroup === "all" || selectedGroup === group) && text.includes(q);
+  });
+
+  const completedGroupMatches = matches.filter(m => m.group && m.status === "complete").length;
+  $("#standingsStatusLine").textContent = `Calculada con ${completedGroupMatches} partidos finalizados de fase de grupos. Top 2 clasifican directo; los mejores terceros compiten por cupos.`;
+
+  container.innerHTML = visibleGroups.map(([group, rows]) => `
+    <section class="group-table">
+      <h3 class="group-title">${group}</h3>
+      <div class="standings-row header">
+        <span>#</span><span>Equipo</span><span>PJ</span><span>G</span><span>E</span><span>P</span><span>GF</span><span>GC</span><span>DG</span><span>Pts</span>
+      </div>
+      ${rows.map((row, index) => `
+        <div class="standings-row ${index < 2 ? "qualify" : index === 2 ? "third-watch" : ""}">
+          <span class="rank">${index + 1}</span>
+          <span class="team-name">${row.team}</span>
+          <span>${row.played}</span>
+          <span>${row.wins}</span>
+          <span>${row.draws}</span>
+          <span>${row.losses}</span>
+          <span>${row.gf}</span>
+          <span>${row.ga}</span>
+          <span>${row.gd}</span>
+          <span class="points">${row.points}</span>
+        </div>
+      `).join("")}
+    </section>
+  `).join("") || `<p class="meta">No hay grupos con ese filtro.</p>`;
 }
 
 function filteredMatches() {
@@ -49,7 +152,7 @@ function renderOverview() {
   `).join("");
 }
 
-function render() {
+function renderCalendar() {
   renderOverview();
   const list = $("#calendarList");
   const data = filteredMatches();
@@ -57,13 +160,22 @@ function render() {
   $("#calendarTitle").textContent = $("#stageFilter").value === "all" ? "Calendario completo" : $("#stageFilter").value;
   $("#statusLine").textContent = `${data.length} partidos visibles · Actualizado: ${calendarData.competition.lastUpdated}`;
 
+  list.innerHTML = renderGroupedMatches(data) || `<p class="meta">No hay partidos con ese filtro.</p>`;
+}
+
+function renderKnockout() {
+  const knockoutMatches = matches.filter(m => !m.group);
+  $("#knockoutList").innerHTML = renderGroupedMatches(knockoutMatches) || `<p class="meta">No hay eliminatorias cargadas.</p>`;
+}
+
+function renderGroupedMatches(data) {
   const grouped = data.reduce((acc, match) => {
     acc[match.date] ||= [];
     acc[match.date].push(match);
     return acc;
   }, {});
 
-  list.innerHTML = Object.entries(grouped).map(([date, dayMatches]) => `
+  return Object.entries(grouped).map(([date, dayMatches]) => `
     <section class="day" id="day-${date}">
       <h3>${formatDay(date)}</h3>
       ${dayMatches.map(match => `
@@ -80,7 +192,13 @@ function render() {
         </article>
       `).join("")}
     </section>
-  `).join("") || `<p class="meta">No hay partidos con ese filtro.</p>`;
+  `).join("");
+}
+
+function render() {
+  renderStandings();
+  renderCalendar();
+  renderKnockout();
 }
 
 function formatDay(value) {
@@ -90,15 +208,35 @@ function formatDay(value) {
 function goToNextMatch() {
   const now = new Date("2026-06-18T00:00:00");
   const next = matches.find(m => m.status !== "complete" && new Date(m.date + "T12:00:00") >= now);
-  if (next) document.getElementById(next.id)?.scrollIntoView({ behavior: "smooth", block: "center" });
+  if (next) {
+    document.querySelector(`[data-tab="calendar"]`).click();
+    setTimeout(() => document.getElementById(next.id)?.scrollIntoView({ behavior: "smooth", block: "center" }), 120);
+  }
 }
 
-$("#searchInput").addEventListener("input", render);
-$("#stageFilter").addEventListener("change", render);
-$("#groupFilter").addEventListener("change", render);
+$$(".tab-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    $$(".tab-btn").forEach(btn => btn.classList.remove("active"));
+    $$(".tab-view").forEach(view => view.classList.remove("active-tab"));
+    button.classList.add("active");
+    $("#" + button.dataset.tab).classList.add("active-tab");
+  });
+});
+
+$("#searchInput").addEventListener("input", renderCalendar);
+$("#stageFilter").addEventListener("change", renderCalendar);
+$("#groupFilter").addEventListener("change", renderCalendar);
+$("#standingsSearchInput").addEventListener("input", renderStandings);
+$("#standingsGroupFilter").addEventListener("change", renderStandings);
+$("#resetStandingsFilterBtn").addEventListener("click", () => {
+  $("#standingsSearchInput").value = "";
+  $("#standingsGroupFilter").value = "all";
+  renderStandings();
+});
 $("#refreshBtn").addEventListener("click", loadCalendar);
 $("#todayBtn").addEventListener("click", goToNextMatch);
 
 loadCalendar().catch(error => {
   $("#statusLine").textContent = error.message;
+  $("#standingsStatusLine").textContent = error.message;
 });

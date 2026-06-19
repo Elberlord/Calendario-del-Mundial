@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calendario Mundial 2026</title>
+  <title>Calendario Mundial 2026 + Grupos</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,9 +11,9 @@
     <header class="hero">
       <div>
         <p class="eyebrow">FIFA World Cup 2026</p>
-        <h1>Calendario del Mundial</h1>
+        <h1>Calendario y grupos</h1>
         <p class="sub">
-          Núcleo limpio por rondas: fase de grupos, Round of 32, octavos, cuartos, semifinales, tercer lugar y final.
+          Calendario por rondas con tabla de posiciones automática: puntos, diferencia de goles, goles a favor y orden de grupo.
         </p>
       </div>
       <div class="scorebox">
@@ -22,34 +22,81 @@
       </div>
     </header>
 
-    <section class="toolbar">
-      <input id="searchInput" placeholder="Buscar equipo, ronda, grupo, ciudad..." />
-      <select id="stageFilter">
-        <option value="all">Todas las rondas</option>
-      </select>
-      <select id="groupFilter">
-        <option value="all">Todos los grupos</option>
-      </select>
-      <button id="refreshBtn">Recargar JSON</button>
+    <section class="tabs">
+      <button class="tab-btn active" data-tab="standings">Grupos y puntos</button>
+      <button class="tab-btn" data-tab="calendar">Calendario</button>
+      <button class="tab-btn" data-tab="knockout">Eliminatorias</button>
     </section>
 
-    <section class="overview" id="stageOverview"></section>
+    <section id="standings" class="tab-view active-tab">
+      <section class="toolbar compact-toolbar">
+        <input id="standingsSearchInput" placeholder="Buscar selección o grupo..." />
+        <select id="standingsGroupFilter">
+          <option value="all">Todos los grupos</option>
+        </select>
+      </section>
 
-    <section class="panel">
-      <div class="panel-head">
-        <div>
-          <h2 id="calendarTitle">Calendario completo</h2>
-          <p id="statusLine">Cargando calendario...</p>
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Tabla de grupos</h2>
+            <p id="standingsStatusLine">Calculada automáticamente con los resultados cargados.</p>
+          </div>
+          <button id="resetStandingsFilterBtn" class="ghost">Ver todos</button>
         </div>
-        <button id="todayBtn" class="ghost">Ir al próximo partido</button>
-      </div>
-      <div id="calendarList" class="calendar-list"></div>
+        <div id="standingsList" class="standings-grid"></div>
+      </section>
+
+      <section class="panel muted-panel">
+        <h2>Criterio usado para ordenar</h2>
+        <p>
+          Esta versión ordena por puntos, diferencia de goles, goles a favor y nombre. Después podemos agregar criterios FIFA más finos si hace falta.
+        </p>
+      </section>
+    </section>
+
+    <section id="calendar" class="tab-view">
+      <section class="toolbar">
+        <input id="searchInput" placeholder="Buscar equipo, ronda, grupo, ciudad..." />
+        <select id="stageFilter">
+          <option value="all">Todas las rondas</option>
+        </select>
+        <select id="groupFilter">
+          <option value="all">Todos los grupos</option>
+        </select>
+        <button id="refreshBtn">Recargar JSON</button>
+      </section>
+
+      <section class="overview" id="stageOverview"></section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2 id="calendarTitle">Calendario completo</h2>
+            <p id="statusLine">Cargando calendario...</p>
+          </div>
+          <button id="todayBtn" class="ghost">Ir al próximo partido</button>
+        </div>
+        <div id="calendarList" class="calendar-list"></div>
+      </section>
+    </section>
+
+    <section id="knockout" class="tab-view">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Rondas eliminatorias</h2>
+            <p class="meta">Round of 32, octavos, cuartos, semifinales, tercer lugar y final.</p>
+          </div>
+        </div>
+        <div id="knockoutList" class="calendar-list"></div>
+      </section>
     </section>
 
     <section class="panel muted-panel">
-      <h2>Formato de actualización futura</h2>
+      <h2>Fuente de datos</h2>
       <p>
-        El calendario vive en <code>worldcup_calendar_2026.json</code>. Más adelante podemos conectar una API o backend que genere el mismo formato y la interfaz se actualiza sin rehacer la app.
+        La app lee <code>worldcup_calendar_2026.json</code>. Los puntos se calculan desde los resultados guardados en ese archivo.
       </p>
     </section>
   </main>

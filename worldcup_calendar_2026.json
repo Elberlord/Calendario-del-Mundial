@@ -1408,5 +1408,127 @@
       "status": "scheduled",
       "score": ""
     }
+  ],
+  "groups": [
+    {
+      "id": "Grupo A",
+      "name": "Grupo A",
+      "teams": [
+        "Chequia",
+        "Corea del Sur",
+        "México",
+        "Sudáfrica"
+      ]
+    },
+    {
+      "id": "Grupo B",
+      "name": "Grupo B",
+      "teams": [
+        "Bosnia y Herzegovina",
+        "Canadá",
+        "Qatar",
+        "Suiza"
+      ]
+    },
+    {
+      "id": "Grupo C",
+      "name": "Grupo C",
+      "teams": [
+        "Brasil",
+        "Escocia",
+        "Haití",
+        "Marruecos"
+      ]
+    },
+    {
+      "id": "Grupo D",
+      "name": "Grupo D",
+      "teams": [
+        "Australia",
+        "Estados Unidos",
+        "Paraguay",
+        "Turquía"
+      ]
+    },
+    {
+      "id": "Grupo E",
+      "name": "Grupo E",
+      "teams": [
+        "Alemania",
+        "Costa de Marfil",
+        "Curazao",
+        "Ecuador"
+      ]
+    },
+    {
+      "id": "Grupo F",
+      "name": "Grupo F",
+      "teams": [
+        "Japón",
+        "Países Bajos",
+        "Suecia",
+        "Túnez"
+      ]
+    },
+    {
+      "id": "Grupo G",
+      "name": "Grupo G",
+      "teams": [
+        "Bélgica",
+        "Egipto",
+        "Irán",
+        "Nueva Zelanda"
+      ]
+    },
+    {
+      "id": "Grupo H",
+      "name": "Grupo H",
+      "teams": [
+        "Arabia Saudita",
+        "Cabo Verde",
+        "España",
+        "Uruguay"
+      ]
+    },
+    {
+      "id": "Grupo I",
+      "name": "Grupo I",
+      "teams": [
+        "Francia",
+        "Irak",
+        "Noruega",
+        "Senegal"
+      ]
+    },
+    {
+      "id": "Grupo J",
+      "name": "Grupo J",
+      "teams": [
+        "Argelia",
+        "Argentina",
+        "Austria",
+        "Jordania"
+      ]
+    },
+    {
+      "id": "Grupo K",
+      "name": "Grupo K",
+      "teams": [
+        "Colombia",
+        "Portugal",
+        "RD Congo",
+        "Uzbekistán"
+      ]
+    },
+    {
+      "id": "Grupo L",
+      "name": "Grupo L",
+      "teams": [
+        "Croacia",
+        "Ghana",
+        "Inglaterra",
+        "Panamá"
+      ]
+    }
   ]
 }

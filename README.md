@@ -1,45 +1,50 @@
-# Calendario Mundial 2026 Core
+# Calendario Mundial 2026 Core + Grupos
 
-Este ZIP contiene primero el núcleo limpio del calendario, separado de la app de picks/apuestas.
+Esta versión corrige el faltante principal: ahora puedes ver los grupos y puntos.
 
-## Archivos
+## Incluye
 
-- `index.html`: interfaz visual.
-- `style.css`: estilos.
-- `app.js`: carga, filtros y render del calendario.
-- `worldcup_calendar_2026.json`: fuente de datos principal.
-- `README.md`: estas notas.
-
-## Qué incluye
-
-- 104 partidos.
-- Fase de grupos completa.
+- Calendario completo de 104 partidos.
+- Fase de grupos.
 - Round of 32 / dieciseisavos.
 - Octavos.
 - Cuartos.
 - Semifinales.
 - Tercer lugar.
 - Final.
-- Filtros por ronda y grupo.
-- Buscador por equipo, ronda, sede o fecha.
+- Tabla de grupos automática.
+- Puntos.
+- PJ, G, E, P.
+- GF, GC, DG.
+- Filtros por grupo y ronda.
+- Buscador por selección, grupo, ronda, sede o fecha.
 
-## Por qué está separado
+## Cómo calcula puntos
 
-Primero conviene dejar el calendario perfecto.
-Después se conecta:
-- picks,
-- créditos ficticios,
-- ranking,
-- sincronización API,
-- panel admin.
+Desde `worldcup_calendar_2026.json`:
 
-## Actualización futura
+- Victoria: 3 puntos.
+- Empate: 1 punto.
+- Derrota: 0 puntos.
 
-La app lee `worldcup_calendar_2026.json`.
-Cuando haya backend/API, solo se reemplaza ese JSON por una ruta como:
+Orden actual:
 
-```js
-https://tu-backend.com/api/worldcup/calendar
-```
+1. Puntos.
+2. Diferencia de goles.
+3. Goles a favor.
+4. Nombre del equipo.
 
-Manteniendo el mismo formato.
+## Visual
+
+- Verde lateral: top 2 del grupo.
+- Azul lateral: tercer lugar en observación.
+- Sin marca: cuarto lugar.
+
+## Nota
+
+Después podemos agregar:
+- tabla de mejores terceros,
+- bracket visual,
+- avance automático de clasificados,
+- actualización desde API,
+- picks/pronósticos.
