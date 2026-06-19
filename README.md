@@ -243,3 +243,16 @@ Ahora usa un lenguaje más honesto:
 - Botón: `Apoyar mi canal`
 - Mensaje: si ya está suscrito, puede tocarlo como confirmación.
 - Luego aparece `Ver partido online`.
+
+
+## Partidos finalizados sin botón Ver
+
+Los partidos con `status: "complete"` ya no abren el modal.
+
+En el calendario ahora muestran:
+
+```txt
+Finalizado
+```
+
+El botón queda desactivado y no permite acceder al flujo de `Ver partido online`.

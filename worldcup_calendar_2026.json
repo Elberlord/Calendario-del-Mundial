@@ -8,8 +8,9 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-19T00:10:00Z",
-    "notes": "Calendario base con resultados disponibles hasta la actualización indicada. Horarios mostrados en ET por compatibilidad con las fuentes principales."
+    "lastUpdated": "2026-06-19T04:50:00Z",
+    "notes": "Calendario base con resultados disponibles hasta la actualización indicada. Horarios mostrados en ET por compatibilidad con las fuentes principales.",
+    "completedNoClickPatch": true
   },
   "stages": [
     {
@@ -417,8 +418,8 @@
       "home": "México",
       "away": "Corea del Sur",
       "venue": "Zapopan / Guadalajara",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "1-0"
     },
     {
       "id": "M029",

@@ -383,3 +383,22 @@ code {
 .hidden-link {
   display: none;
 }
+
+
+.watch-btn-disabled,
+.match .watch-btn-disabled {
+  opacity: .42;
+  cursor: not-allowed;
+  color: rgba(245, 200, 91, .65);
+  border-color: rgba(245, 200, 91, .22);
+  background: rgba(5, 7, 11, .68);
+  box-shadow: none;
+  filter: grayscale(.25);
+}
+
+.watch-btn-disabled:hover,
+.match .watch-btn-disabled:hover {
+  transform: none;
+  filter: grayscale(.25);
+  border-color: rgba(245, 200, 91, .22);
+}

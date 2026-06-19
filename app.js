@@ -178,6 +178,15 @@ function whatsappMatchLink(match) {
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
 
+
+function watchButtonHtml(match) {
+  if (match.status === "complete") {
+    return `<button class="watch-btn watch-btn-disabled" type="button" disabled aria-disabled="true">Finalizado</button>`;
+  }
+
+  return `${watchButtonHtml(match)}`;
+}
+
 function renderGroupedMatches(data) {
   const grouped = data.reduce((acc, match) => {
     acc[match.date] ||= [];
@@ -199,7 +208,7 @@ function renderGroupedMatches(data) {
           <div class="teamscore">${match.score || "VS"}</div>
           <strong>${match.away}</strong>
           <div class="meta">${match.timeET}<br>${match.venue}</div>
-          <button class="watch-btn" type="button">Ver</button>
+          ${watchButtonHtml(match)}
         </article>
       `).join("")}
     </section>
@@ -259,6 +268,7 @@ document.addEventListener("click", (event) => {
   const watchButton = event.target.closest(".watch-btn");
   if (watchButton) {
     event.preventDefault();
+    if (watchButton.disabled || watchButton.classList.contains("watch-btn-disabled")) return;
     openWatchModal();
     return;
   }
