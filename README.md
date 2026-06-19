@@ -1,79 +1,59 @@
-# Mundial Calendar API Connected
+# Calendario Mundial 2026 Core + Grupos
 
-Esta versión conecta el calendario y la tabla de grupos a un backend proxy.
+Esta versión corrige el faltante principal: ahora puedes ver los grupos y puntos.
 
-## Por qué backend proxy
+## Incluye
 
-No se deben poner API keys en el navegador. El navegador llama:
+- Calendario completo de 104 partidos.
+- Fase de grupos.
+- Round of 32 / dieciseisavos.
+- Octavos.
+- Cuartos.
+- Semifinales.
+- Tercer lugar.
+- Final.
+- Tabla de grupos automática.
+- Puntos.
+- PJ, G, E, P.
+- GF, GC, DG.
+- Filtros por grupo y ronda.
+- Buscador por selección, grupo, ronda, sede o fecha.
 
-```txt
-/api/worldcup/calendar
-```
+## Cómo calcula puntos
 
-Y el backend decide si usa:
+Desde `worldcup_calendar_2026.json`:
 
-- calendario local,
-- API-Football,
-- una API personalizada.
+- Victoria: 3 puntos.
+- Empate: 1 punto.
+- Derrota: 0 puntos.
 
-## Instalación
+Orden actual:
 
-```bash
-npm install
-cp .env.example .env
-npm start
-```
+1. Puntos.
+2. Diferencia de goles.
+3. Goles a favor.
+4. Nombre del equipo.
 
-Abre:
+## Visual
 
-```txt
-http://localhost:3000
-```
+- Verde lateral: top 2 del grupo.
+- Azul lateral: tercer lugar en observación.
+- Sin marca: cuarto lugar.
 
-## Modo local
+## Nota
 
-Funciona sin API key:
+Después podemos agregar:
+- tabla de mejores terceros,
+- bracket visual,
+- avance automático de clasificados,
+- actualización desde API,
+- picks/pronósticos.
 
-```env
-DATA_PROVIDER=local
-```
 
-Usa:
+## Limpieza pública
 
-```txt
-public/worldcup_calendar_2026.json
-```
+Se eliminaron de la interfaz pública los bloques:
+- Criterio usado para ordenar.
+- Fuente de datos.
 
-## Modo API-Football
-
-En `.env`:
-
-```env
-DATA_PROVIDER=api-football
-API_FOOTBALL_KEY=TU_KEY
-API_FOOTBALL_LEAGUE_ID=ID_DEL_MUNDIAL_EN_TU_CUENTA
-API_FOOTBALL_SEASON=2026
-```
-
-El ID de la competición debes confirmarlo en tu cuenta/documentación del proveedor.
-
-## Modo custom
-
-Si ya tienes otro proveedor o backend que devuelve el formato de esta app:
-
-```env
-DATA_PROVIDER=custom
-CUSTOM_CALENDAR_URL=https://tu-backend.com/api/worldcup/calendar
-```
-
-## Endpoints
-
-```txt
-GET /api/health
-GET /api/worldcup/calendar
-```
-
-## Importante
-
-Esto solo sincroniza calendario, resultados y standings deportivos.
-No conecta pagos, apuestas, cuotas ni retiro de dinero.
+Esa información queda como lógica interna del proyecto.
