@@ -1,50 +1,79 @@
-# Calendario Mundial 2026 Core + Grupos
+# Mundial Calendar API Connected
 
-Esta versión corrige el faltante principal: ahora puedes ver los grupos y puntos.
+Esta versión conecta el calendario y la tabla de grupos a un backend proxy.
 
-## Incluye
+## Por qué backend proxy
 
-- Calendario completo de 104 partidos.
-- Fase de grupos.
-- Round of 32 / dieciseisavos.
-- Octavos.
-- Cuartos.
-- Semifinales.
-- Tercer lugar.
-- Final.
-- Tabla de grupos automática.
-- Puntos.
-- PJ, G, E, P.
-- GF, GC, DG.
-- Filtros por grupo y ronda.
-- Buscador por selección, grupo, ronda, sede o fecha.
+No se deben poner API keys en el navegador. El navegador llama:
 
-## Cómo calcula puntos
+```txt
+/api/worldcup/calendar
+```
 
-Desde `worldcup_calendar_2026.json`:
+Y el backend decide si usa:
 
-- Victoria: 3 puntos.
-- Empate: 1 punto.
-- Derrota: 0 puntos.
+- calendario local,
+- API-Football,
+- una API personalizada.
 
-Orden actual:
+## Instalación
 
-1. Puntos.
-2. Diferencia de goles.
-3. Goles a favor.
-4. Nombre del equipo.
+```bash
+npm install
+cp .env.example .env
+npm start
+```
 
-## Visual
+Abre:
 
-- Verde lateral: top 2 del grupo.
-- Azul lateral: tercer lugar en observación.
-- Sin marca: cuarto lugar.
+```txt
+http://localhost:3000
+```
 
-## Nota
+## Modo local
 
-Después podemos agregar:
-- tabla de mejores terceros,
-- bracket visual,
-- avance automático de clasificados,
-- actualización desde API,
-- picks/pronósticos.
+Funciona sin API key:
+
+```env
+DATA_PROVIDER=local
+```
+
+Usa:
+
+```txt
+public/worldcup_calendar_2026.json
+```
+
+## Modo API-Football
+
+En `.env`:
+
+```env
+DATA_PROVIDER=api-football
+API_FOOTBALL_KEY=TU_KEY
+API_FOOTBALL_LEAGUE_ID=ID_DEL_MUNDIAL_EN_TU_CUENTA
+API_FOOTBALL_SEASON=2026
+```
+
+El ID de la competición debes confirmarlo en tu cuenta/documentación del proveedor.
+
+## Modo custom
+
+Si ya tienes otro proveedor o backend que devuelve el formato de esta app:
+
+```env
+DATA_PROVIDER=custom
+CUSTOM_CALENDAR_URL=https://tu-backend.com/api/worldcup/calendar
+```
+
+## Endpoints
+
+```txt
+GET /api/health
+GET /api/worldcup/calendar
+```
+
+## Importante
+
+Esto solo sincroniza calendario, resultados y standings deportivos.
+No conecta pagos, apuestas, cuotas ni retiro de dinero.

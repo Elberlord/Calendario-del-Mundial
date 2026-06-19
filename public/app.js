@@ -1,0 +1,270 @@
+let calendarData = null;
+let matches = [];
+let sourceMode = "local";
+
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => Array.from(document.querySelectorAll(s));
+
+async function fetchJson(url) {
+  const response = await fetch(url, { cache: "no-store" });
+  if (!response.ok) throw new Error(`Error ${response.status} cargando ${url}`);
+  return response.json();
+}
+
+async function loadLocalCalendar() {
+  calendarData = await fetchJson("/worldcup_calendar_2026.json");
+  matches = calendarData.matches || [];
+  sourceMode = "local";
+  setupFilters();
+  render();
+  updateSourceLabel("Fuente: calendario local", "Calendario cargado desde JSON local.");
+}
+
+async function syncFromApi() {
+  updateSourceLabel("Fuente: API", "Sincronizando con backend...");
+  try {
+    const payload = await fetchJson("/api/worldcup/calendar");
+    calendarData = payload;
+    matches = calendarData.matches || [];
+    sourceMode = calendarData.source || "api";
+    setupFilters();
+    render();
+    updateSourceLabel(`Fuente: ${calendarData.source || "api"}`, `Actualizado: ${calendarData.competition?.lastUpdated || "sin fecha"}`);
+  } catch (error) {
+    updateSourceLabel("Fuente: fallback local", `API no disponible: ${error.message}. Usando JSON local.`);
+    await loadLocalCalendar();
+  }
+}
+
+function updateSourceLabel(label, status) {
+  $("#sourceLabel").textContent = label;
+  $("#syncStatus").textContent = status;
+}
+
+function setupFilters() {
+  const stageFilter = $("#stageFilter");
+  const groupFilter = $("#groupFilter");
+  const standingsGroupFilter = $("#standingsGroupFilter");
+
+  const currentStage = stageFilter.value || "all";
+  const currentGroup = groupFilter.value || "all";
+  const currentStandingGroup = standingsGroupFilter.value || "all";
+
+  const stages = [...new Set(matches.map(m => m.stage))];
+  stageFilter.innerHTML = `<option value="all">Todas las rondas</option>` + stages.map(s => `<option value="${s}">${s}</option>`).join("");
+  if (stages.includes(currentStage)) stageFilter.value = currentStage;
+
+  const groups = [...new Set(matches.map(m => m.group).filter(Boolean))].sort();
+  const groupOptions = `<option value="all">Todos los grupos</option>` + groups.map(g => `<option value="${g}">${g}</option>`).join("");
+  groupFilter.innerHTML = groupOptions;
+  standingsGroupFilter.innerHTML = groupOptions;
+  if (groups.includes(currentGroup)) groupFilter.value = currentGroup;
+  if (groups.includes(currentStandingGroup)) standingsGroupFilter.value = currentStandingGroup;
+
+  $("#matchCount").textContent = matches.length;
+}
+
+function parseScore(score) {
+  if (!score || !score.includes("-")) return null;
+  const [home, away] = score.split("-").map(Number);
+  if (!Number.isFinite(home) || !Number.isFinite(away)) return null;
+  return { home, away };
+}
+
+function calculateStandings() {
+  const table = {};
+  matches.filter(m => m.group).forEach(match => {
+    table[match.group] ||= {};
+    [match.home, match.away].forEach(team => {
+      table[match.group][team] ||= {
+        team, group: match.group, played: 0, wins: 0, draws: 0, losses: 0,
+        gf: 0, ga: 0, gd: 0, points: 0
+      };
+    });
+
+    if (match.status !== "complete") return;
+    const score = parseScore(match.score);
+    if (!score) return;
+
+    const home = table[match.group][match.home];
+    const away = table[match.group][match.away];
+    home.played += 1; away.played += 1;
+    home.gf += score.home; home.ga += score.away;
+    away.gf += score.away; away.ga += score.home;
+
+    if (score.home > score.away) {
+      home.wins += 1; home.points += 3; away.losses += 1;
+    } else if (score.home < score.away) {
+      away.wins += 1; away.points += 3; home.losses += 1;
+    } else {
+      home.draws += 1; away.draws += 1; home.points += 1; away.points += 1;
+    }
+
+    home.gd = home.gf - home.ga;
+    away.gd = away.gf - away.ga;
+  });
+
+  Object.keys(table).forEach(group => {
+    table[group] = Object.values(table[group]).sort((a, b) =>
+      b.points - a.points ||
+      b.gd - a.gd ||
+      b.gf - a.gf ||
+      a.team.localeCompare(b.team)
+    );
+  });
+
+  return table;
+}
+
+function renderStandings() {
+  const standings = calculateStandings();
+  const q = $("#standingsSearchInput").value.trim().toLowerCase();
+  const selectedGroup = $("#standingsGroupFilter").value;
+  const container = $("#standingsList");
+
+  const visibleGroups = Object.entries(standings).filter(([group, rows]) => {
+    const text = `${group} ${rows.map(r => r.team).join(" ")}`.toLowerCase();
+    return (selectedGroup === "all" || selectedGroup === group) && text.includes(q);
+  });
+
+  const completedGroupMatches = matches.filter(m => m.group && m.status === "complete").length;
+  $("#standingsStatusLine").textContent = `Calculada con ${completedGroupMatches} partidos finalizados. Top 2 clasifican directo; terceros en observación.`;
+
+  container.innerHTML = visibleGroups.map(([group, rows]) => `
+    <section class="group-table">
+      <h3 class="group-title">${group}</h3>
+      <div class="standings-row header">
+        <span>#</span><span>Equipo</span><span>PJ</span><span>G</span><span>E</span><span>P</span><span>GF</span><span>GC</span><span>DG</span><span>Pts</span>
+      </div>
+      ${rows.map((row, index) => `
+        <div class="standings-row ${index < 2 ? "qualify" : index === 2 ? "third-watch" : ""}">
+          <span class="rank">${index + 1}</span>
+          <span class="team-name">${row.team}</span>
+          <span>${row.played}</span>
+          <span>${row.wins}</span>
+          <span>${row.draws}</span>
+          <span>${row.losses}</span>
+          <span>${row.gf}</span>
+          <span>${row.ga}</span>
+          <span>${row.gd}</span>
+          <span class="points">${row.points}</span>
+        </div>
+      `).join("")}
+    </section>
+  `).join("") || `<p class="meta">No hay grupos con ese filtro.</p>`;
+}
+
+function filteredMatches() {
+  const q = $("#searchInput").value.trim().toLowerCase();
+  const stage = $("#stageFilter").value;
+  const group = $("#groupFilter").value;
+  return matches.filter(m => {
+    const text = `${m.id} ${m.stage} ${m.round} ${m.group} ${m.home} ${m.away} ${m.venue} ${m.date} ${m.timeET}`.toLowerCase();
+    return (stage === "all" || m.stage === stage)
+      && (group === "all" || m.group === group)
+      && text.includes(q);
+  });
+}
+
+function renderOverview() {
+  const box = $("#stageOverview");
+  box.innerHTML = (calendarData.stages || []).map(stage => `
+    <article class="stage-card">
+      <strong>${stage.name}</strong>
+      <span>${stage.range}</span><br>
+      <span>${stage.matches} partidos</span>
+    </article>
+  `).join("");
+}
+
+function renderCalendar() {
+  renderOverview();
+  const list = $("#calendarList");
+  const data = filteredMatches();
+  $("#calendarTitle").textContent = $("#stageFilter").value === "all" ? "Calendario completo" : $("#stageFilter").value;
+  $("#statusLine").textContent = `${data.length} partidos visibles · Actualizado: ${calendarData.competition?.lastUpdated || "sin fecha"}`;
+  list.innerHTML = renderGroupedMatches(data) || `<p class="meta">No hay partidos con ese filtro.</p>`;
+}
+
+function renderKnockout() {
+  const knockoutMatches = matches.filter(m => !m.group);
+  $("#knockoutList").innerHTML = renderGroupedMatches(knockoutMatches) || `<p class="meta">No hay eliminatorias cargadas.</p>`;
+}
+
+function renderGroupedMatches(data) {
+  const grouped = data.reduce((acc, match) => {
+    acc[match.date] ||= [];
+    acc[match.date].push(match);
+    return acc;
+  }, {});
+
+  return Object.entries(grouped).map(([date, dayMatches]) => `
+    <section class="day" id="day-${date}">
+      <h3>${formatDay(date)}</h3>
+      ${dayMatches.map(match => `
+        <article class="match" id="${match.id}">
+          <span class="badge ${match.status}">${statusLabel(match.status)}</span>
+          <div>
+            <strong>${match.stage}</strong>
+            <div class="meta">${match.round}${match.group ? " · " + match.group : ""}</div>
+          </div>
+          <strong>${match.home}</strong>
+          <div class="teamscore">${match.score || "VS"}</div>
+          <strong>${match.away}</strong>
+          <div class="meta">${match.timeET}<br>${match.venue || ""}</div>
+        </article>
+      `).join("")}
+    </section>
+  `).join("");
+}
+
+function statusLabel(status) {
+  if (status === "complete") return "Finalizado";
+  if (status === "live") return "En vivo";
+  return "Pendiente";
+}
+
+function render() {
+  renderStandings();
+  renderCalendar();
+  renderKnockout();
+}
+
+function formatDay(value) {
+  return new Intl.DateTimeFormat("es", { weekday: "long", year: "numeric", month: "long", day: "numeric" }).format(new Date(value + "T12:00:00"));
+}
+
+function goToNextMatch() {
+  const now = new Date();
+  const next = matches.find(m => m.status !== "complete" && new Date(m.date + "T12:00:00") >= now);
+  if (next) {
+    document.querySelector(`[data-tab="calendar"]`).click();
+    setTimeout(() => document.getElementById(next.id)?.scrollIntoView({ behavior: "smooth", block: "center" }), 120);
+  }
+}
+
+$$(".tab-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    $$(".tab-btn").forEach(btn => btn.classList.remove("active"));
+    $$(".tab-view").forEach(view => view.classList.remove("active-tab"));
+    button.classList.add("active");
+    $("#" + button.dataset.tab).classList.add("active-tab");
+  });
+});
+
+$("#syncApiBtn").addEventListener("click", syncFromApi);
+$("#loadLocalBtn").addEventListener("click", loadLocalCalendar);
+$("#searchInput").addEventListener("input", renderCalendar);
+$("#stageFilter").addEventListener("change", renderCalendar);
+$("#groupFilter").addEventListener("change", renderCalendar);
+$("#standingsSearchInput").addEventListener("input", renderStandings);
+$("#standingsGroupFilter").addEventListener("change", renderStandings);
+$("#resetStandingsFilterBtn").addEventListener("click", () => {
+  $("#standingsSearchInput").value = "";
+  $("#standingsGroupFilter").value = "all";
+  renderStandings();
+});
+$("#refreshBtn").addEventListener("click", () => sourceMode === "local" ? loadLocalCalendar() : syncFromApi());
+$("#todayBtn").addEventListener("click", goToNextMatch);
+
+syncFromApi();
