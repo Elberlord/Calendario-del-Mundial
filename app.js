@@ -2,7 +2,7 @@ let calendarData = null;
 let matches = [];
 
 const YOUTUBE_SUBSCRIBE_URL = "https://www.youtube.com/@Elberlord?sub_confirmation=1";
-const WATCH_ONLINE_URL = "https://acortar.link/z5HpjD";
+const WATCH_ONLINE_URL = "PON_AQUI_TU_LINK_DEL_PARTIDO_ONLINE";
 
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => Array.from(document.querySelectorAll(s));
