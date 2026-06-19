@@ -184,7 +184,7 @@ function watchButtonHtml(match) {
     return `<button class="watch-btn watch-btn-disabled" type="button" disabled aria-disabled="true">Finalizado</button>`;
   }
 
-  return `${watchButtonHtml(match)}`;
+  return `<button class="watch-btn" type="button">Ver</button>`;
 }
 
 function renderGroupedMatches(data) {

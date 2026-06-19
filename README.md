@@ -256,3 +256,20 @@ Finalizado
 ```
 
 El botón queda desactivado y no permite acceder al flujo de `Ver partido online`.
+
+
+## Corrección de error Maximum call stack size exceeded
+
+Se corrigió la función `watchButtonHtml(match)`.
+
+Antes el botón pendiente se llamaba a sí mismo por error:
+
+```js
+return `${watchButtonHtml(match)}`;
+```
+
+Ahora devuelve correctamente el botón:
+
+```js
+return `<button class="watch-btn" type="button">Ver</button>`;
+```
