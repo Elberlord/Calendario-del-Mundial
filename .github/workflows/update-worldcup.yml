@@ -1,4 +1,4 @@
-name: Actualizar Mundial en horario de partido
+name: Actualizar Mundial sin API key
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: mundial-calendar-update
+  group: mundial-calendar-public-update
   cancel-in-progress: false
 
 jobs:
@@ -25,21 +25,18 @@ jobs:
         with:
           node-version: 20
 
-      - name: Actualizar calendario solo si hay partido
+      - name: Actualizar calendario con fuentes publicas
         env:
-          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
-          API_FOOTBALL_LEAGUE_ID: ${{ secrets.API_FOOTBALL_LEAGUE_ID }}
-          API_FOOTBALL_SEASON: "2026"
-          API_FOOTBALL_HOST: "v3.football.api-sports.io"
           CALENDAR_FILE: "worldcup_calendar_2026.json"
           UPDATE_BEFORE_MINUTES: "30"
-          UPDATE_AFTER_MINUTES: "150"
-        run: node scripts/update-worldcup-smart.js
+          UPDATE_AFTER_MINUTES: "180"
+          PUBLIC_SOURCE_URLS: "https://worldcup26.ir/get/games,https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+        run: node scripts/update-worldcup-public.js
 
-      - name: Guardar cambios si hubo actualización
+      - name: Guardar cambios si hubo actualizacion
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add worldcup_calendar_2026.json
-          git commit -m "Actualizar calendario mundial" || echo "Sin cambios para guardar"
+          git commit -m "Actualizar calendario mundial desde fuente publica" || echo "Sin cambios para guardar"
           git push
