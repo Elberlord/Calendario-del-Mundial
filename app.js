@@ -168,6 +168,13 @@ function renderKnockout() {
   $("#knockoutList").innerHTML = renderGroupedMatches(knockoutMatches) || `<p class="meta">No hay eliminatorias cargadas.</p>`;
 }
 
+
+function whatsappMatchLink(match) {
+  const phone = "50664305227";
+  const message = "como puedo ver el partido";
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+}
+
 function renderGroupedMatches(data) {
   const grouped = data.reduce((acc, match) => {
     acc[match.date] ||= [];
@@ -189,6 +196,7 @@ function renderGroupedMatches(data) {
           <div class="teamscore">${match.score || "VS"}</div>
           <strong>${match.away}</strong>
           <div class="meta">${match.timeET}<br>${match.venue}</div>
+          <a class="watch-btn" href="${whatsappMatchLink(match)}" target="_blank" rel="noopener">Ver</a>
         </article>
       `).join("")}
     </section>

@@ -153,7 +153,7 @@ button {
 }
 .match {
   display: grid;
-  grid-template-columns: 120px 150px 1fr 110px 1fr 150px;
+  grid-template-columns: 120px 150px 1fr 110px 1fr 150px 86px;
   gap: 12px;
   align-items: center;
   padding: 14px 16px;
@@ -240,4 +240,29 @@ code {
     gap: 5px;
     padding: 9px 8px;
   }
+}
+
+
+.watch-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border-radius: 14px;
+  background: #05070b;
+  color: var(--gold);
+  border: 1px solid rgba(245,200,91,.55);
+  text-decoration: none;
+  font-weight: 950;
+  letter-spacing: .02em;
+  box-shadow:
+    inset 0 0 18px rgba(245,200,91,.08),
+    0 8px 20px rgba(0,0,0,.22);
+  transition: transform .15s ease, filter .15s ease, border-color .15s ease;
+}
+
+.watch-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  border-color: rgba(245,200,91,.9);
 }

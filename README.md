@@ -57,3 +57,13 @@ Se eliminaron de la interfaz pública los bloques:
 - Fuente de datos.
 
 Esa información queda como lógica interna del proyecto.
+
+
+## Botón WhatsApp
+
+Se agregó un botón `Ver` junto a cada partido del calendario.
+El botón abre WhatsApp al número `+506 6430 5227` con el mensaje:
+
+```txt
+como puedo ver el partido
+```
