@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-20T21:21:28.214Z",
+    "lastUpdated": "2026-06-20T22:39:36.108Z",
     "notes": "Calendario base con resultados disponibles hasta la actualización indicada. Horarios mostrados en ET por compatibilidad con las fuentes principales.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -621,8 +621,8 @@
       "home": "Alemania",
       "away": "Costa de Marfil",
       "venue": "Toronto",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "2-1",
       "externalId": "PUBLIC-27",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
