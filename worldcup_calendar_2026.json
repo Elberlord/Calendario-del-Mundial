@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-19T23:15:24.267Z",
+    "lastUpdated": "2026-06-20T01:33:06.047Z",
     "notes": "Calendario base con resultados disponibles hasta la actualización indicada. Horarios mostrados en ET por compatibilidad con las fuentes principales.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -533,8 +533,8 @@
       "home": "Escocia",
       "away": "Marruecos",
       "venue": "Foxborough",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "0-1",
       "externalId": "PUBLIC-15",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
