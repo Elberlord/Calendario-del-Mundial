@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-21T02:08:45.100Z",
+    "lastUpdated": "2026-06-21T16:52:03.840Z",
     "notes": "Calendario base con resultados disponibles hasta la actualización indicada. Horarios mostrados en ET por compatibilidad con las fuentes principales.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -592,8 +592,8 @@
       "home": "Túnez",
       "away": "Japón",
       "venue": "Monterrey (Guadalupe)",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "0-4",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
