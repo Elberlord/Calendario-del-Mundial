@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-21T16:52:03.840Z",
+    "lastUpdated": "2026-06-21T18:15:17.811Z",
     "notes": "Calendario base con resultados disponibles hasta la actualización indicada. Horarios mostrados en ET por compatibilidad con las fuentes principales.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -664,8 +664,8 @@
       "home": "España",
       "away": "Arabia Saudita",
       "venue": "Atlanta",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "4-0",
       "externalId": "PUBLIC-45",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
