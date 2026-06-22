@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-22T21:49:22.798Z",
+    "lastUpdated": "2026-06-22T23:08:57.078Z",
     "notes": "Calendario base con resultados disponibles hasta la actualización indicada. Horarios mostrados en ET por compatibilidad con las fuentes principales.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
