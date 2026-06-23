@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-23T00:20:51.879Z",
+    "lastUpdated": "2026-06-23T04:36:33.130Z",
     "notes": "Calendario base con resultados disponibles hasta la actualización indicada. Horarios mostrados en ET por compatibilidad con las fuentes principales.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -739,8 +739,8 @@
       "home": "Francia",
       "away": "Irak",
       "venue": "Philadelphia",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "3-0",
       "externalId": "PUBLIC-51",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
@@ -754,8 +754,8 @@
       "home": "Noruega",
       "away": "Senegal",
       "venue": "East Rutherford",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "3-2",
       "externalId": "PUBLIC-52",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
