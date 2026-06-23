@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-23T04:36:33.130Z",
+    "lastUpdated": "2026-06-23T16:39:39.572Z",
     "notes": "Calendario base con resultados disponibles hasta la actualización indicada. Horarios mostrados en ET por compatibilidad con las fuentes principales.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -769,8 +769,8 @@
       "home": "Jordania",
       "away": "Argelia",
       "venue": "Santa Clara",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "1-2",
       "externalId": "PUBLIC-58",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
