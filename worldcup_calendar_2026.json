@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-23T22:03:20.218Z",
+    "lastUpdated": "2026-06-23T23:18:27.722Z",
     "notes": "Calendario base con resultados disponibles hasta la actualización indicada. Horarios mostrados en ET por compatibilidad con las fuentes principales.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -799,8 +799,8 @@
       "home": "Inglaterra",
       "away": "Ghana",
       "venue": "Foxborough",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "0-0",
       "externalId": "PUBLIC-69",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
