@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-24T00:15:16.271Z",
+    "lastUpdated": "2026-06-24T04:41:08.260Z",
     "notes": "Calendario base con resultados disponibles hasta la actualización indicada. Horarios mostrados en ET por compatibilidad con las fuentes principales.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -814,8 +814,8 @@
       "home": "Panamá",
       "away": "Croacia",
       "venue": "Toronto",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "0-1",
       "externalId": "PUBLIC-70",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
@@ -829,8 +829,8 @@
       "home": "Colombia",
       "away": "RD Congo",
       "venue": "Zapopan / Guadalajara",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "1-0",
       "externalId": "PUBLIC-64",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
