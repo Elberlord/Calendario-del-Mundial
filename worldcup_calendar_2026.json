@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-24T20:02:25.966Z",
+    "lastUpdated": "2026-06-24T21:41:18.263Z",
     "notes": "Calendario base con resultados disponibles hasta la actualización indicada. Horarios mostrados en ET por compatibilidad con las fuentes principales.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -844,8 +844,8 @@
       "home": "Suiza",
       "away": "Canadá",
       "venue": "Vancouver",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "2-1",
       "externalId": "PUBLIC-11",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
@@ -859,8 +859,8 @@
       "home": "Bosnia y Herzegovina",
       "away": "Qatar",
       "venue": "Seattle",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "3-1",
       "externalId": "PUBLIC-12",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
