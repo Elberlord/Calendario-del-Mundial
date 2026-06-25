@@ -473,8 +473,8 @@ function renderBracketTree(bracketState = buildBracketState()) {
   if (!target) return;
 
   const leftColumns = [
-    { title: "32avos", ids: ["M073", "M074", "M075", "M076", "M077", "M078", "M079", "M080"] },
-    { title: "16avos", ids: ["M089", "M090", "M091", "M092"] },
+    { title: "32avos", ids: ["M073", "M075", "M074", "M077", "M083", "M084", "M081", "M082"] },
+    { title: "16avos", ids: ["M089", "M090", "M093", "M094"] },
     { title: "Cuartos", ids: ["M097", "M098"] },
     { title: "Semifinal", ids: ["M101"] }
   ];
@@ -482,8 +482,8 @@ function renderBracketTree(bracketState = buildBracketState()) {
   const rightColumns = [
     { title: "Semifinal", ids: ["M102"] },
     { title: "Cuartos", ids: ["M099", "M100"] },
-    { title: "16avos", ids: ["M093", "M094", "M095", "M096"] },
-    { title: "32avos", ids: ["M081", "M082", "M083", "M084", "M085", "M086", "M087", "M088"] }
+    { title: "16avos", ids: ["M091", "M092", "M095", "M096"] },
+    { title: "32avos", ids: ["M076", "M078", "M079", "M080", "M086", "M088", "M085", "M087"] }
   ];
 
   target.innerHTML = `
