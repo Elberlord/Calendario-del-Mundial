@@ -329,11 +329,11 @@ function mergeMatches(calendar, remoteMatches) {
     }
   }
 
-  updated.matches = dedupeCurrentMatches(current).sort((a, b) => {
-    const da = getKickoffDate(a) || new Date(`${a.date}T12:00:00Z`);
-    const db = getKickoffDate(b) || new Date(`${b.date}T12:00:00Z`);
-    return da - db;
-  });
+  updated.matches = dedupeCurrentMatches(current).sort((a, b) =>
+    String(a.date || "").localeCompare(String(b.date || "")) ||
+    String(a.timeET || "").localeCompare(String(b.timeET || "")) ||
+    String(a.id || "").localeCompare(String(b.id || ""))
+  );
 
   console.log(`Partidos modificados/agregados: ${changedCount}`);
   return updated;
