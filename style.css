@@ -697,6 +697,30 @@ code {
 .bracket-team .slot-note {
   margin-top: 2px;
 }
+
+.bracket-flag-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bracket-team-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  font-size: 1.1rem;
+  line-height: 1;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.bracket-team.winner .bracket-team-flag {
+  border-color: rgba(128,226,155,.25);
+  background: rgba(128,226,155,.09);
+}
 .bracket-scoreline {
   margin-top: 10px;
   text-align: center;

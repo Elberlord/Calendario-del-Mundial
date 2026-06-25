@@ -50,6 +50,72 @@ function normalizeTeamName(value) {
     .trim();
 }
 
+
+
+function normalizeTeamKey(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const TEAM_FLAGS = {
+  "alemania": "🇩🇪",
+  "arabia saudita": "🇸🇦",
+  "argelia": "🇩🇿",
+  "argentina": "🇦🇷",
+  "australia": "🇦🇺",
+  "austria": "🇦🇹",
+  "belgica": "🇧🇪",
+  "bosnia y herzegovina": "🇧🇦",
+  "brasil": "🇧🇷",
+  "cabo verde": "🇨🇻",
+  "canada": "🇨🇦",
+  "chequia": "🇨🇿",
+  "colombia": "🇨🇴",
+  "corea del sur": "🇰🇷",
+  "costa de marfil": "🇨🇮",
+  "croacia": "🇭🇷",
+  "curazao": "🇨🇼",
+  "ecuador": "🇪🇨",
+  "egipto": "🇪🇬",
+  "escocia": "🏴",
+  "espana": "🇪🇸",
+  "estados unidos": "🇺🇸",
+  "francia": "🇫🇷",
+  "ghana": "🇬🇭",
+  "haiti": "🇭🇹",
+  "inglaterra": "🏴",
+  "irak": "🇮🇶",
+  "iran": "🇮🇷",
+  "japon": "🇯🇵",
+  "jordania": "🇯🇴",
+  "marruecos": "🇲🇦",
+  "mexico": "🇲🇽",
+  "noruega": "🇳🇴",
+  "nueva zelanda": "🇳🇿",
+  "paises bajos": "🇳🇱",
+  "panama": "🇵🇦",
+  "paraguay": "🇵🇾",
+  "portugal": "🇵🇹",
+  "qatar": "🇶🇦",
+  "rd congo": "🇨🇩",
+  "senegal": "🇸🇳",
+  "sudafrica": "🇿🇦",
+  "suecia": "🇸🇪",
+  "suiza": "🇨🇭",
+  "tunez": "🇹🇳",
+  "turquia": "🇹🇷",
+  "uruguay": "🇺🇾",
+  "uzbekistan": "🇺🇿"
+};
+
+function getTeamFlag(teamName) {
+  return TEAM_FLAGS[normalizeTeamKey(teamName)] || "";
+}
+
 function normalizeMatches(rawMatches) {
   const groupBest = new Map();
   const knockoutMatches = [];
@@ -343,9 +409,19 @@ function renderBracketTeamLine(match, teamValue, side, bracketState) {
   if (winnerSide === side) classes.push("winner");
   if (isPlaceholderTeam(teamValue)) classes.push(resolved.resolved ? "resolved" : "provisional");
 
+  const flag = getTeamFlag(resolved.label);
+  const compactVisual = flag
+    ? `
+      <div class="bracket-flag-wrap" title="${resolved.label}" aria-label="${resolved.label}">
+        <span class="bracket-team-flag">${flag}</span>
+      </div>
+      ${resolved.note ? `<span class="slot-note">${resolved.note}</span>` : ""}
+    `
+    : displayMatchTeam(teamValue, bracketState);
+
   return `
     <div class="${classes.join(" ")}">
-      ${displayMatchTeam(teamValue, bracketState)}
+      ${compactVisual}
     </div>
   `;
 }
