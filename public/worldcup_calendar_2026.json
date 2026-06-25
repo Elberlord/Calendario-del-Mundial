@@ -8,8 +8,15 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-19T00:10:00Z",
-    "notes": "Calendario base con resultados disponibles hasta la actualización indicada. Horarios mostrados en ET por compatibilidad con las fuentes principales."
+    "lastUpdated": "2026-06-25T03:29:47.782Z",
+    "notes": "Calendario normalizado: resultados actuales aplicados y duplicados de partidos cruzados de medianoche removidos.",
+    "completedNoClickPatch": true,
+    "updateMode": "github-actions-public-no-key",
+    "publicSources": [
+      "https://worldcup26.ir/get/games",
+      "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    ],
+    "normalizedNoCrossMidnightDuplicates": true
   },
   "stages": [
     {
@@ -57,19 +64,6 @@
   ],
   "matches": [
     {
-      "id": "M001",
-      "stage": "Fase de grupos",
-      "round": "Jornada 1",
-      "group": "Grupo A",
-      "date": "2026-06-11",
-      "timeET": "3:00 PM ET",
-      "home": "México",
-      "away": "Sudáfrica",
-      "venue": "Mexico City",
-      "status": "complete",
-      "score": "2-0"
-    },
-    {
       "id": "M002",
       "stage": "Fase de grupos",
       "round": "Jornada 1",
@@ -80,7 +74,24 @@
       "away": "Chequia",
       "venue": "Zapopan / Guadalajara",
       "status": "complete",
-      "score": "2-1"
+      "score": "2-1",
+      "externalId": "PUBLIC-2",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M001",
+      "stage": "Fase de grupos",
+      "round": "Jornada 1",
+      "group": "Grupo A",
+      "date": "2026-06-11",
+      "timeET": "3:00 PM ET",
+      "home": "México",
+      "away": "Sudáfrica",
+      "venue": "Mexico City",
+      "status": "complete",
+      "score": "2-0",
+      "externalId": "PUBLIC-1",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M003",
@@ -93,7 +104,9 @@
       "away": "Bosnia y Herzegovina",
       "venue": "Toronto",
       "status": "complete",
-      "score": "1-1"
+      "score": "1-1",
+      "externalId": "PUBLIC-7",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M004",
@@ -106,7 +119,24 @@
       "away": "Paraguay",
       "venue": "Inglewood",
       "status": "complete",
-      "score": "4-1"
+      "score": "4-1",
+      "externalId": "PUBLIC-19",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "PUBLIC-20",
+      "externalId": "PUBLIC-20",
+      "stage": "Fase de grupos",
+      "round": "Jornada 3",
+      "group": "Grupo D",
+      "date": "2026-06-13",
+      "timeET": "12:00 AM ET",
+      "home": "Australia",
+      "away": "Turquía",
+      "venue": "Vancouver",
+      "status": "complete",
+      "score": "2-0",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M005",
@@ -119,7 +149,9 @@
       "away": "Suiza",
       "venue": "Santa Clara",
       "status": "complete",
-      "score": "1-1"
+      "score": "1-1",
+      "externalId": "PUBLIC-8",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M006",
@@ -132,7 +164,9 @@
       "away": "Marruecos",
       "venue": "East Rutherford",
       "status": "complete",
-      "score": "1-1"
+      "score": "1-1",
+      "externalId": "PUBLIC-13",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M007",
@@ -145,20 +179,9 @@
       "away": "Escocia",
       "venue": "Foxborough",
       "status": "complete",
-      "score": "0-1"
-    },
-    {
-      "id": "M008",
-      "stage": "Fase de grupos",
-      "round": "Jornada 1",
-      "group": "Grupo D",
-      "date": "2026-06-14",
-      "timeET": "12:00 AM ET",
-      "home": "Australia",
-      "away": "Turquía",
-      "venue": "Vancouver",
-      "status": "complete",
-      "score": "2-0"
+      "score": "0-1",
+      "externalId": "PUBLIC-14",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M009",
@@ -171,33 +194,9 @@
       "away": "Curazao",
       "venue": "Houston",
       "status": "complete",
-      "score": "7-1"
-    },
-    {
-      "id": "M010",
-      "stage": "Fase de grupos",
-      "round": "Jornada 1",
-      "group": "Grupo F",
-      "date": "2026-06-14",
-      "timeET": "4:00 PM ET",
-      "home": "Países Bajos",
-      "away": "Japón",
-      "venue": "Arlington",
-      "status": "complete",
-      "score": "2-2"
-    },
-    {
-      "id": "M011",
-      "stage": "Fase de grupos",
-      "round": "Jornada 1",
-      "group": "Grupo E",
-      "date": "2026-06-14",
-      "timeET": "7:00 PM ET",
-      "home": "Costa de Marfil",
-      "away": "Ecuador",
-      "venue": "Philadelphia",
-      "status": "complete",
-      "score": "1-0"
+      "score": "7-1",
+      "externalId": "PUBLIC-25",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M012",
@@ -210,7 +209,39 @@
       "away": "Túnez",
       "venue": "Guadalupe",
       "status": "complete",
-      "score": "5-1"
+      "score": "5-1",
+      "externalId": "PUBLIC-32",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M010",
+      "stage": "Fase de grupos",
+      "round": "Jornada 1",
+      "group": "Grupo F",
+      "date": "2026-06-14",
+      "timeET": "4:00 PM ET",
+      "home": "Países Bajos",
+      "away": "Japón",
+      "venue": "Arlington",
+      "status": "complete",
+      "score": "2-2",
+      "externalId": "PUBLIC-31",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M011",
+      "stage": "Fase de grupos",
+      "round": "Jornada 1",
+      "group": "Grupo E",
+      "date": "2026-06-14",
+      "timeET": "7:00 PM ET",
+      "home": "Costa de Marfil",
+      "away": "Ecuador",
+      "venue": "Philadelphia",
+      "status": "complete",
+      "score": "1-0",
+      "externalId": "PUBLIC-26",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M013",
@@ -223,7 +254,9 @@
       "away": "Cabo Verde",
       "venue": "Atlanta",
       "status": "complete",
-      "score": "0-0"
+      "score": "0-0",
+      "externalId": "PUBLIC-43",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M014",
@@ -236,7 +269,9 @@
       "away": "Egipto",
       "venue": "Seattle",
       "status": "complete",
-      "score": "1-1"
+      "score": "1-1",
+      "externalId": "PUBLIC-37",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M015",
@@ -249,7 +284,9 @@
       "away": "Uruguay",
       "venue": "Miami Gardens",
       "status": "complete",
-      "score": "1-1"
+      "score": "1-1",
+      "externalId": "PUBLIC-44",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M016",
@@ -262,7 +299,24 @@
       "away": "Nueva Zelanda",
       "venue": "Vancouver",
       "status": "complete",
-      "score": "2-2"
+      "score": "2-2",
+      "externalId": "PUBLIC-38",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "PUBLIC-56",
+      "externalId": "PUBLIC-56",
+      "stage": "Fase de grupos",
+      "round": "Jornada 6",
+      "group": "Grupo J",
+      "date": "2026-06-16",
+      "timeET": "12:00 AM ET",
+      "home": "Austria",
+      "away": "Jordania",
+      "venue": "San Francisco Bay Area (Santa Clara)",
+      "status": "complete",
+      "score": "3-1",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M017",
@@ -275,7 +329,9 @@
       "away": "Senegal",
       "venue": "East Rutherford",
       "status": "complete",
-      "score": "3-1"
+      "score": "3-1",
+      "externalId": "PUBLIC-49",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M018",
@@ -288,7 +344,9 @@
       "away": "Noruega",
       "venue": "Foxborough",
       "status": "complete",
-      "score": "1-4"
+      "score": "1-4",
+      "externalId": "PUBLIC-50",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M019",
@@ -301,20 +359,9 @@
       "away": "Argelia",
       "venue": "Kansas City",
       "status": "complete",
-      "score": "3-0"
-    },
-    {
-      "id": "M020",
-      "stage": "Fase de grupos",
-      "round": "Jornada 1",
-      "group": "Grupo J",
-      "date": "2026-06-17",
-      "timeET": "12:00 AM ET",
-      "home": "Austria",
-      "away": "Jordania",
-      "venue": "Santa Clara",
-      "status": "complete",
-      "score": "3-1"
+      "score": "3-0",
+      "externalId": "PUBLIC-55",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M021",
@@ -327,33 +374,9 @@
       "away": "RD Congo",
       "venue": "Houston",
       "status": "complete",
-      "score": "1-1"
-    },
-    {
-      "id": "M022",
-      "stage": "Fase de grupos",
-      "round": "Jornada 1",
-      "group": "Grupo L",
-      "date": "2026-06-17",
-      "timeET": "4:00 PM ET",
-      "home": "Inglaterra",
-      "away": "Croacia",
-      "venue": "Dallas / Arlington",
-      "status": "complete",
-      "score": "4-2"
-    },
-    {
-      "id": "M023",
-      "stage": "Fase de grupos",
-      "round": "Jornada 1",
-      "group": "Grupo L",
-      "date": "2026-06-17",
-      "timeET": "7:00 PM ET",
-      "home": "Ghana",
-      "away": "Panamá",
-      "venue": "Toronto",
-      "status": "complete",
-      "score": "1-0"
+      "score": "1-1",
+      "externalId": "PUBLIC-61",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M024",
@@ -366,7 +389,39 @@
       "away": "Colombia",
       "venue": "Mexico City",
       "status": "complete",
-      "score": "1-3"
+      "score": "1-3",
+      "externalId": "PUBLIC-62",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M022",
+      "stage": "Fase de grupos",
+      "round": "Jornada 1",
+      "group": "Grupo L",
+      "date": "2026-06-17",
+      "timeET": "4:00 PM ET",
+      "home": "Inglaterra",
+      "away": "Croacia",
+      "venue": "Dallas / Arlington",
+      "status": "complete",
+      "score": "4-2",
+      "externalId": "PUBLIC-67",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M023",
+      "stage": "Fase de grupos",
+      "round": "Jornada 1",
+      "group": "Grupo L",
+      "date": "2026-06-17",
+      "timeET": "7:00 PM ET",
+      "home": "Ghana",
+      "away": "Panamá",
+      "venue": "Toronto",
+      "status": "complete",
+      "score": "1-0",
+      "externalId": "PUBLIC-68",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M025",
@@ -379,7 +434,9 @@
       "away": "Sudáfrica",
       "venue": "Atlanta",
       "status": "complete",
-      "score": "1-1"
+      "score": "1-1",
+      "externalId": "PUBLIC-3",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M026",
@@ -392,7 +449,9 @@
       "away": "Bosnia y Herzegovina",
       "venue": "Inglewood",
       "status": "complete",
-      "score": "4-1"
+      "score": "4-1",
+      "externalId": "PUBLIC-9",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M027",
@@ -405,7 +464,9 @@
       "away": "Qatar",
       "venue": "Vancouver",
       "status": "complete",
-      "score": "6-0"
+      "score": "6-0",
+      "externalId": "PUBLIC-10",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M028",
@@ -417,8 +478,25 @@
       "home": "México",
       "away": "Corea del Sur",
       "venue": "Zapopan / Guadalajara",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "1-0",
+      "externalId": "PUBLIC-4",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "PUBLIC-22",
+      "externalId": "PUBLIC-22",
+      "stage": "Fase de grupos",
+      "round": "Jornada 9",
+      "group": "Grupo D",
+      "date": "2026-06-19",
+      "timeET": "11:00 PM ET",
+      "home": "Turquía",
+      "away": "Paraguay",
+      "venue": "San Francisco Bay Area (Santa Clara)",
+      "status": "complete",
+      "score": "0-1",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M029",
@@ -430,8 +508,10 @@
       "home": "Estados Unidos",
       "away": "Australia",
       "venue": "Seattle",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "2-0",
+      "externalId": "PUBLIC-21",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M030",
@@ -443,8 +523,10 @@
       "home": "Escocia",
       "away": "Marruecos",
       "venue": "Foxborough",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "0-1",
+      "externalId": "PUBLIC-15",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M031",
@@ -456,21 +538,10 @@
       "home": "Brasil",
       "away": "Haití",
       "venue": "Philadelphia",
-      "status": "scheduled",
-      "score": ""
-    },
-    {
-      "id": "M032",
-      "stage": "Fase de grupos",
-      "round": "Jornada 2",
-      "group": "Grupo D",
-      "date": "2026-06-20",
-      "timeET": "12:00 AM ET",
-      "home": "Turquía",
-      "away": "Paraguay",
-      "venue": "Santa Clara",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "3-0",
+      "externalId": "PUBLIC-16",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M033",
@@ -482,8 +553,25 @@
       "home": "Países Bajos",
       "away": "Suecia",
       "venue": "Houston",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "5-1",
+      "externalId": "PUBLIC-33",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "PUBLIC-34",
+      "externalId": "PUBLIC-34",
+      "stage": "Fase de grupos",
+      "round": "Jornada 10",
+      "group": "Grupo F",
+      "date": "2026-06-20",
+      "timeET": "12:00 AM ET",
+      "home": "Túnez",
+      "away": "Japón",
+      "venue": "Monterrey (Guadalupe)",
+      "status": "complete",
+      "score": "0-4",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M034",
@@ -495,8 +583,10 @@
       "home": "Alemania",
       "away": "Costa de Marfil",
       "venue": "Toronto",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "2-1",
+      "externalId": "PUBLIC-27",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M035",
@@ -508,21 +598,10 @@
       "home": "Ecuador",
       "away": "Curazao",
       "venue": "Kansas City",
-      "status": "scheduled",
-      "score": ""
-    },
-    {
-      "id": "M036",
-      "stage": "Fase de grupos",
-      "round": "Jornada 2",
-      "group": "Grupo F",
-      "date": "2026-06-21",
-      "timeET": "12:00 AM ET",
-      "home": "Túnez",
-      "away": "Japón",
-      "venue": "Guadalupe",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "0-0",
+      "externalId": "PUBLIC-28",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M037",
@@ -534,8 +613,10 @@
       "home": "España",
       "away": "Arabia Saudita",
       "venue": "Atlanta",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "4-0",
+      "externalId": "PUBLIC-45",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M038",
@@ -547,8 +628,10 @@
       "home": "Bélgica",
       "away": "Irán",
       "venue": "Inglewood",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "0-0",
+      "externalId": "PUBLIC-39",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M039",
@@ -560,8 +643,10 @@
       "home": "Uruguay",
       "away": "Cabo Verde",
       "venue": "Miami Gardens",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "2-2",
+      "externalId": "PUBLIC-46",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M040",
@@ -573,8 +658,10 @@
       "home": "Nueva Zelanda",
       "away": "Egipto",
       "venue": "Vancouver",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "1-3",
+      "externalId": "PUBLIC-40",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M041",
@@ -586,34 +673,10 @@
       "home": "Argentina",
       "away": "Austria",
       "venue": "Arlington",
-      "status": "scheduled",
-      "score": ""
-    },
-    {
-      "id": "M042",
-      "stage": "Fase de grupos",
-      "round": "Jornada 2",
-      "group": "Grupo I",
-      "date": "2026-06-22",
-      "timeET": "5:00 PM ET",
-      "home": "Francia",
-      "away": "Irak",
-      "venue": "Philadelphia",
-      "status": "scheduled",
-      "score": ""
-    },
-    {
-      "id": "M043",
-      "stage": "Fase de grupos",
-      "round": "Jornada 2",
-      "group": "Grupo I",
-      "date": "2026-06-22",
-      "timeET": "8:00 PM ET",
-      "home": "Noruega",
-      "away": "Senegal",
-      "venue": "East Rutherford",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "2-0",
+      "externalId": "PUBLIC-57",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M044",
@@ -625,8 +688,40 @@
       "home": "Jordania",
       "away": "Argelia",
       "venue": "Santa Clara",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "1-2",
+      "externalId": "PUBLIC-58",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M042",
+      "stage": "Fase de grupos",
+      "round": "Jornada 2",
+      "group": "Grupo I",
+      "date": "2026-06-22",
+      "timeET": "5:00 PM ET",
+      "home": "Francia",
+      "away": "Irak",
+      "venue": "Philadelphia",
+      "status": "complete",
+      "score": "3-0",
+      "externalId": "PUBLIC-51",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M043",
+      "stage": "Fase de grupos",
+      "round": "Jornada 2",
+      "group": "Grupo I",
+      "date": "2026-06-22",
+      "timeET": "8:00 PM ET",
+      "home": "Noruega",
+      "away": "Senegal",
+      "venue": "East Rutherford",
+      "status": "complete",
+      "score": "3-2",
+      "externalId": "PUBLIC-52",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M045",
@@ -638,34 +733,10 @@
       "home": "Portugal",
       "away": "Uzbekistán",
       "venue": "Houston",
-      "status": "scheduled",
-      "score": ""
-    },
-    {
-      "id": "M046",
-      "stage": "Fase de grupos",
-      "round": "Jornada 2",
-      "group": "Grupo L",
-      "date": "2026-06-23",
-      "timeET": "4:00 PM ET",
-      "home": "Inglaterra",
-      "away": "Ghana",
-      "venue": "Foxborough",
-      "status": "scheduled",
-      "score": ""
-    },
-    {
-      "id": "M047",
-      "stage": "Fase de grupos",
-      "round": "Jornada 2",
-      "group": "Grupo L",
-      "date": "2026-06-23",
-      "timeET": "7:00 PM ET",
-      "home": "Panamá",
-      "away": "Croacia",
-      "venue": "Toronto",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "5-0",
+      "externalId": "PUBLIC-63",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M048",
@@ -677,8 +748,40 @@
       "home": "Colombia",
       "away": "RD Congo",
       "venue": "Zapopan / Guadalajara",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "1-0",
+      "externalId": "PUBLIC-64",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M046",
+      "stage": "Fase de grupos",
+      "round": "Jornada 2",
+      "group": "Grupo L",
+      "date": "2026-06-23",
+      "timeET": "4:00 PM ET",
+      "home": "Inglaterra",
+      "away": "Ghana",
+      "venue": "Foxborough",
+      "status": "complete",
+      "score": "0-0",
+      "externalId": "PUBLIC-69",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M047",
+      "stage": "Fase de grupos",
+      "round": "Jornada 2",
+      "group": "Grupo L",
+      "date": "2026-06-23",
+      "timeET": "7:00 PM ET",
+      "home": "Panamá",
+      "away": "Croacia",
+      "venue": "Toronto",
+      "status": "complete",
+      "score": "0-1",
+      "externalId": "PUBLIC-70",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M049",
@@ -690,8 +793,10 @@
       "home": "Suiza",
       "away": "Canadá",
       "venue": "Vancouver",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "2-1",
+      "externalId": "PUBLIC-11",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M050",
@@ -703,8 +808,10 @@
       "home": "Bosnia y Herzegovina",
       "away": "Qatar",
       "venue": "Seattle",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "3-1",
+      "externalId": "PUBLIC-12",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M051",
@@ -716,8 +823,10 @@
       "home": "Escocia",
       "away": "Brasil",
       "venue": "Miami Gardens",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "0-3",
+      "externalId": "PUBLIC-17",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M052",
@@ -729,8 +838,10 @@
       "home": "Marruecos",
       "away": "Haití",
       "venue": "Atlanta",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "4-2",
+      "externalId": "PUBLIC-18",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M053",
@@ -742,8 +853,10 @@
       "home": "Chequia",
       "away": "México",
       "venue": "Mexico City",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "0-3",
+      "externalId": "PUBLIC-5",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M054",
@@ -755,60 +868,10 @@
       "home": "Sudáfrica",
       "away": "Corea del Sur",
       "venue": "Guadalupe",
-      "status": "scheduled",
-      "score": ""
-    },
-    {
-      "id": "M055",
-      "stage": "Fase de grupos",
-      "round": "Jornada 3",
-      "group": "Grupo E",
-      "date": "2026-06-25",
-      "timeET": "4:00 PM ET",
-      "home": "Ecuador",
-      "away": "Alemania",
-      "venue": "East Rutherford",
-      "status": "scheduled",
-      "score": ""
-    },
-    {
-      "id": "M056",
-      "stage": "Fase de grupos",
-      "round": "Jornada 3",
-      "group": "Grupo E",
-      "date": "2026-06-25",
-      "timeET": "4:00 PM ET",
-      "home": "Curazao",
-      "away": "Costa de Marfil",
-      "venue": "Philadelphia",
-      "status": "scheduled",
-      "score": ""
-    },
-    {
-      "id": "M057",
-      "stage": "Fase de grupos",
-      "round": "Jornada 3",
-      "group": "Grupo F",
-      "date": "2026-06-25",
-      "timeET": "7:00 PM ET",
-      "home": "Japón",
-      "away": "Suecia",
-      "venue": "Arlington",
-      "status": "scheduled",
-      "score": ""
-    },
-    {
-      "id": "M058",
-      "stage": "Fase de grupos",
-      "round": "Jornada 3",
-      "group": "Grupo F",
-      "date": "2026-06-25",
-      "timeET": "7:00 PM ET",
-      "home": "Túnez",
-      "away": "Países Bajos",
-      "venue": "Kansas City",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "1-0",
+      "externalId": "PUBLIC-6",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M059",
@@ -821,7 +884,9 @@
       "away": "Estados Unidos",
       "venue": "Inglewood",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-23",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M060",
@@ -834,59 +899,69 @@
       "away": "Australia",
       "venue": "Santa Clara",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-24",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
-      "id": "M061",
+      "id": "M055",
       "stage": "Fase de grupos",
       "round": "Jornada 3",
-      "group": "Grupo I",
-      "date": "2026-06-26",
-      "timeET": "3:00 PM ET",
-      "home": "Noruega",
-      "away": "Francia",
-      "venue": "Foxborough",
+      "group": "Grupo E",
+      "date": "2026-06-25",
+      "timeET": "4:00 PM ET",
+      "home": "Ecuador",
+      "away": "Alemania",
+      "venue": "East Rutherford",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-30",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
-      "id": "M062",
+      "id": "M056",
       "stage": "Fase de grupos",
       "round": "Jornada 3",
-      "group": "Grupo I",
-      "date": "2026-06-26",
-      "timeET": "3:00 PM ET",
-      "home": "Senegal",
-      "away": "Irak",
-      "venue": "Toronto",
+      "group": "Grupo E",
+      "date": "2026-06-25",
+      "timeET": "4:00 PM ET",
+      "home": "Curazao",
+      "away": "Costa de Marfil",
+      "venue": "Philadelphia",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-29",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
-      "id": "M063",
+      "id": "M057",
       "stage": "Fase de grupos",
       "round": "Jornada 3",
-      "group": "Grupo H",
-      "date": "2026-06-26",
-      "timeET": "8:00 PM ET",
-      "home": "Cabo Verde",
-      "away": "Arabia Saudita",
-      "venue": "Houston",
+      "group": "Grupo F",
+      "date": "2026-06-25",
+      "timeET": "7:00 PM ET",
+      "home": "Japón",
+      "away": "Suecia",
+      "venue": "Arlington",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-35",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
-      "id": "M064",
+      "id": "M058",
       "stage": "Fase de grupos",
       "round": "Jornada 3",
-      "group": "Grupo H",
-      "date": "2026-06-26",
-      "timeET": "8:00 PM ET",
-      "home": "Uruguay",
-      "away": "España",
-      "venue": "Zapopan / Guadalajara",
+      "group": "Grupo F",
+      "date": "2026-06-25",
+      "timeET": "7:00 PM ET",
+      "home": "Túnez",
+      "away": "Países Bajos",
+      "venue": "Kansas City",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-36",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M065",
@@ -899,7 +974,9 @@
       "away": "Irán",
       "venue": "Seattle",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-41",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M066",
@@ -912,59 +989,69 @@
       "away": "Bélgica",
       "venue": "Vancouver",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-42",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
-      "id": "M067",
+      "id": "M061",
       "stage": "Fase de grupos",
       "round": "Jornada 3",
-      "group": "Grupo L",
-      "date": "2026-06-27",
-      "timeET": "5:00 PM ET",
-      "home": "Panamá",
-      "away": "Inglaterra",
-      "venue": "East Rutherford",
+      "group": "Grupo I",
+      "date": "2026-06-26",
+      "timeET": "3:00 PM ET",
+      "home": "Noruega",
+      "away": "Francia",
+      "venue": "Foxborough",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-53",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
-      "id": "M068",
+      "id": "M062",
       "stage": "Fase de grupos",
       "round": "Jornada 3",
-      "group": "Grupo L",
-      "date": "2026-06-27",
-      "timeET": "5:00 PM ET",
-      "home": "Croacia",
-      "away": "Ghana",
-      "venue": "Philadelphia",
+      "group": "Grupo I",
+      "date": "2026-06-26",
+      "timeET": "3:00 PM ET",
+      "home": "Senegal",
+      "away": "Irak",
+      "venue": "Toronto",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-54",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
-      "id": "M069",
+      "id": "M063",
       "stage": "Fase de grupos",
       "round": "Jornada 3",
-      "group": "Grupo K",
-      "date": "2026-06-27",
-      "timeET": "7:30 PM ET",
-      "home": "Colombia",
-      "away": "Portugal",
-      "venue": "Miami Gardens",
+      "group": "Grupo H",
+      "date": "2026-06-26",
+      "timeET": "8:00 PM ET",
+      "home": "Cabo Verde",
+      "away": "Arabia Saudita",
+      "venue": "Houston",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-47",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
-      "id": "M070",
+      "id": "M064",
       "stage": "Fase de grupos",
       "round": "Jornada 3",
-      "group": "Grupo K",
-      "date": "2026-06-27",
-      "timeET": "7:30 PM ET",
-      "home": "RD Congo",
-      "away": "Uzbekistán",
-      "venue": "Atlanta",
+      "group": "Grupo H",
+      "date": "2026-06-26",
+      "timeET": "8:00 PM ET",
+      "home": "Uruguay",
+      "away": "España",
+      "venue": "Zapopan / Guadalajara",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-48",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M071",
@@ -977,7 +1064,9 @@
       "away": "Austria",
       "venue": "Kansas City",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-59",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M072",
@@ -990,7 +1079,69 @@
       "away": "Argentina",
       "venue": "Arlington",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-60",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M067",
+      "stage": "Fase de grupos",
+      "round": "Jornada 3",
+      "group": "Grupo L",
+      "date": "2026-06-27",
+      "timeET": "5:00 PM ET",
+      "home": "Panamá",
+      "away": "Inglaterra",
+      "venue": "East Rutherford",
+      "status": "scheduled",
+      "score": "",
+      "externalId": "PUBLIC-71",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M068",
+      "stage": "Fase de grupos",
+      "round": "Jornada 3",
+      "group": "Grupo L",
+      "date": "2026-06-27",
+      "timeET": "5:00 PM ET",
+      "home": "Croacia",
+      "away": "Ghana",
+      "venue": "Philadelphia",
+      "status": "scheduled",
+      "score": "",
+      "externalId": "PUBLIC-72",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M069",
+      "stage": "Fase de grupos",
+      "round": "Jornada 3",
+      "group": "Grupo K",
+      "date": "2026-06-27",
+      "timeET": "7:30 PM ET",
+      "home": "Colombia",
+      "away": "Portugal",
+      "venue": "Miami Gardens",
+      "status": "scheduled",
+      "score": "",
+      "externalId": "PUBLIC-65",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M070",
+      "stage": "Fase de grupos",
+      "round": "Jornada 3",
+      "group": "Grupo K",
+      "date": "2026-06-27",
+      "timeET": "7:30 PM ET",
+      "home": "RD Congo",
+      "away": "Uzbekistán",
+      "venue": "Atlanta",
+      "status": "scheduled",
+      "score": "",
+      "externalId": "PUBLIC-66",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M073",
@@ -1003,10 +1154,12 @@
       "away": "2B",
       "venue": "Inglewood",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-73",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
-      "id": "M074",
+      "id": "M076",
       "stage": "Round of 32",
       "round": "R32",
       "group": "",
@@ -1016,10 +1169,12 @@
       "away": "2F",
       "venue": "Houston",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-75",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
-      "id": "M075",
+      "id": "M074",
       "stage": "Round of 32",
       "round": "R32",
       "group": "",
@@ -1029,10 +1184,12 @@
       "away": "3rd A/B/C/D/F",
       "venue": "Foxborough",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-76",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
-      "id": "M076",
+      "id": "M075",
       "stage": "Round of 32",
       "round": "R32",
       "group": "",
@@ -1045,7 +1202,7 @@
       "score": ""
     },
     {
-      "id": "M077",
+      "id": "M078",
       "stage": "Round of 32",
       "round": "R32",
       "group": "",
@@ -1058,7 +1215,7 @@
       "score": ""
     },
     {
-      "id": "M078",
+      "id": "M077",
       "stage": "Round of 32",
       "round": "R32",
       "group": "",
@@ -1068,7 +1225,9 @@
       "away": "3rd C/D/F/G/H",
       "venue": "East Rutherford",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-78",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M079",
@@ -1097,7 +1256,7 @@
       "score": ""
     },
     {
-      "id": "M081",
+      "id": "M082",
       "stage": "Round of 32",
       "round": "R32",
       "group": "",
@@ -1110,7 +1269,7 @@
       "score": ""
     },
     {
-      "id": "M082",
+      "id": "M081",
       "stage": "Round of 32",
       "round": "R32",
       "group": "",
@@ -1119,32 +1278,6 @@
       "home": "1D",
       "away": "3rd B/E/F/I/J",
       "venue": "Santa Clara",
-      "status": "scheduled",
-      "score": ""
-    },
-    {
-      "id": "M083",
-      "stage": "Round of 32",
-      "round": "R32",
-      "group": "",
-      "date": "2026-07-02",
-      "timeET": "3:00 PM ET",
-      "home": "1H",
-      "away": "2J",
-      "venue": "Inglewood",
-      "status": "scheduled",
-      "score": ""
-    },
-    {
-      "id": "M084",
-      "stage": "Round of 32",
-      "round": "R32",
-      "group": "",
-      "date": "2026-07-02",
-      "timeET": "7:00 PM ET",
-      "home": "2K",
-      "away": "2L",
-      "venue": "Toronto",
       "status": "scheduled",
       "score": ""
     },
@@ -1162,7 +1295,37 @@
       "score": ""
     },
     {
-      "id": "M086",
+      "id": "M084",
+      "stage": "Round of 32",
+      "round": "R32",
+      "group": "",
+      "date": "2026-07-02",
+      "timeET": "3:00 PM ET",
+      "home": "1H",
+      "away": "2J",
+      "venue": "Inglewood",
+      "status": "scheduled",
+      "score": "",
+      "externalId": "PUBLIC-83",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M083",
+      "stage": "Round of 32",
+      "round": "R32",
+      "group": "",
+      "date": "2026-07-02",
+      "timeET": "7:00 PM ET",
+      "home": "2K",
+      "away": "2L",
+      "venue": "Toronto",
+      "status": "scheduled",
+      "score": "",
+      "externalId": "PUBLIC-84",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
+    },
+    {
+      "id": "M088",
       "stage": "Round of 32",
       "round": "R32",
       "group": "",
@@ -1175,7 +1338,7 @@
       "score": ""
     },
     {
-      "id": "M087",
+      "id": "M086",
       "stage": "Round of 32",
       "round": "R32",
       "group": "",
@@ -1185,10 +1348,12 @@
       "away": "2H",
       "venue": "Miami Gardens",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-88",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
-      "id": "M088",
+      "id": "M087",
       "stage": "Round of 32",
       "round": "R32",
       "group": "",
@@ -1198,7 +1363,9 @@
       "away": "3rd D/E/I/J/L",
       "venue": "Kansas City",
       "status": "scheduled",
-      "score": ""
+      "score": "",
+      "externalId": "PUBLIC-86",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
     {
       "id": "M089",
@@ -1208,7 +1375,7 @@
       "date": "2026-07-04",
       "timeET": "1:00 PM ET",
       "home": "Ganador M073",
-      "away": "Ganador M074",
+      "away": "Ganador M075",
       "venue": "Houston",
       "status": "scheduled",
       "score": ""
@@ -1220,8 +1387,8 @@
       "group": "",
       "date": "2026-07-04",
       "timeET": "5:00 PM ET",
-      "home": "Ganador M075",
-      "away": "Ganador M076",
+      "home": "Ganador M074",
+      "away": "Ganador M077",
       "venue": "Philadelphia",
       "status": "scheduled",
       "score": ""
@@ -1233,7 +1400,7 @@
       "group": "",
       "date": "2026-07-05",
       "timeET": "4:00 PM ET",
-      "home": "Ganador M077",
+      "home": "Ganador M076",
       "away": "Ganador M078",
       "venue": "East Rutherford",
       "status": "scheduled",
@@ -1259,8 +1426,8 @@
       "group": "",
       "date": "2026-07-06",
       "timeET": "3:00 PM ET",
-      "home": "Ganador M081",
-      "away": "Ganador M082",
+      "home": "Ganador M083",
+      "away": "Ganador M084",
       "venue": "Arlington",
       "status": "scheduled",
       "score": ""
@@ -1271,9 +1438,9 @@
       "round": "Octavos",
       "group": "",
       "date": "2026-07-06",
-      "timeET": "5:00 PM ET",
-      "home": "Ganador M083",
-      "away": "Ganador M084",
+      "timeET": "8:00 PM ET",
+      "home": "Ganador M081",
+      "away": "Ganador M082",
       "venue": "Seattle",
       "status": "scheduled",
       "score": ""
@@ -1285,8 +1452,8 @@
       "group": "",
       "date": "2026-07-07",
       "timeET": "12:00 PM ET",
-      "home": "Ganador M085",
-      "away": "Ganador M086",
+      "home": "Ganador M086",
+      "away": "Ganador M088",
       "venue": "Atlanta",
       "status": "scheduled",
       "score": ""
@@ -1298,8 +1465,8 @@
       "group": "",
       "date": "2026-07-07",
       "timeET": "4:00 PM ET",
-      "home": "Ganador M087",
-      "away": "Ganador M088",
+      "home": "Ganador M085",
+      "away": "Ganador M087",
       "venue": "Vancouver",
       "status": "scheduled",
       "score": ""
@@ -1324,8 +1491,8 @@
       "group": "",
       "date": "2026-07-10",
       "timeET": "3:00 PM ET",
-      "home": "Ganador M091",
-      "away": "Ganador M092",
+      "home": "Ganador M093",
+      "away": "Ganador M094",
       "venue": "Inglewood",
       "status": "scheduled",
       "score": ""
@@ -1337,8 +1504,8 @@
       "group": "",
       "date": "2026-07-11",
       "timeET": "5:00 PM ET",
-      "home": "Ganador M093",
-      "away": "Ganador M094",
+      "home": "Ganador M091",
+      "away": "Ganador M092",
       "venue": "Miami Gardens",
       "status": "scheduled",
       "score": ""
