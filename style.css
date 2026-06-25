@@ -561,3 +561,199 @@ code {
   .third-board-head { flex-direction: column; align-items: flex-start; }
   .third-board-head span { text-align: left; }
 }
+
+
+.knockout-bracket-wrap {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.bracket-intro {
+  margin-bottom: 2px;
+}
+.bracket-board {
+  overflow-x: auto;
+  display: grid;
+  grid-template-columns: minmax(560px, 1fr) 260px minmax(560px, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+.bracket-side,
+.bracket-center {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255,255,255,.025);
+}
+.bracket-side {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(125px, 1fr));
+  gap: 14px;
+  min-height: 1120px;
+  padding: 42px 12px 12px;
+}
+.bracket-side::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(245,200,91,.24), transparent);
+}
+.bracket-side.left::before { right: 8px; }
+.bracket-side.right::before { left: 8px; }
+.bracket-side-tag {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  color: var(--gold);
+  font-size: .75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+}
+.bracket-stage-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.bracket-stage-label {
+  text-align: center;
+  color: var(--gold);
+  font-size: .75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  padding: 5px 8px;
+  border: 1px solid rgba(245,200,91,.18);
+  border-radius: 999px;
+  background: rgba(245,200,91,.08);
+  margin-bottom: 10px;
+}
+.bracket-stage-label.center {
+  margin-bottom: 12px;
+}
+.bracket-stage-track {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 12px;
+}
+.bracket-match-card {
+  position: relative;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  background: rgba(7,16,22,.82);
+  padding: 12px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.18);
+}
+.bracket-match-card.is-complete {
+  border-color: rgba(128,226,155,.22);
+}
+.bracket-match-card.is-pending {
+  border-color: rgba(245,200,91,.16);
+}
+.bracket-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.bracket-card-top strong {
+  display: block;
+  font-size: .9rem;
+}
+.bracket-card-top span {
+  color: var(--muted);
+  font-size: .68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.bracket-card-status {
+  width: max-content;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: .68rem;
+  font-weight: 900;
+}
+.bracket-teams {
+  display: grid;
+  gap: 8px;
+}
+.bracket-team {
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.05);
+  background: rgba(255,255,255,.03);
+  padding: 8px 9px;
+}
+.bracket-team.winner {
+  border-color: rgba(128,226,155,.28);
+  background: rgba(128,226,155,.08);
+}
+.bracket-team .slot-note {
+  margin-top: 2px;
+}
+.bracket-scoreline {
+  margin-top: 10px;
+  text-align: center;
+  color: var(--gold);
+  font-size: 1rem;
+  font-weight: 950;
+}
+.bracket-card-meta {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--muted);
+  font-size: .72rem;
+  text-align: center;
+}
+.bracket-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding: 18px;
+  min-height: 1120px;
+}
+.bracket-center-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.bracket-center-block.minor {
+  margin-top: 40px;
+}
+.bracket-final-card {
+  border-color: rgba(245,200,91,.3);
+  box-shadow: 0 16px 36px rgba(245,200,91,.08);
+}
+.bracket-third-card {
+  border-color: rgba(138,199,255,.24);
+}
+.knockout-extra {
+  margin-top: 10px;
+}
+.mini-head h3 {
+  margin: 0;
+}
+@media (max-width: 1280px) {
+  .bracket-board {
+    min-width: 1420px;
+  }
+}
+@media (max-width: 900px) {
+  .bracket-board {
+    min-width: 1320px;
+  }
+  .bracket-side,
+  .bracket-center {
+    min-height: 980px;
+  }
+}

@@ -321,6 +321,116 @@ function renderThirdPlaceBoard(bracketState = buildBracketState()) {
   `;
 }
 
+function getMatchById(matchId) {
+  return matches.find(match => String(match.id).toUpperCase() === String(matchId).toUpperCase()) || null;
+}
+
+function getMatchWinnerSide(match) {
+  if (!match || match.status !== "complete") return null;
+  const score = parseScore(match.score);
+  if (!score) return null;
+  if (score.home > score.away) return "home";
+  if (score.away > score.home) return "away";
+  const pens = String(match.score || "").match(/\((\d+)\s*-\s*(\d+)\)/);
+  if (!pens) return null;
+  return Number(pens[1]) > Number(pens[2]) ? "home" : "away";
+}
+
+function renderBracketTeamLine(match, teamValue, side, bracketState) {
+  const resolved = resolveSlot(teamValue, bracketState);
+  const winnerSide = getMatchWinnerSide(match);
+  const classes = ["bracket-team"];
+  if (winnerSide === side) classes.push("winner");
+  if (isPlaceholderTeam(teamValue)) classes.push(resolved.resolved ? "resolved" : "provisional");
+
+  return `
+    <div class="${classes.join(" ")}">
+      ${displayMatchTeam(teamValue, bracketState)}
+    </div>
+  `;
+}
+
+function renderBracketCard(matchId, bracketState, extraClass = "") {
+  const match = getMatchById(matchId);
+  if (!match) return `<article class="bracket-match-card missing"><div class="bracket-card-top"><strong>${matchId}</strong></div><div class="meta">Partido no encontrado.</div></article>`;
+
+  const statusLabel = match.status === "complete" ? "Finalizado" : "Pendiente";
+  return `
+    <article class="bracket-match-card ${extraClass} ${match.status === "complete" ? "is-complete" : "is-pending"}" id="bracket-${match.id}">
+      <div class="bracket-card-top">
+        <div>
+          <strong>${match.id}</strong>
+          <span>${match.round}</span>
+        </div>
+        <span class="bracket-card-status ${match.status === "complete" ? "complete" : "scheduled"}">${statusLabel}</span>
+      </div>
+      <div class="bracket-teams">
+        ${renderBracketTeamLine(match, match.home, "home", bracketState)}
+        ${renderBracketTeamLine(match, match.away, "away", bracketState)}
+      </div>
+      <div class="bracket-scoreline">${match.score || "VS"}</div>
+      <div class="bracket-card-meta">${match.timeET}<span>·</span>${match.venue}</div>
+    </article>
+  `;
+}
+
+function renderBracketColumn(title, ids, sideClass, bracketState) {
+  return `
+    <section class="bracket-stage-col ${sideClass}">
+      <div class="bracket-stage-label">${title}</div>
+      <div class="bracket-stage-track">
+        ${ids.map(id => renderBracketCard(id, bracketState)).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderBracketTree(bracketState = buildBracketState()) {
+  const target = document.getElementById("knockoutBracket");
+  if (!target) return;
+
+  const leftColumns = [
+    { title: "32avos", ids: ["M073", "M074", "M075", "M076", "M077", "M078", "M079", "M080"] },
+    { title: "16avos", ids: ["M089", "M090", "M091", "M092"] },
+    { title: "Cuartos", ids: ["M097", "M098"] },
+    { title: "Semifinal", ids: ["M101"] }
+  ];
+
+  const rightColumns = [
+    { title: "Semifinal", ids: ["M102"] },
+    { title: "Cuartos", ids: ["M099", "M100"] },
+    { title: "16avos", ids: ["M093", "M094", "M095", "M096"] },
+    { title: "32avos", ids: ["M081", "M082", "M083", "M084", "M085", "M086", "M087", "M088"] }
+  ];
+
+  target.innerHTML = `
+    <div class="third-board-head bracket-intro">
+      <strong>Árbol de eliminatorias</strong>
+      <span>Ahora puedes ver cada lado de la llave y los posibles cruces futuros. Los equipos se van reemplazando automáticamente cuando ya están definidos.</span>
+    </div>
+    <div class="bracket-board">
+      <div class="bracket-side left">
+        <div class="bracket-side-tag">Lado izquierdo</div>
+        ${leftColumns.map(col => renderBracketColumn(col.title, col.ids, "left-side", bracketState)).join("")}
+      </div>
+      <div class="bracket-center">
+        <div class="bracket-center-block">
+          <div class="bracket-stage-label center">Final</div>
+          ${renderBracketCard("M104", bracketState, "bracket-final-card")}
+        </div>
+        <div class="bracket-center-block minor">
+          <div class="bracket-stage-label center">Tercer lugar</div>
+          ${renderBracketCard("M103", bracketState, "bracket-third-card")}
+        </div>
+      </div>
+      <div class="bracket-side right">
+        <div class="bracket-side-tag">Lado derecho</div>
+        ${rightColumns.map(col => renderBracketColumn(col.title, col.ids, "right-side", bracketState)).join("")}
+      </div>
+    </div>
+  `;
+}
+
 function renderStandings() {
   const standings = calculateStandings();
   const q = $("#standingsSearchInput").value.trim().toLowerCase();
@@ -411,6 +521,7 @@ function renderCalendar() {
 function renderKnockout() {
   const knockoutMatches = matches.filter(m => !m.group);
   const bracketState = buildBracketState();
+  renderBracketTree(bracketState);
   renderThirdPlaceBoard(bracketState);
   $("#knockoutList").innerHTML = renderGroupedMatches(knockoutMatches, bracketState) || `<p class="meta">No hay eliminatorias cargadas.</p>`;
 }
