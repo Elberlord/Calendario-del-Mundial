@@ -11,7 +11,7 @@ async function loadCalendar() {
   const response = await fetch("worldcup_calendar_2026.json", { cache: "no-store" });
   if (!response.ok) throw new Error("No pude cargar worldcup_calendar_2026.json");
   calendarData = await response.json();
-  matches = calendarData.matches || [];
+  matches = normalizeMatches(calendarData.matches || []);
   setupFilters();
   render();
 }
@@ -33,10 +33,76 @@ function setupFilters() {
 }
 
 function parseScore(score) {
-  if (!score || !score.includes("-")) return null;
-  const [home, away] = score.split("-").map(Number);
+  const match = String(score || "").match(/^(\d+)\s*-\s*(\d+)/);
+  if (!match) return null;
+  const home = Number(match[1]);
+  const away = Number(match[2]);
   if (!Number.isFinite(home) || !Number.isFinite(away)) return null;
   return { home, away };
+}
+
+
+function normalizeTeamName(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .replace(/3rd/g, "3")
+    .trim();
+}
+
+function normalizeMatches(rawMatches) {
+  const groupBest = new Map();
+  const knockoutMatches = [];
+
+  rawMatches.forEach(match => {
+    if (!match.group) {
+      if (!String(match.id || "").startsWith("PUBLIC-")) knockoutMatches.push(match);
+      return;
+    }
+
+    const teams = [normalizeTeamName(match.home), normalizeTeamName(match.away)].sort().join(" vs ");
+    const key = `${match.group}::${teams}`;
+    const current = groupBest.get(key);
+    if (!current || matchWeight(match) > matchWeight(current) || (matchWeight(match) === matchWeight(current) && String(match.date) < String(current.date))) {
+      groupBest.set(key, match);
+    }
+  });
+
+  return [...groupBest.values(), ...knockoutMatches].sort((a, b) =>
+    String(a.date || "").localeCompare(String(b.date || "")) ||
+    String(a.timeET || "").localeCompare(String(b.timeET || "")) ||
+    String(a.id || "").localeCompare(String(b.id || ""))
+  );
+}
+
+function matchWeight(match) {
+  let weight = 0;
+  if (match.status === "complete") weight += 100;
+  if (match.score) weight += 30;
+  if (String(match.id || "").startsWith("PUBLIC-")) weight += 10;
+  return weight;
+}
+
+function groupIsClosed(rows) {
+  return rows.length === 4 && rows.every(row => row.played >= 3);
+}
+
+function rowStatusLabel(index, closed) {
+  if (closed && index < 2) return "Clasificado";
+  if (closed && index === 2) return "3.º en espera";
+  if (closed) return "Eliminado";
+  if (index < 2) return "Zona directa";
+  if (index === 2) return "3.º en pelea";
+  return "Pendiente";
+}
+
+function rowStatusClass(index, closed) {
+  if (closed && index < 2) return "qualified";
+  if (closed && index === 2) return "third";
+  if (closed) return "out";
+  if (index < 2) return "zone";
+  if (index === 2) return "third";
+  return "pending";
 }
 
 function calculateStandings() {
@@ -93,6 +159,168 @@ function calculateStandings() {
   return table;
 }
 
+
+function getGroupLetter(group) {
+  const match = String(group || "").match(/([A-L])$/i);
+  return match ? match[1].toUpperCase() : "";
+}
+
+function isPlaceholderTeam(value) {
+  const text = String(value || "").trim();
+  return /^(1|2)[A-L]$/i.test(text)
+    || /^3rd\s+[A-L](?:\/[A-L])*$/i.test(text)
+    || /^(Ganador|Perdedor)\s+M\d{3}$/i.test(text);
+}
+
+function thirdPlaceRank(rows) {
+  return (rows || [])
+    .filter(row => row.played > 0)
+    .map(row => ({ ...row, groupLetter: getGroupLetter(row.group), closed: groupIsClosed(rows) }))
+    .sort((a, b) =>
+      b.points - a.points ||
+      b.gd - a.gd ||
+      b.gf - a.gf ||
+      a.team.localeCompare(b.team)
+    );
+}
+
+function buildBracketState() {
+  const standings = calculateStandings();
+  const direct = {};
+  const thirds = [];
+
+  Object.entries(standings).forEach(([group, rows]) => {
+    const letter = getGroupLetter(group);
+    if (!letter || rows.length < 3) return;
+
+    const closed = groupIsClosed(rows);
+    direct[`1${letter}`] = rows[0] ? { team: rows[0].team, closed } : null;
+    direct[`2${letter}`] = rows[1] ? { team: rows[1].team, closed } : null;
+    thirds.push({ ...rows[2], groupLetter: letter, closed });
+  });
+
+  const bestThirds = thirds
+    .filter(row => row.played > 0)
+    .sort((a, b) =>
+      b.points - a.points ||
+      b.gd - a.gd ||
+      b.gf - a.gf ||
+      a.team.localeCompare(b.team)
+    )
+    .slice(0, 8);
+
+  const usedThirdGroups = new Set();
+  const thirdSlotAssignments = new Map();
+  getRoundOf32Matches()
+    .flatMap(match => [match.home, match.away])
+    .filter(token => /^3rd\s+[A-L](?:\/[A-L])*$/i.test(String(token || "")))
+    .forEach(token => {
+      const allowedGroups = String(token).replace(/^3rd\s+/i, "").split("/").map(group => group.trim().toUpperCase());
+      const candidate = bestThirds.find(row => allowedGroups.includes(row.groupLetter) && !usedThirdGroups.has(row.groupLetter));
+      if (!candidate) return;
+      usedThirdGroups.add(candidate.groupLetter);
+      thirdSlotAssignments.set(token, candidate);
+    });
+
+  return { standings, direct, thirds, bestThirds, thirdSlotAssignments };
+}
+
+function getRoundOf32Matches() {
+  return matches
+    .filter(match => !match.group && (match.stage === "Round of 32" || match.round === "R32"))
+    .sort((a, b) => String(a.date || "").localeCompare(String(b.date || "")) || String(a.timeET || "").localeCompare(String(b.timeET || "")) || String(a.id || "").localeCompare(String(b.id || "")));
+}
+
+function resolveSlot(value, bracketState = buildBracketState()) {
+  const token = String(value || "").trim();
+
+  if (/^(1|2)[A-L]$/i.test(token)) {
+    const data = bracketState.direct[token.toUpperCase()];
+    if (!data?.team) return { label: token, note: "Pendiente", resolved: false, provisional: true };
+    return {
+      label: data.team,
+      note: data.closed ? token.toUpperCase() : `${token.toUpperCase()} provisional`,
+      resolved: data.closed,
+      provisional: !data.closed
+    };
+  }
+
+  if (/^3rd\s+[A-L](?:\/[A-L])*$/i.test(token)) {
+    const data = bracketState.thirdSlotAssignments.get(token);
+    if (!data?.team) return { label: token, note: "Mejores terceros", resolved: false, provisional: true };
+    return {
+      label: data.team,
+      note: data.closed ? `3${data.groupLetter}` : `3${data.groupLetter} provisional`,
+      resolved: data.closed,
+      provisional: !data.closed
+    };
+  }
+
+  const sourceMatch = token.match(/^(Ganador|Perdedor)\s+(M\d{3})$/i);
+  if (sourceMatch) {
+    const wantWinner = sourceMatch[1].toLowerCase() === "ganador";
+    const match = matches.find(item => String(item.id).toUpperCase() === sourceMatch[2].toUpperCase());
+    const advanced = match ? getAdvancedTeam(match, wantWinner, bracketState) : null;
+    if (!advanced) return { label: token, note: match ? summarizeMatchTeams(match, bracketState) : "Pendiente", resolved: false, provisional: true };
+    return { label: advanced.label, note: token, resolved: true, provisional: false };
+  }
+
+  return { label: token, note: "", resolved: true, provisional: false };
+}
+
+function summarizeMatchTeams(match, bracketState) {
+  const home = resolveSlot(match.home, bracketState).label;
+  const away = resolveSlot(match.away, bracketState).label;
+  if (!home || !away) return "Pendiente";
+  return `${home} vs ${away}`;
+}
+
+function getAdvancedTeam(match, wantWinner, bracketState) {
+  if (match.status !== "complete") return null;
+  const score = parseScore(match.score);
+  if (!score) return null;
+
+  let homeWins = score.home > score.away;
+  if (score.home === score.away) {
+    const pens = String(match.score || "").match(/\((\d+)\s*-\s*(\d+)\)/);
+    if (!pens) return null;
+    homeWins = Number(pens[1]) > Number(pens[2]);
+  }
+
+  const winnerValue = homeWins ? match.home : match.away;
+  const loserValue = homeWins ? match.away : match.home;
+  return resolveSlot(wantWinner ? winnerValue : loserValue, bracketState);
+}
+
+function displayMatchTeam(value, bracketState) {
+  const resolved = resolveSlot(value, bracketState);
+  if (!isPlaceholderTeam(value)) return `<strong>${resolved.label}</strong>`;
+  return `
+    <strong class="resolved-team ${resolved.resolved ? "resolved" : "provisional"}">${resolved.label}</strong>
+    <span class="slot-note">${resolved.note}</span>
+  `;
+}
+
+function renderThirdPlaceBoard(bracketState = buildBracketState()) {
+  const target = document.getElementById("thirdPlaceList");
+  if (!target) return;
+
+  const rows = bracketState.bestThirds;
+  target.innerHTML = `
+    <div class="third-board-head">
+      <strong>Mejores terceros</strong>
+      <span>Se usan para llenar automáticamente los cruces de 16avos cuando encajan con cada casilla.</span>
+    </div>
+    <div class="third-board-grid">
+      ${rows.length ? rows.map((row, index) => `
+        <span class="third-pill ${row.closed ? "closed" : "provisional"}">
+          ${index + 1}. ${row.team} <em>3${row.groupLetter}${row.closed ? "" : " prov."} · ${row.points} pts · DG ${row.gd}</em>
+        </span>
+      `).join("") : `<span class="third-pill provisional">Aún no hay terceros con partidos cargados.</span>`}
+    </div>
+  `;
+}
+
 function renderStandings() {
   const standings = calculateStandings();
   const q = $("#standingsSearchInput").value.trim().toLowerCase();
@@ -105,30 +333,44 @@ function renderStandings() {
   });
 
   const completedGroupMatches = matches.filter(m => m.group && m.status === "complete").length;
-  $("#standingsStatusLine").textContent = `Calculada con ${completedGroupMatches} partidos finalizados de fase de grupos. Top 2 clasifican directo; los mejores terceros compiten por cupos.`;
+  const closedGroups = visibleGroups.filter(([, rows]) => groupIsClosed(rows)).length;
+  $("#standingsStatusLine").textContent = `Calculada con ${completedGroupMatches} partidos finalizados de fase de grupos. ${closedGroups} grupos cerrados. Top 2 aparecen como clasificados; terceros quedan en espera.`;
 
-  container.innerHTML = visibleGroups.map(([group, rows]) => `
-    <section class="group-table">
-      <h3 class="group-title">${group}</h3>
-      <div class="standings-row header">
-        <span>#</span><span>Equipo</span><span>PJ</span><span>G</span><span>E</span><span>P</span><span>GF</span><span>GC</span><span>DG</span><span>Pts</span>
-      </div>
-      ${rows.map((row, index) => `
-        <div class="standings-row ${index < 2 ? "qualify" : index === 2 ? "third-watch" : ""}">
-          <span class="rank">${index + 1}</span>
-          <span class="team-name">${row.team}</span>
-          <span>${row.played}</span>
-          <span>${row.wins}</span>
-          <span>${row.draws}</span>
-          <span>${row.losses}</span>
-          <span>${row.gf}</span>
-          <span>${row.ga}</span>
-          <span>${row.gd}</span>
-          <span class="points">${row.points}</span>
+  container.innerHTML = visibleGroups.map(([group, rows]) => {
+    const closed = groupIsClosed(rows);
+    const groupNote = closed
+      ? `Grupo cerrado · Clasificados: ${rows.slice(0, 2).map(r => r.team).join(" y ")}`
+      : `En juego · ${rows.reduce((total, row) => total + row.played, 0) / 2}/6 partidos finalizados`;
+
+    return `
+      <section class="group-table ${closed ? "group-closed" : ""}">
+        <div class="group-title-wrap">
+          <h3 class="group-title">${group}</h3>
+          <span class="group-note">${groupNote}</span>
         </div>
-      `).join("")}
-    </section>
-  `).join("") || `<p class="meta">No hay grupos con ese filtro.</p>`;
+        <div class="standings-row header">
+          <span>#</span><span>Equipo</span><span>PJ</span><span>G</span><span>E</span><span>P</span><span>GF</span><span>GC</span><span>DG</span><span>Pts</span>
+        </div>
+        ${rows.map((row, index) => `
+          <div class="standings-row ${index < 2 ? "qualify" : index === 2 ? "third-watch" : ""}">
+            <span class="rank">${index + 1}</span>
+            <span class="team-cell">
+              <strong class="team-name">${row.team}</strong>
+              <em class="status-chip ${rowStatusClass(index, closed)}">${rowStatusLabel(index, closed)}</em>
+            </span>
+            <span>${row.played}</span>
+            <span>${row.wins}</span>
+            <span>${row.draws}</span>
+            <span>${row.losses}</span>
+            <span>${row.gf}</span>
+            <span>${row.ga}</span>
+            <span>${row.gd}</span>
+            <span class="points">${row.points}</span>
+          </div>
+        `).join("")}
+      </section>
+    `;
+  }).join("") || `<p class="meta">No hay grupos con ese filtro.</p>`;
 }
 
 function filteredMatches() {
@@ -168,7 +410,9 @@ function renderCalendar() {
 
 function renderKnockout() {
   const knockoutMatches = matches.filter(m => !m.group);
-  $("#knockoutList").innerHTML = renderGroupedMatches(knockoutMatches) || `<p class="meta">No hay eliminatorias cargadas.</p>`;
+  const bracketState = buildBracketState();
+  renderThirdPlaceBoard(bracketState);
+  $("#knockoutList").innerHTML = renderGroupedMatches(knockoutMatches, bracketState) || `<p class="meta">No hay eliminatorias cargadas.</p>`;
 }
 
 
@@ -187,7 +431,7 @@ function watchButtonHtml(match) {
   return `<button class="watch-btn" type="button">Ver</button>`;
 }
 
-function renderGroupedMatches(data) {
+function renderGroupedMatches(data, bracketState = buildBracketState()) {
   const grouped = data.reduce((acc, match) => {
     acc[match.date] ||= [];
     acc[match.date].push(match);
@@ -204,9 +448,9 @@ function renderGroupedMatches(data) {
             <strong>${match.stage}</strong>
             <div class="meta">${match.round}${match.group ? " · " + match.group : ""}</div>
           </div>
-          <strong>${match.home}</strong>
+          <div class="team-slot">${displayMatchTeam(match.home, bracketState)}</div>
           <div class="teamscore">${match.score || "VS"}</div>
-          <strong>${match.away}</strong>
+          <div class="team-slot">${displayMatchTeam(match.away, bracketState)}</div>
           <div class="meta">${match.timeET}<br>${match.venue}</div>
           ${watchButtonHtml(match)}
         </article>
