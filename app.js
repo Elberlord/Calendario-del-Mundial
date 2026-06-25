@@ -62,58 +62,65 @@ function normalizeTeamKey(value) {
 }
 
 const TEAM_FLAGS = {
-  "alemania": "🇩🇪",
-  "arabia saudita": "🇸🇦",
-  "argelia": "🇩🇿",
-  "argentina": "🇦🇷",
-  "australia": "🇦🇺",
-  "austria": "🇦🇹",
-  "belgica": "🇧🇪",
-  "bosnia y herzegovina": "🇧🇦",
-  "brasil": "🇧🇷",
-  "cabo verde": "🇨🇻",
-  "canada": "🇨🇦",
-  "chequia": "🇨🇿",
-  "colombia": "🇨🇴",
-  "corea del sur": "🇰🇷",
-  "costa de marfil": "🇨🇮",
-  "croacia": "🇭🇷",
-  "curazao": "🇨🇼",
-  "ecuador": "🇪🇨",
-  "egipto": "🇪🇬",
-  "escocia": "🏴",
-  "espana": "🇪🇸",
-  "estados unidos": "🇺🇸",
-  "francia": "🇫🇷",
-  "ghana": "🇬🇭",
-  "haiti": "🇭🇹",
-  "inglaterra": "🏴",
-  "irak": "🇮🇶",
-  "iran": "🇮🇷",
-  "japon": "🇯🇵",
-  "jordania": "🇯🇴",
-  "marruecos": "🇲🇦",
-  "mexico": "🇲🇽",
-  "noruega": "🇳🇴",
-  "nueva zelanda": "🇳🇿",
-  "paises bajos": "🇳🇱",
-  "panama": "🇵🇦",
-  "paraguay": "🇵🇾",
-  "portugal": "🇵🇹",
-  "qatar": "🇶🇦",
-  "rd congo": "🇨🇩",
-  "senegal": "🇸🇳",
-  "sudafrica": "🇿🇦",
-  "suecia": "🇸🇪",
-  "suiza": "🇨🇭",
-  "tunez": "🇹🇳",
-  "turquia": "🇹🇷",
-  "uruguay": "🇺🇾",
-  "uzbekistan": "🇺🇿"
+  "alemania": "de",
+  "arabia saudita": "sa",
+  "argelia": "dz",
+  "argentina": "ar",
+  "australia": "au",
+  "austria": "at",
+  "belgica": "be",
+  "bosnia y herzegovina": "ba",
+  "brasil": "br",
+  "cabo verde": "cv",
+  "canada": "ca",
+  "chequia": "cz",
+  "colombia": "co",
+  "corea del sur": "kr",
+  "costa de marfil": "ci",
+  "croacia": "hr",
+  "curazao": "cw",
+  "ecuador": "ec",
+  "egipto": "eg",
+  "escocia": "gb-sct",
+  "espana": "es",
+  "estados unidos": "us",
+  "francia": "fr",
+  "ghana": "gh",
+  "haiti": "ht",
+  "inglaterra": "gb-eng",
+  "irak": "iq",
+  "iran": "ir",
+  "japon": "jp",
+  "jordania": "jo",
+  "marruecos": "ma",
+  "mexico": "mx",
+  "noruega": "no",
+  "nueva zelanda": "nz",
+  "paises bajos": "nl",
+  "panama": "pa",
+  "paraguay": "py",
+  "portugal": "pt",
+  "qatar": "qa",
+  "rd congo": "cd",
+  "senegal": "sn",
+  "sudafrica": "za",
+  "suecia": "se",
+  "suiza": "ch",
+  "tunez": "tn",
+  "turquia": "tr",
+  "uruguay": "uy",
+  "uzbekistan": "uz"
 };
 
 function getTeamFlag(teamName) {
-  return TEAM_FLAGS[normalizeTeamKey(teamName)] || "";
+  const code = TEAM_FLAGS[normalizeTeamKey(teamName)];
+  if (!code) return null;
+  return {
+    code,
+    src: `https://flagcdn.com/w40/${code}.png`,
+    srcset: `https://flagcdn.com/w80/${code}.png 2x`,
+    alt: `Bandera de ${teamName}`
+  };
 }
 
 function normalizeMatches(rawMatches) {
@@ -413,7 +420,7 @@ function renderBracketTeamLine(match, teamValue, side, bracketState) {
   const compactVisual = flag
     ? `
       <div class="bracket-flag-wrap" title="${resolved.label}" aria-label="${resolved.label}">
-        <span class="bracket-team-flag">${flag}</span>
+        <img class="bracket-team-flag" src="${flag.src}" srcset="${flag.srcset}" alt="${flag.alt}" loading="lazy" />
       </div>
       ${resolved.note ? `<span class="slot-note">${resolved.note}</span>` : ""}
     `
