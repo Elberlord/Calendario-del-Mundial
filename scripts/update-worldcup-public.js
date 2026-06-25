@@ -6,8 +6,7 @@
 const fs = require("fs/promises");
 
 const CALENDAR_FILE = process.env.CALENDAR_FILE || "worldcup_calendar_2026.json";
-const UPDATE_BEFORE_MINUTES = Number(process.env.UPDATE_BEFORE_MINUTES || 30);
-const UPDATE_AFTER_MINUTES = Number(process.env.UPDATE_AFTER_MINUTES || 180);
+const PUBLIC_CALENDAR_FILE = process.env.PUBLIC_CALENDAR_FILE || "public/worldcup_calendar_2026.json";
 const PUBLIC_SOURCE_URLS = String(
   process.env.PUBLIC_SOURCE_URLS ||
   "https://worldcup26.ir/get/games,https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -21,12 +20,9 @@ main().catch((error) => {
 async function main() {
   const calendar = await readCalendar();
 
-  if (!hasActiveUpdateWindow(calendar)) {
-    console.log("No hay partido cerca o en curso. No se consulta fuente publica.");
-    return;
-  }
+  console.log("Revision programada cada 2 horas: se consultan fuentes publicas aunque no haya partidos en curso.");
 
-  const remoteMatches = await fetchFirstWorkingSource();
+  const remoteMatches = await fetchBestAvailableSources();
 
   if (!remoteMatches.length) {
     console.log("Ninguna fuente publica devolvio partidos normalizados.");
@@ -41,7 +37,10 @@ async function main() {
     publicSources: PUBLIC_SOURCE_URLS
   };
 
-  await fs.writeFile(CALENDAR_FILE, JSON.stringify(updated, null, 2) + "\n", "utf8");
+  const output = JSON.stringify(updated, null, 2) + "\n";
+  await fs.writeFile(CALENDAR_FILE, output, "utf8");
+  await fs.mkdir(require("path").dirname(PUBLIC_CALENDAR_FILE), { recursive: true });
+  await fs.writeFile(PUBLIC_CALENDAR_FILE, output, "utf8");
   console.log(`Calendario actualizado desde fuente publica. Partidos recibidos: ${remoteMatches.length}`);
 }
 
@@ -50,7 +49,9 @@ async function readCalendar() {
   return JSON.parse(raw);
 }
 
-async function fetchFirstWorkingSource() {
+async function fetchBestAvailableSources() {
+  const candidates = [];
+
   for (const url of PUBLIC_SOURCE_URLS) {
     try {
       console.log(`Consultando fuente publica: ${url}`);
@@ -63,20 +64,43 @@ async function fetchFirstWorkingSource() {
 
       const payload = await response.json();
       const matches = normalizePayload(payload, url);
+      const stats = getSourceStats(matches);
+
+      console.log(
+        `Fuente revisada: ${url} · partidos: ${stats.total} · con marcador: ${stats.scored} · finalizados: ${stats.completed}`
+      );
 
       if (matches.length) {
-        console.log(`Fuente aceptada: ${url}`);
-        return matches;
+        candidates.push({ url, matches, stats });
       }
-
-      console.log(`Fuente sin partidos normalizados: ${url}`);
     } catch (error) {
       console.log(`Fuente fallo: ${url}`);
       console.log(error.message);
     }
   }
 
-  return [];
+  if (!candidates.length) return [];
+
+  candidates.sort((a, b) =>
+    b.stats.scored - a.stats.scored ||
+    b.stats.completed - a.stats.completed ||
+    b.stats.total - a.stats.total
+  );
+
+  const best = candidates[0];
+  console.log(
+    `Mejor fuente seleccionada: ${best.url} · partidos: ${best.stats.total} · con marcador: ${best.stats.scored} · finalizados: ${best.stats.completed}`
+  );
+
+  return best.matches;
+}
+
+function getSourceStats(matches) {
+  return {
+    total: matches.length,
+    scored: matches.filter(match => match.score).length,
+    completed: matches.filter(match => match.status === "complete").length
+  };
 }
 
 function normalizePayload(payload, sourceUrl) {
@@ -256,72 +280,19 @@ function inferStage(roundRaw, groupRaw) {
   return roundRaw || "Calendario";
 }
 
-function hasActiveUpdateWindow(calendar) {
-  const now = new Date();
-  const matches = calendar.matches || [];
-
-  const activeMatches = matches.filter((match) => {
-    if (match.status === "complete") return false;
-    const kickoff = getKickoffDate(match);
-    if (!kickoff) return false;
-
-    const startWindow = new Date(kickoff.getTime() - UPDATE_BEFORE_MINUTES * 60 * 1000);
-    const endWindow = new Date(kickoff.getTime() + UPDATE_AFTER_MINUTES * 60 * 1000);
-
-    return now >= startWindow && now <= endWindow;
-  });
-
-  if (activeMatches.length) {
-    console.log("Partidos en ventana activa:");
-    for (const match of activeMatches) {
-      console.log(`- ${match.id || ""} ${match.home} vs ${match.away} · ${match.date} ${match.timeET}`);
-    }
-  }
-
-  return activeMatches.length > 0;
-}
-
-function getKickoffDate(match) {
-  if (!match.date || !match.timeET) return null;
-  const time = String(match.timeET);
-
-  const match12 = time.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
-  if (match12) {
-    let hour = Number(match12[1]);
-    const minute = Number(match12[2]);
-    const meridiem = match12[3].toUpperCase();
-
-    if (meridiem === "PM" && hour !== 12) hour += 12;
-    if (meridiem === "AM" && hour === 12) hour = 0;
-
-    const iso = `${match.date}T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}:00-04:00`;
-    const date = new Date(iso);
-    return Number.isNaN(date.getTime()) ? null : date;
-  }
-
-  const match24 = time.match(/(\d{1,2}):(\d{2})/);
-  if (match24) {
-    const hour = Number(match24[1]);
-    const minute = Number(match24[2]);
-    const iso = `${match.date}T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}:00-04:00`;
-    const date = new Date(iso);
-    return Number.isNaN(date.getTime()) ? null : date;
-  }
-
-  return null;
-}
-
 function mergeMatches(calendar, remoteMatches) {
   const updated = structuredClone(calendar);
   const current = updated.matches || [];
   const byExternalId = new Map();
   const byTeamDate = new Map();
+  const byGroupPair = new Map();
 
   for (let i = 0; i < current.length; i++) {
     const match = current[i];
     if (match.externalId) byExternalId.set(String(match.externalId), i);
     byTeamDate.set(makeTeamDateKey(match), i);
     byTeamDate.set(makeTeamDateKey({ ...match, home: match.away, away: match.home }), i);
+    if (match.group) byGroupPair.set(makeGroupPairKey(match), i);
   }
 
   let changedCount = 0;
@@ -329,10 +300,11 @@ function mergeMatches(calendar, remoteMatches) {
   for (const remote of remoteMatches) {
     let index = remote.externalId ? byExternalId.get(String(remote.externalId)) : undefined;
     if (index === undefined) index = byTeamDate.get(makeTeamDateKey(remote));
+    if (index === undefined && remote.group) index = byGroupPair.get(makeGroupPairKey(remote));
 
     if (index === undefined) {
-      current.push(remote);
-      changedCount += 1;
+      // Los feeds publicos suelen traer eliminatorias o partidos cruzados de medianoche con otro ID/fecha.
+      // Si no encontramos un partido real del calendario local, no lo agregamos para evitar duplicados fantasma.
       continue;
     }
 
@@ -357,7 +329,7 @@ function mergeMatches(calendar, remoteMatches) {
     }
   }
 
-  updated.matches = current.sort((a, b) => {
+  updated.matches = dedupeCurrentMatches(current).sort((a, b) => {
     const da = getKickoffDate(a) || new Date(`${a.date}T12:00:00Z`);
     const db = getKickoffDate(b) || new Date(`${b.date}T12:00:00Z`);
     return da - db;
@@ -365,6 +337,39 @@ function mergeMatches(calendar, remoteMatches) {
 
   console.log(`Partidos modificados/agregados: ${changedCount}`);
   return updated;
+}
+
+function makeGroupPairKey(match) {
+  const teams = [normalizeName(match.home || ""), normalizeName(match.away || "")].sort().join("|");
+  return `${match.group || ""}|${teams}`;
+}
+
+function matchWeight(match) {
+  let weight = 0;
+  if (match.status === "complete") weight += 100;
+  if (match.score) weight += 30;
+  if (String(match.id || "").startsWith("PUBLIC-")) weight += 10;
+  return weight;
+}
+
+function dedupeCurrentMatches(matches) {
+  const groupBest = new Map();
+  const clean = [];
+
+  for (const match of matches) {
+    if (!match.group) {
+      if (!String(match.id || "").startsWith("PUBLIC-")) clean.push(match);
+      continue;
+    }
+
+    const key = makeGroupPairKey(match);
+    const current = groupBest.get(key);
+    if (!current || matchWeight(match) > matchWeight(current) || (matchWeight(match) === matchWeight(current) && String(match.date) < String(current.date))) {
+      groupBest.set(key, match);
+    }
+  }
+
+  return [...groupBest.values(), ...clean];
 }
 
 function makeTeamDateKey(match) {
