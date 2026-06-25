@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-25T00:01:48.139Z",
+    "lastUpdated": "2026-06-25T00:15:08.993Z",
     "notes": "Calendario base con resultados disponibles hasta la actualización indicada. Horarios mostrados en ET por compatibilidad con las fuentes principales.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -874,8 +874,8 @@
       "home": "Escocia",
       "away": "Brasil",
       "venue": "Miami Gardens",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "0-3",
       "externalId": "PUBLIC-17",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
@@ -889,8 +889,8 @@
       "home": "Marruecos",
       "away": "Haití",
       "venue": "Atlanta",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "4-2",
       "externalId": "PUBLIC-18",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
