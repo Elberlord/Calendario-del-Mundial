@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-25T21:46:26.505Z",
+    "lastUpdated": "2026-06-25T23:20:58.804Z",
     "notes": "Calendario normalizado: resultados actuales aplicados y duplicados de partidos cruzados de medianoche removidos.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -913,8 +913,8 @@
       "home": "Ecuador",
       "away": "Alemania",
       "venue": "East Rutherford",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "2-1",
       "externalId": "PUBLIC-30",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
@@ -928,8 +928,8 @@
       "home": "Curazao",
       "away": "Costa de Marfil",
       "venue": "Philadelphia",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "0-2",
       "externalId": "PUBLIC-29",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
