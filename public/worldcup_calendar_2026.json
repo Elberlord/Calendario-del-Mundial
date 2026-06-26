@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-25T23:20:58.804Z",
+    "lastUpdated": "2026-06-26T03:59:08.495Z",
     "notes": "Calendario normalizado: resultados actuales aplicados y duplicados de partidos cruzados de medianoche removidos.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -943,8 +943,8 @@
       "home": "Japón",
       "away": "Suecia",
       "venue": "Arlington",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "1-1",
       "externalId": "PUBLIC-35",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
@@ -958,8 +958,8 @@
       "home": "Túnez",
       "away": "Países Bajos",
       "venue": "Kansas City",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "1-3",
       "externalId": "PUBLIC-36",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
