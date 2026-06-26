@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-26T19:52:38.949Z",
+    "lastUpdated": "2026-06-26T21:06:56.431Z",
     "notes": "Calendario normalizado: resultados actuales aplicados y duplicados de partidos cruzados de medianoche removidos.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -1003,8 +1003,8 @@
       "home": "Noruega",
       "away": "Francia",
       "venue": "Foxborough",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "1-4",
       "externalId": "PUBLIC-53",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
