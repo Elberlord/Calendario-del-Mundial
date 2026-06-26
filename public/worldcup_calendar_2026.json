@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-26T03:59:08.495Z",
+    "lastUpdated": "2026-06-26T08:00:28.873Z",
     "notes": "Calendario normalizado: resultados actuales aplicados y duplicados de partidos cruzados de medianoche removidos.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -883,8 +883,8 @@
       "home": "Turquía",
       "away": "Estados Unidos",
       "venue": "Inglewood",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "3-2",
       "externalId": "PUBLIC-23",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
@@ -898,8 +898,8 @@
       "home": "Paraguay",
       "away": "Australia",
       "venue": "Santa Clara",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "0-0",
       "externalId": "PUBLIC-24",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
