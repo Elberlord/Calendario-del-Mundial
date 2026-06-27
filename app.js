@@ -2,7 +2,7 @@ let calendarData = null;
 let matches = [];
 
 const YOUTUBE_SUBSCRIBE_URL = "https://www.youtube.com/@Elberlord?sub_confirmation=1";
-const WATCH_ONLINE_URL = "https://www.tarjetarojaonline.cloud/";
+const WATCH_ONLINE_URL = "https://viprow.im/sports/football/";
 
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => Array.from(document.querySelectorAll(s));
