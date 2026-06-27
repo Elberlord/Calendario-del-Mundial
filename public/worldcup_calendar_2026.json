@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-27T03:42:01.328Z",
+    "lastUpdated": "2026-06-27T06:54:44.430Z",
     "notes": "Calendario normalizado: resultados actuales aplicados y duplicados de partidos cruzados de medianoche removidos.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -973,8 +973,8 @@
       "home": "Egipto",
       "away": "Irán",
       "venue": "Seattle",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "1-1",
       "externalId": "PUBLIC-41",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
@@ -988,8 +988,8 @@
       "home": "Nueva Zelanda",
       "away": "Bélgica",
       "venue": "Vancouver",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "1-5",
       "externalId": "PUBLIC-42",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
