@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-27T21:07:17.312Z",
+    "lastUpdated": "2026-06-27T23:05:18.671Z",
     "notes": "Calendario normalizado: resultados actuales aplicados y duplicados de partidos cruzados de medianoche removidos.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -1093,8 +1093,8 @@
       "home": "Panamá",
       "away": "Inglaterra",
       "venue": "East Rutherford",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "0-2",
       "externalId": "PUBLIC-71",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
