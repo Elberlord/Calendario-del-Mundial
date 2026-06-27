@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-26T23:09:17.043Z",
+    "lastUpdated": "2026-06-27T03:42:01.328Z",
     "notes": "Calendario normalizado: resultados actuales aplicados y duplicados de partidos cruzados de medianoche removidos.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -1033,8 +1033,8 @@
       "home": "Cabo Verde",
       "away": "Arabia Saudita",
       "venue": "Houston",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "0-0",
       "externalId": "PUBLIC-47",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
@@ -1048,8 +1048,8 @@
       "home": "Uruguay",
       "away": "España",
       "venue": "Zapopan / Guadalajara",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "0-1",
       "externalId": "PUBLIC-48",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
