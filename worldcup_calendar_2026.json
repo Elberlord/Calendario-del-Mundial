@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-29T18:10:06.086Z",
+    "lastUpdated": "2026-06-29T21:37:43.340Z",
     "notes": "Calendario normalizado: resultados actuales aplicados y duplicados de partidos cruzados de medianoche removidos.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -1183,8 +1183,8 @@
       "home": "1E",
       "away": "3rd A/B/C/D/F",
       "venue": "Foxborough",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "2-1",
       "externalId": "PUBLIC-76",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
