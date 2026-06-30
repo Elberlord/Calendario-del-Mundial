@@ -33,12 +33,53 @@ function setupFilters() {
 }
 
 function parseScore(score) {
-  const match = String(score || "").match(/^(\d+)\s*-\s*(\d+)/);
+  const text = String(score || "").trim();
+  const match = text.match(/^(\d+)\s*(?:\(\d+\))?\s*-\s*(\d+)\s*(?:\(\d+\))?/);
   if (!match) return null;
   const home = Number(match[1]);
   const away = Number(match[2]);
   if (!Number.isFinite(home) || !Number.isFinite(away)) return null;
   return { home, away };
+}
+
+function normalizeMatchStatus(match) {
+  if (!match) return "scheduled";
+  if (match.status === "complete" || match.status === "live") return match.status;
+  if (match.score || match.winner || hasPenaltyScore(match)) return "complete";
+  return match.status || "scheduled";
+}
+
+function hasPenaltyScore(match) {
+  return !!getPenaltyScore(match);
+}
+
+function getPenaltyScore(match) {
+  const directHome = match?.penaltyHome ?? match?.penaltiesHome ?? match?.homePenalties ?? match?.penalty_score_home;
+  const directAway = match?.penaltyAway ?? match?.penaltiesAway ?? match?.awayPenalties ?? match?.penalty_score_away;
+  if (isFiniteScore(directHome) && isFiniteScore(directAway)) {
+    return { home: Number(directHome), away: Number(directAway) };
+  }
+
+  const text = String(match?.score || "");
+  let parsed = text.match(/\((\d+)\s*-\s*(\d+)\)/);
+  if (parsed) return { home: Number(parsed[1]), away: Number(parsed[2]) };
+
+  parsed = text.match(/\d+\s*\((\d+)\)\s*-\s*\d+\s*\((\d+)\)/);
+  if (parsed) return { home: Number(parsed[1]), away: Number(parsed[2]) };
+
+  return null;
+}
+
+function isFiniteScore(value) {
+  return value !== undefined && value !== null && value !== "" && Number.isFinite(Number(value));
+}
+
+function getWinnerSideFromMatch(match) {
+  const winner = normalizeTeamKey(match?.winner || match?.winnerTeam || match?.advancedTeam || "");
+  if (!winner) return null;
+  if (winner === normalizeTeamKey(match.home)) return "home";
+  if (winner === normalizeTeamKey(match.away)) return "away";
+  return null;
 }
 
 
@@ -128,16 +169,18 @@ function normalizeMatches(rawMatches) {
   const knockoutMatches = [];
 
   rawMatches.forEach(match => {
-    if (!match.group) {
-      if (!String(match.id || "").startsWith("PUBLIC-")) knockoutMatches.push(match);
+    const normalizedMatch = { ...match, status: normalizeMatchStatus(match) };
+
+    if (!normalizedMatch.group) {
+      if (!String(normalizedMatch.id || "").startsWith("PUBLIC-")) knockoutMatches.push(normalizedMatch);
       return;
     }
 
-    const teams = [normalizeTeamName(match.home), normalizeTeamName(match.away)].sort().join(" vs ");
-    const key = `${match.group}::${teams}`;
+    const teams = [normalizeTeamName(normalizedMatch.home), normalizeTeamName(normalizedMatch.away)].sort().join(" vs ");
+    const key = `${normalizedMatch.group}::${teams}`;
     const current = groupBest.get(key);
-    if (!current || matchWeight(match) > matchWeight(current) || (matchWeight(match) === matchWeight(current) && String(match.date) < String(current.date))) {
-      groupBest.set(key, match);
+    if (!current || matchWeight(normalizedMatch) > matchWeight(current) || (matchWeight(normalizedMatch) === matchWeight(current) && String(normalizedMatch.date) < String(current.date))) {
+      groupBest.set(key, normalizedMatch);
     }
   });
 
@@ -349,15 +392,18 @@ function summarizeMatchTeams(match, bracketState) {
 }
 
 function getAdvancedTeam(match, wantWinner, bracketState) {
-  if (match.status !== "complete") return null;
+  if (normalizeMatchStatus(match) !== "complete") return null;
+  const explicitWinner = getWinnerSideFromMatch(match);
   const score = parseScore(match.score);
-  if (!score) return null;
+  if (!score && !explicitWinner) return null;
 
-  let homeWins = score.home > score.away;
-  if (score.home === score.away) {
-    const pens = String(match.score || "").match(/\((\d+)\s*-\s*(\d+)\)/);
+  let homeWins = explicitWinner === "home";
+  if (!explicitWinner && score.home !== score.away) {
+    homeWins = score.home > score.away;
+  } else if (!explicitWinner && score.home === score.away) {
+    const pens = getPenaltyScore(match);
     if (!pens) return null;
-    homeWins = Number(pens[1]) > Number(pens[2]);
+    homeWins = pens.home > pens.away;
   }
 
   const winnerValue = homeWins ? match.home : match.away;
@@ -399,14 +445,18 @@ function getMatchById(matchId) {
 }
 
 function getMatchWinnerSide(match) {
-  if (!match || match.status !== "complete") return null;
+  if (!match || normalizeMatchStatus(match) !== "complete") return null;
+  const explicitWinner = getWinnerSideFromMatch(match);
+  if (explicitWinner) return explicitWinner;
+
   const score = parseScore(match.score);
   if (!score) return null;
   if (score.home > score.away) return "home";
   if (score.away > score.home) return "away";
-  const pens = String(match.score || "").match(/\((\d+)\s*-\s*(\d+)\)/);
+
+  const pens = getPenaltyScore(match);
   if (!pens) return null;
-  return Number(pens[1]) > Number(pens[2]) ? "home" : "away";
+  return pens.home > pens.away ? "home" : "away";
 }
 
 function renderBracketTeamLine(match, teamValue, side, bracketState) {
@@ -437,15 +487,16 @@ function renderBracketCard(matchId, bracketState, extraClass = "") {
   const match = getMatchById(matchId);
   if (!match) return `<article class="bracket-match-card missing"><div class="bracket-card-top"><strong>${matchId}</strong></div><div class="meta">Partido no encontrado.</div></article>`;
 
-  const statusLabel = match.status === "complete" ? "Finalizado" : "Pendiente";
+  const normalizedStatus = normalizeMatchStatus(match);
+  const statusLabel = normalizedStatus === "complete" ? "Finalizado" : "Pendiente";
   return `
-    <article class="bracket-match-card ${extraClass} ${match.status === "complete" ? "is-complete" : "is-pending"}" id="bracket-${match.id}">
+    <article class="bracket-match-card ${extraClass} ${normalizedStatus === "complete" ? "is-complete" : "is-pending"}" id="bracket-${match.id}">
       <div class="bracket-card-top">
         <div>
           <strong>${match.id}</strong>
           <span>${match.round}</span>
         </div>
-        <span class="bracket-card-status ${match.status === "complete" ? "complete" : "scheduled"}">${statusLabel}</span>
+        <span class="bracket-card-status ${normalizedStatus === "complete" ? "complete" : "scheduled"}">${statusLabel}</span>
       </div>
       <div class="bracket-teams">
         ${renderBracketTeamLine(match, match.home, "home", bracketState)}
@@ -618,7 +669,7 @@ function whatsappMatchLink(match) {
 
 
 function watchButtonHtml(match) {
-  if (match.status === "complete") {
+  if (normalizeMatchStatus(match) === "complete") {
     return `<button class="watch-btn watch-btn-disabled" type="button" disabled aria-disabled="true">Finalizado</button>`;
   }
 
@@ -637,7 +688,7 @@ function renderGroupedMatches(data, bracketState = buildBracketState()) {
       <h3>${formatDay(date)}</h3>
       ${dayMatches.map(match => `
         <article class="match" id="${match.id}">
-          <span class="badge ${match.status}">${match.status === "complete" ? "Finalizado" : "Pendiente"}</span>
+          <span class="badge ${normalizeMatchStatus(match)}">${normalizeMatchStatus(match) === "complete" ? "Finalizado" : "Pendiente"}</span>
           <div>
             <strong>${match.stage}</strong>
             <div class="meta">${match.round}${match.group ? " · " + match.group : ""}</div>
