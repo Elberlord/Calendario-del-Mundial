@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-30T17:58:21.262Z",
+    "lastUpdated": "2026-06-30T20:10:26.754Z",
     "notes": "Calendario normalizado: resultados actuales aplicados y duplicados de partidos cruzados de medianoche removidos.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -1248,8 +1248,8 @@
       "home": "Francia",
       "away": "Suecia",
       "venue": "East Rutherford",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "1-2",
       "externalId": "PUBLIC-78",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29"
