@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-29T23:35:04.560Z",
+    "lastUpdated": "2026-06-30T03:54:56.140Z",
     "notes": "Calendario normalizado: resultados actuales aplicados y duplicados de partidos cruzados de medianoche removidos.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -1169,7 +1169,7 @@
       "home": "Brasil",
       "away": "Japón",
       "venue": "Houston",
-      "status": "complete",
+      "status": "scheduled",
       "score": "2-1",
       "externalId": "PUBLIC-75",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
@@ -1186,7 +1186,7 @@
       "away": "Paraguay",
       "venue": "Foxborough",
       "status": "complete",
-      "score": "1-1 (3-4)",
+      "score": "2-1",
       "externalId": "PUBLIC-76",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29"
@@ -1250,7 +1250,8 @@
       "status": "scheduled",
       "score": "",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
-      "source": "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32"
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+      "externalId": "PUBLIC-79"
     },
     {
       "id": "M080",
@@ -1265,7 +1266,8 @@
       "status": "scheduled",
       "score": "",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
-      "source": "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32"
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+      "externalId": "PUBLIC-80"
     },
     {
       "id": "M082",
@@ -1280,7 +1282,8 @@
       "status": "scheduled",
       "score": "",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
-      "source": "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32"
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+      "externalId": "PUBLIC-82"
     },
     {
       "id": "M081",
@@ -1295,7 +1298,8 @@
       "status": "scheduled",
       "score": "",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
-      "source": "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32"
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+      "externalId": "PUBLIC-81"
     },
     {
       "id": "M085",
@@ -1310,7 +1314,8 @@
       "status": "scheduled",
       "score": "",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
-      "source": "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32"
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+      "externalId": "PUBLIC-85"
     },
     {
       "id": "M084",
@@ -1387,7 +1392,7 @@
       "venue": "Kansas City",
       "status": "scheduled",
       "score": "",
-      "externalId": "PUBLIC-86",
+      "externalId": "PUBLIC-87",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29"
     },
