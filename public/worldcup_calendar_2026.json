@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-06-30T04:25:37.640Z",
+    "lastUpdated": "2026-06-30T07:56:15.891Z",
     "notes": "Calendario normalizado: resultados actuales aplicados y duplicados de partidos cruzados de medianoche removidos.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -16,8 +16,7 @@
       "https://worldcup26.ir/get/games",
       "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     ],
-    "normalizedNoCrossMidnightDuplicates": true,
-    "updateNote": "Snapshot corregido con fuentes publicas y updater blindado para penales/ganador."
+    "normalizedNoCrossMidnightDuplicates": true
   },
   "stages": [
     {
@@ -1174,8 +1173,10 @@
       "score": "1-1",
       "externalId": "PUBLIC-75",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+      "manualFix": "Resultado protegido para no ser sobrescrito por feeds publicos incompletos o sin penales.",
       "winner": "Brasil",
-      "verifiedPublicResult": "Brazil defeated Japan 2-1 on 2026-06-29."
+      "verifiedResult": true,
+      "resultNote": "Resultado verificado: Brasil 2-1 Japón; Brasil avanza."
     },
     {
       "id": "M074",
@@ -1191,10 +1192,14 @@
       "score": "2-1",
       "externalId": "PUBLIC-76",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-      "penaltyHome": 3,
-      "penaltyAway": 4,
+      "manualFix": "Resultado protegido para no ser sobrescrito por feeds publicos incompletos o sin penales.",
       "winner": "Paraguay",
-      "verifiedPublicResult": "Paraguay defeated Germany 4-3 on penalties after a 1-1 draw on 2026-06-29."
+      "penalties": {
+        "home": 3,
+        "away": 4
+      },
+      "verifiedResult": true,
+      "resultNote": "Resultado verificado: Alemania 1-1 Paraguay; Paraguay avanza 4-3 en penales."
     },
     {
       "id": "M075",
@@ -1208,11 +1213,15 @@
       "venue": "Guadalupe",
       "status": "complete",
       "score": "1-1 (2-3)",
-      "source": "https://www.espn.com/soccer/match/_/gameId/760488/morocco-netherlands",
-      "penaltyHome": 2,
-      "penaltyAway": 3,
+      "manualFix": "Resultado protegido para no ser sobrescrito por feeds publicos incompletos o sin penales.",
+      "source": "verified-public-result",
       "winner": "Marruecos",
-      "verifiedPublicResult": "Morocco defeated Netherlands 3-2 on penalties after a 1-1 draw on 2026-06-29."
+      "penalties": {
+        "home": 2,
+        "away": 3
+      },
+      "verifiedResult": true,
+      "resultNote": "Resultado verificado: Países Bajos 1-1 Marruecos; Marruecos avanza 3-2 en penales."
     },
     {
       "id": "M078",
