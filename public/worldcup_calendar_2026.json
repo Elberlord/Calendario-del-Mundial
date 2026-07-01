@@ -8,15 +8,16 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-07-01T04:09:40.404Z",
-    "notes": "Calendario normalizado: resultados actuales aplicados y duplicados de partidos cruzados de medianoche removidos.",
+    "lastUpdated": "2026-07-01T09:53:31.667Z",
+    "notes": "Calendario normalizado: resultados R32 actualizados, alias de nombres reforzados y proteccion contra fuentes publicas atrasadas.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
     "publicSources": [
       "https://worldcup26.ir/get/games",
       "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     ],
-    "normalizedNoCrossMidnightDuplicates": true
+    "normalizedNoCrossMidnightDuplicates": true,
+    "r32ResultProtection": true
   },
   "stages": [
     {
@@ -1157,7 +1158,8 @@
       "score": "0-1",
       "externalId": "PUBLIC-73",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-      "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29"
+      "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
+      "winner": "Canadá"
     },
     {
       "id": "M076",
@@ -1173,7 +1175,7 @@
       "score": "1-1",
       "externalId": "PUBLIC-75",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-      "manualFix": "Resultado protegido para no ser sobrescrito por feeds publicos incompletos o sin penales.",
+      "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
       "winner": "Brasil",
       "verifiedResult": true,
       "resultNote": "Resultado verificado: Brasil 2-1 Japón; Brasil avanza."
@@ -1192,7 +1194,7 @@
       "score": "2-1",
       "externalId": "PUBLIC-76",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-      "manualFix": "Resultado protegido para no ser sobrescrito por feeds publicos incompletos o sin penales.",
+      "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
       "winner": "Paraguay",
       "penalties": {
         "home": 3,
@@ -1213,8 +1215,8 @@
       "venue": "Guadalupe",
       "status": "complete",
       "score": "1-1 (2-3)",
-      "manualFix": "Resultado protegido para no ser sobrescrito por feeds publicos incompletos o sin penales.",
-      "source": "verified-public-result",
+      "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
+      "source": "trusted-r32-result-override",
       "winner": "Marruecos",
       "penalties": {
         "home": 2,
@@ -1233,10 +1235,11 @@
       "home": "Costa de Marfil",
       "away": "Noruega",
       "venue": "Arlington",
-      "status": "scheduled",
-      "score": "",
-      "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
-      "source": "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32"
+      "status": "complete",
+      "score": "1-2",
+      "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
+      "source": "trusted-r32-result-override",
+      "winner": "Noruega"
     },
     {
       "id": "M077",
@@ -1252,7 +1255,8 @@
       "score": "1-2",
       "externalId": "PUBLIC-78",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-      "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29"
+      "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
+      "winner": "Francia"
     },
     {
       "id": "M079",
@@ -1264,11 +1268,12 @@
       "home": "México",
       "away": "Ecuador",
       "venue": "Mexico City",
-      "status": "scheduled",
-      "score": "",
-      "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
+      "status": "complete",
+      "score": "2-0",
+      "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-      "externalId": "PUBLIC-79"
+      "externalId": "PUBLIC-79",
+      "winner": "México"
     },
     {
       "id": "M080",
