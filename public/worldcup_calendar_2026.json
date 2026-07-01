@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-07-01T16:28:19.756Z",
+    "lastUpdated": "2026-07-01T19:59:37.908Z",
     "notes": "Calendario normalizado: resultados R32 actualizados, alias de nombres reforzados y proteccion contra fuentes publicas atrasadas.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -1285,8 +1285,8 @@
       "home": "Inglaterra",
       "away": "RD Congo",
       "venue": "Atlanta",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "2-1",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "externalId": "PUBLIC-80"
