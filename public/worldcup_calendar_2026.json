@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-07-01T19:59:37.908Z",
+    "lastUpdated": "2026-07-01T21:43:50.015Z",
     "notes": "Calendario normalizado: resultados R32 actualizados, alias de nombres reforzados y proteccion contra fuentes publicas atrasadas.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
