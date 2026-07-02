@@ -8,10 +8,10 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-07-02T03:35:59Z",
+    "lastUpdated": "2026-07-02T03:50:48.558Z",
     "notes": "Calendario normalizado: resultados R32 actualizados, alias de nombres reforzados y proteccion contra fuentes publicas atrasadas.",
     "completedNoClickPatch": true,
-    "updateMode": "github-actions-public-no-key-with-result-protection",
+    "updateMode": "github-actions-public-no-key",
     "publicSources": [
       "https://worldcup26.ir/get/games",
       "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -1307,7 +1307,8 @@
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "externalId": "PUBLIC-82",
       "winner": "Bélgica",
-      "resultProtection": "Resultado verificado: Bélgica 3-2 Senegal. Protege el cruce M094 si una fuente publica vuelve a devolver 2-2."
+      "resultProtection": "Resultado verificado: Bélgica 3-2 Senegal. La fuente publica podia devolver 2-2 y bloquear Ganador M082.",
+      "resultProtectionUpdatedAt": "2026-07-02T03:50:48.558Z"
     },
     {
       "id": "M081",
