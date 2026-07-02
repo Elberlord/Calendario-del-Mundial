@@ -10,7 +10,22 @@ const PUBLIC_CALENDAR_FILE = process.env.PUBLIC_CALENDAR_FILE || "public/worldcu
 const PUBLIC_SOURCE_URLS = String(
   process.env.PUBLIC_SOURCE_URLS ||
   "https://worldcup26.ir/get/games,https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
-).split(",").map((url) => url.trim()).filter(Boolean);
+ ).split(",").map((url) => url.trim()).filter(Boolean);
+
+// Correcciones verificadas para casos donde una fuente publica se queda con un marcador viejo
+// o incompleto. Esto evita que una actualizacion automatica vuelva a romper cruces ya confirmados.
+const VERIFIED_RESULT_FIXES = [
+  {
+    id: "M082",
+    home: "Bélgica",
+    away: "Senegal",
+    date: "2026-07-01",
+    status: "complete",
+    score: "3-2",
+    winner: "Bélgica",
+    reason: "Resultado verificado: Bélgica 3-2 Senegal. La fuente publica podia devolver 2-2 y bloquear Ganador M082."
+  }
+];
 
 main().catch((error) => {
   console.error("Updater failed:", error);
@@ -29,7 +44,7 @@ async function main() {
     return;
   }
 
-  const updated = mergeMatches(calendar, remoteMatches);
+  const updated = applyVerifiedResultFixes(mergeMatches(calendar, remoteMatches));
   updated.competition = {
     ...(updated.competition || {}),
     lastUpdated: new Date().toISOString(),
@@ -336,6 +351,46 @@ function mergeMatches(calendar, remoteMatches) {
   );
 
   console.log(`Partidos modificados/agregados: ${changedCount}`);
+  return updated;
+}
+
+
+function applyVerifiedResultFixes(calendar) {
+  const updated = structuredClone(calendar);
+  const matches = updated.matches || [];
+  let fixCount = 0;
+
+  for (const fix of VERIFIED_RESULT_FIXES) {
+    const index = matches.findIndex((match) =>
+      String(match.id || "") === fix.id ||
+      (
+        String(match.date || "") === fix.date &&
+        normalizeName(match.home || "") === normalizeName(fix.home) &&
+        normalizeName(match.away || "") === normalizeName(fix.away)
+      )
+    );
+
+    if (index === -1) continue;
+
+    const existing = matches[index];
+    const corrected = {
+      ...existing,
+      status: fix.status,
+      score: fix.score,
+      winner: fix.winner,
+      resultProtection: fix.reason,
+      resultProtectionUpdatedAt: new Date().toISOString()
+    };
+
+    if (JSON.stringify(existing) !== JSON.stringify(corrected)) {
+      matches[index] = corrected;
+      fixCount += 1;
+      console.log(`Correccion verificada aplicada: ${fix.id} ${fix.home} ${fix.score} ${fix.away}`);
+    }
+  }
+
+  updated.matches = matches;
+  if (fixCount) console.log(`Correcciones verificadas aplicadas: ${fixCount}`);
   return updated;
 }
 
