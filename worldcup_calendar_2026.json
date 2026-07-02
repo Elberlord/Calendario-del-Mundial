@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-07-02T10:43:27.822Z",
+    "lastUpdated": "2026-07-02T14:07:35.129Z",
     "notes": "Calendario normalizado: resultados R32 actualizados, alias de nombres reforzados y proteccion contra fuentes publicas atrasadas.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -1308,7 +1308,7 @@
       "externalId": "PUBLIC-82",
       "winner": "Bélgica",
       "resultProtection": "Resultado verificado: Bélgica 3-2 Senegal. La fuente publica podia devolver 2-2 y bloquear Ganador M082.",
-      "resultProtectionUpdatedAt": "2026-07-02T10:43:27.821Z"
+      "resultProtectionUpdatedAt": "2026-07-02T14:07:35.129Z"
     },
     {
       "id": "M081",
