@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-07-01T23:18:20.133Z",
+    "lastUpdated": "2026-07-02T03:25:49.124Z",
     "notes": "Calendario normalizado: resultados R32 actualizados, alias de nombres reforzados y proteccion contra fuentes publicas atrasadas.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -1317,8 +1317,8 @@
       "home": "Estados Unidos",
       "away": "Bosnia y Herzegovina",
       "venue": "Santa Clara",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "2-0",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "externalId": "PUBLIC-81"
