@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-07-03T14:11:53.719Z",
+    "lastUpdated": "2026-07-03T16:43:54.643Z",
     "notes": "Calendario normalizado: resultados R32 actualizados, alias de nombres reforzados y proteccion contra fuentes publicas atrasadas.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -1156,10 +1156,10 @@
       "venue": "Inglewood",
       "status": "complete",
       "score": "0-1",
-      "externalId": "PUBLIC-73",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
-      "winner": "Canadá"
+      "winner": "Canadá",
+      "externalId": "PUBLIC-73"
     },
     {
       "id": "M076",
@@ -1172,13 +1172,13 @@
       "away": "Japón",
       "venue": "Houston",
       "status": "complete",
-      "score": "1-1",
-      "externalId": "PUBLIC-75",
+      "score": "2-1",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
       "winner": "Brasil",
       "verifiedResult": true,
-      "resultNote": "Resultado verificado: Brasil 2-1 Japón; Brasil avanza."
+      "resultNote": "Resultado verificado: Brasil 2-1 Japón; Brasil avanza.",
+      "externalId": "PUBLIC-76"
     },
     {
       "id": "M074",
@@ -1191,8 +1191,7 @@
       "away": "Paraguay",
       "venue": "Foxborough",
       "status": "complete",
-      "score": "2-1",
-      "externalId": "PUBLIC-76",
+      "score": "1-1",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
       "winner": "Paraguay",
@@ -1201,7 +1200,8 @@
         "away": 4
       },
       "verifiedResult": true,
-      "resultNote": "Resultado verificado: Alemania 1-1 Paraguay; Paraguay avanza 4-3 en penales."
+      "resultNote": "Resultado verificado: Alemania 1-1 Paraguay; Paraguay avanza 4-3 en penales.",
+      "externalId": "PUBLIC-74"
     },
     {
       "id": "M075",
@@ -1214,16 +1214,17 @@
       "away": "Marruecos",
       "venue": "Guadalupe",
       "status": "complete",
-      "score": "1-1 (2-3)",
+      "score": "1-1",
       "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
-      "source": "trusted-r32-result-override",
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "winner": "Marruecos",
       "penalties": {
         "home": 2,
         "away": 3
       },
       "verifiedResult": true,
-      "resultNote": "Resultado verificado: Países Bajos 1-1 Marruecos; Marruecos avanza 3-2 en penales."
+      "resultNote": "Resultado verificado: Países Bajos 1-1 Marruecos; Marruecos avanza 3-2 en penales.",
+      "externalId": "PUBLIC-75"
     },
     {
       "id": "M078",
@@ -1238,8 +1239,9 @@
       "status": "complete",
       "score": "1-2",
       "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
-      "source": "trusted-r32-result-override",
-      "winner": "Noruega"
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+      "winner": "Noruega",
+      "externalId": "PUBLIC-78"
     },
     {
       "id": "M077",
@@ -1252,11 +1254,11 @@
       "away": "Suecia",
       "venue": "East Rutherford",
       "status": "complete",
-      "score": "1-2",
-      "externalId": "PUBLIC-78",
+      "score": "3-0",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
-      "winner": "Francia"
+      "winner": "Francia",
+      "externalId": "PUBLIC-77"
     },
     {
       "id": "M079",
@@ -1272,8 +1274,8 @@
       "score": "2-0",
       "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-      "externalId": "PUBLIC-79",
-      "winner": "México"
+      "winner": "México",
+      "externalId": "PUBLIC-79"
     },
     {
       "id": "M080",
@@ -1305,10 +1307,10 @@
       "score": "3-2",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-      "externalId": "PUBLIC-82",
       "winner": "Bélgica",
       "resultProtection": "Resultado verificado: Bélgica 3-2 Senegal. La fuente publica podia devolver 2-2 y bloquear Ganador M082.",
-      "resultProtectionUpdatedAt": "2026-07-03T14:11:53.718Z"
+      "externalId": "PUBLIC-82",
+      "resultProtectionUpdatedAt": "2026-07-03T16:43:54.643Z"
     },
     {
       "id": "M081",
@@ -1353,10 +1355,10 @@
       "away": "Austria",
       "venue": "Inglewood",
       "status": "complete",
-      "score": "2-1",
-      "externalId": "PUBLIC-83",
+      "score": "3-0",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-      "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29"
+      "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
+      "externalId": "PUBLIC-84"
     },
     {
       "id": "M083",
@@ -1369,10 +1371,10 @@
       "away": "Croacia",
       "venue": "Toronto",
       "status": "complete",
-      "score": "3-0",
-      "externalId": "PUBLIC-84",
+      "score": "2-1",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-      "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29"
+      "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
+      "externalId": "PUBLIC-83"
     },
     {
       "id": "M088",
@@ -1387,7 +1389,8 @@
       "status": "scheduled",
       "score": "",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
-      "source": "https://www.sbnation.com/soccer/1120771/world-cup-schedule-scores-round-32"
+      "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+      "externalId": "PUBLIC-88"
     },
     {
       "id": "M086",
@@ -1401,9 +1404,9 @@
       "venue": "Miami Gardens",
       "status": "scheduled",
       "score": "",
-      "externalId": "PUBLIC-88",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-      "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29"
+      "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
+      "externalId": "PUBLIC-86"
     },
     {
       "id": "M087",
@@ -1417,9 +1420,9 @@
       "venue": "Kansas City",
       "status": "scheduled",
       "score": "",
-      "externalId": "PUBLIC-87",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-      "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29"
+      "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
+      "externalId": "PUBLIC-87"
     },
     {
       "id": "M089",
