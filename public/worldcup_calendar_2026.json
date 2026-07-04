@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-07-04T15:07:36.269Z",
+    "lastUpdated": "2026-07-04T15:20:42.508Z",
     "notes": "Calendario normalizado: resultados R32 actualizados, alias de nombres reforzados y proteccion contra fuentes publicas atrasadas.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -74,7 +74,7 @@
       "home": "Corea del Sur",
       "away": "Chequia",
       "venue": "Zapopan / Guadalajara",
-      "status": "complete",
+      "status": "live",
       "score": "2-1",
       "externalId": "PUBLIC-2",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -89,7 +89,7 @@
       "home": "México",
       "away": "Sudáfrica",
       "venue": "Mexico City",
-      "status": "complete",
+      "status": "live",
       "score": "2-0",
       "externalId": "PUBLIC-1",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -104,7 +104,7 @@
       "home": "Canadá",
       "away": "Bosnia y Herzegovina",
       "venue": "Toronto",
-      "status": "complete",
+      "status": "live",
       "score": "1-1",
       "externalId": "PUBLIC-7",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -119,7 +119,7 @@
       "home": "Estados Unidos",
       "away": "Paraguay",
       "venue": "Inglewood",
-      "status": "complete",
+      "status": "live",
       "score": "4-1",
       "externalId": "PUBLIC-19",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -135,7 +135,7 @@
       "home": "Australia",
       "away": "Turquía",
       "venue": "Vancouver",
-      "status": "complete",
+      "status": "live",
       "score": "2-0",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
@@ -149,7 +149,7 @@
       "home": "Qatar",
       "away": "Suiza",
       "venue": "Santa Clara",
-      "status": "complete",
+      "status": "live",
       "score": "1-1",
       "externalId": "PUBLIC-8",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -164,7 +164,7 @@
       "home": "Brasil",
       "away": "Marruecos",
       "venue": "East Rutherford",
-      "status": "complete",
+      "status": "live",
       "score": "1-1",
       "externalId": "PUBLIC-13",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -179,7 +179,7 @@
       "home": "Haití",
       "away": "Escocia",
       "venue": "Foxborough",
-      "status": "complete",
+      "status": "live",
       "score": "0-1",
       "externalId": "PUBLIC-14",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -194,7 +194,7 @@
       "home": "Alemania",
       "away": "Curazao",
       "venue": "Houston",
-      "status": "complete",
+      "status": "live",
       "score": "7-1",
       "externalId": "PUBLIC-25",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -209,7 +209,7 @@
       "home": "Suecia",
       "away": "Túnez",
       "venue": "Guadalupe",
-      "status": "complete",
+      "status": "live",
       "score": "5-1",
       "externalId": "PUBLIC-32",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -224,7 +224,7 @@
       "home": "Países Bajos",
       "away": "Japón",
       "venue": "Arlington",
-      "status": "complete",
+      "status": "live",
       "score": "2-2",
       "externalId": "PUBLIC-31",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -239,7 +239,7 @@
       "home": "Costa de Marfil",
       "away": "Ecuador",
       "venue": "Philadelphia",
-      "status": "complete",
+      "status": "live",
       "score": "1-0",
       "externalId": "PUBLIC-26",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -254,7 +254,7 @@
       "home": "España",
       "away": "Cabo Verde",
       "venue": "Atlanta",
-      "status": "complete",
+      "status": "live",
       "score": "0-0",
       "externalId": "PUBLIC-43",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -269,7 +269,7 @@
       "home": "Bélgica",
       "away": "Egipto",
       "venue": "Seattle",
-      "status": "complete",
+      "status": "live",
       "score": "1-1",
       "externalId": "PUBLIC-37",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -284,7 +284,7 @@
       "home": "Arabia Saudita",
       "away": "Uruguay",
       "venue": "Miami Gardens",
-      "status": "complete",
+      "status": "live",
       "score": "1-1",
       "externalId": "PUBLIC-44",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -299,7 +299,7 @@
       "home": "Irán",
       "away": "Nueva Zelanda",
       "venue": "Vancouver",
-      "status": "complete",
+      "status": "live",
       "score": "2-2",
       "externalId": "PUBLIC-38",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -315,7 +315,7 @@
       "home": "Austria",
       "away": "Jordania",
       "venue": "San Francisco Bay Area (Santa Clara)",
-      "status": "complete",
+      "status": "live",
       "score": "3-1",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
@@ -329,7 +329,7 @@
       "home": "Francia",
       "away": "Senegal",
       "venue": "East Rutherford",
-      "status": "complete",
+      "status": "live",
       "score": "3-1",
       "externalId": "PUBLIC-49",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -344,7 +344,7 @@
       "home": "Irak",
       "away": "Noruega",
       "venue": "Foxborough",
-      "status": "complete",
+      "status": "live",
       "score": "1-4",
       "externalId": "PUBLIC-50",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -359,7 +359,7 @@
       "home": "Argentina",
       "away": "Argelia",
       "venue": "Kansas City",
-      "status": "complete",
+      "status": "live",
       "score": "3-0",
       "externalId": "PUBLIC-55",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -374,7 +374,7 @@
       "home": "Portugal",
       "away": "RD Congo",
       "venue": "Houston",
-      "status": "complete",
+      "status": "live",
       "score": "1-1",
       "externalId": "PUBLIC-61",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -389,7 +389,7 @@
       "home": "Uzbekistán",
       "away": "Colombia",
       "venue": "Mexico City",
-      "status": "complete",
+      "status": "live",
       "score": "1-3",
       "externalId": "PUBLIC-62",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -404,7 +404,7 @@
       "home": "Inglaterra",
       "away": "Croacia",
       "venue": "Dallas / Arlington",
-      "status": "complete",
+      "status": "live",
       "score": "4-2",
       "externalId": "PUBLIC-67",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -419,7 +419,7 @@
       "home": "Ghana",
       "away": "Panamá",
       "venue": "Toronto",
-      "status": "complete",
+      "status": "live",
       "score": "1-0",
       "externalId": "PUBLIC-68",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -434,7 +434,7 @@
       "home": "Chequia",
       "away": "Sudáfrica",
       "venue": "Atlanta",
-      "status": "complete",
+      "status": "live",
       "score": "1-1",
       "externalId": "PUBLIC-3",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -449,7 +449,7 @@
       "home": "Suiza",
       "away": "Bosnia y Herzegovina",
       "venue": "Inglewood",
-      "status": "complete",
+      "status": "live",
       "score": "4-1",
       "externalId": "PUBLIC-9",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -464,7 +464,7 @@
       "home": "Canadá",
       "away": "Qatar",
       "venue": "Vancouver",
-      "status": "complete",
+      "status": "live",
       "score": "6-0",
       "externalId": "PUBLIC-10",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -479,7 +479,7 @@
       "home": "México",
       "away": "Corea del Sur",
       "venue": "Zapopan / Guadalajara",
-      "status": "complete",
+      "status": "live",
       "score": "1-0",
       "externalId": "PUBLIC-4",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -495,7 +495,7 @@
       "home": "Turquía",
       "away": "Paraguay",
       "venue": "San Francisco Bay Area (Santa Clara)",
-      "status": "complete",
+      "status": "live",
       "score": "0-1",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
@@ -509,7 +509,7 @@
       "home": "Estados Unidos",
       "away": "Australia",
       "venue": "Seattle",
-      "status": "complete",
+      "status": "live",
       "score": "2-0",
       "externalId": "PUBLIC-21",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -524,7 +524,7 @@
       "home": "Escocia",
       "away": "Marruecos",
       "venue": "Foxborough",
-      "status": "complete",
+      "status": "live",
       "score": "0-1",
       "externalId": "PUBLIC-15",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -539,7 +539,7 @@
       "home": "Brasil",
       "away": "Haití",
       "venue": "Philadelphia",
-      "status": "complete",
+      "status": "live",
       "score": "3-0",
       "externalId": "PUBLIC-16",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -554,7 +554,7 @@
       "home": "Países Bajos",
       "away": "Suecia",
       "venue": "Houston",
-      "status": "complete",
+      "status": "live",
       "score": "5-1",
       "externalId": "PUBLIC-33",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -570,7 +570,7 @@
       "home": "Túnez",
       "away": "Japón",
       "venue": "Monterrey (Guadalupe)",
-      "status": "complete",
+      "status": "live",
       "score": "0-4",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     },
@@ -584,7 +584,7 @@
       "home": "Alemania",
       "away": "Costa de Marfil",
       "venue": "Toronto",
-      "status": "complete",
+      "status": "live",
       "score": "2-1",
       "externalId": "PUBLIC-27",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -599,7 +599,7 @@
       "home": "Ecuador",
       "away": "Curazao",
       "venue": "Kansas City",
-      "status": "complete",
+      "status": "live",
       "score": "0-0",
       "externalId": "PUBLIC-28",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -614,7 +614,7 @@
       "home": "España",
       "away": "Arabia Saudita",
       "venue": "Atlanta",
-      "status": "complete",
+      "status": "live",
       "score": "4-0",
       "externalId": "PUBLIC-45",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -629,7 +629,7 @@
       "home": "Bélgica",
       "away": "Irán",
       "venue": "Inglewood",
-      "status": "complete",
+      "status": "live",
       "score": "0-0",
       "externalId": "PUBLIC-39",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -644,7 +644,7 @@
       "home": "Uruguay",
       "away": "Cabo Verde",
       "venue": "Miami Gardens",
-      "status": "complete",
+      "status": "live",
       "score": "2-2",
       "externalId": "PUBLIC-46",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -659,7 +659,7 @@
       "home": "Nueva Zelanda",
       "away": "Egipto",
       "venue": "Vancouver",
-      "status": "complete",
+      "status": "live",
       "score": "1-3",
       "externalId": "PUBLIC-40",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -674,7 +674,7 @@
       "home": "Argentina",
       "away": "Austria",
       "venue": "Arlington",
-      "status": "complete",
+      "status": "live",
       "score": "2-0",
       "externalId": "PUBLIC-57",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -689,7 +689,7 @@
       "home": "Jordania",
       "away": "Argelia",
       "venue": "Santa Clara",
-      "status": "complete",
+      "status": "live",
       "score": "1-2",
       "externalId": "PUBLIC-58",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -704,7 +704,7 @@
       "home": "Francia",
       "away": "Irak",
       "venue": "Philadelphia",
-      "status": "complete",
+      "status": "live",
       "score": "3-0",
       "externalId": "PUBLIC-51",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -719,7 +719,7 @@
       "home": "Noruega",
       "away": "Senegal",
       "venue": "East Rutherford",
-      "status": "complete",
+      "status": "live",
       "score": "3-2",
       "externalId": "PUBLIC-52",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -734,7 +734,7 @@
       "home": "Portugal",
       "away": "Uzbekistán",
       "venue": "Houston",
-      "status": "complete",
+      "status": "live",
       "score": "5-0",
       "externalId": "PUBLIC-63",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -749,7 +749,7 @@
       "home": "Colombia",
       "away": "RD Congo",
       "venue": "Zapopan / Guadalajara",
-      "status": "complete",
+      "status": "live",
       "score": "1-0",
       "externalId": "PUBLIC-64",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -764,7 +764,7 @@
       "home": "Inglaterra",
       "away": "Ghana",
       "venue": "Foxborough",
-      "status": "complete",
+      "status": "live",
       "score": "0-0",
       "externalId": "PUBLIC-69",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -779,7 +779,7 @@
       "home": "Panamá",
       "away": "Croacia",
       "venue": "Toronto",
-      "status": "complete",
+      "status": "live",
       "score": "0-1",
       "externalId": "PUBLIC-70",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -794,7 +794,7 @@
       "home": "Suiza",
       "away": "Canadá",
       "venue": "Vancouver",
-      "status": "complete",
+      "status": "live",
       "score": "2-1",
       "externalId": "PUBLIC-11",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -809,7 +809,7 @@
       "home": "Bosnia y Herzegovina",
       "away": "Qatar",
       "venue": "Seattle",
-      "status": "complete",
+      "status": "live",
       "score": "3-1",
       "externalId": "PUBLIC-12",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -824,7 +824,7 @@
       "home": "Escocia",
       "away": "Brasil",
       "venue": "Miami Gardens",
-      "status": "complete",
+      "status": "live",
       "score": "0-3",
       "externalId": "PUBLIC-17",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -839,7 +839,7 @@
       "home": "Marruecos",
       "away": "Haití",
       "venue": "Atlanta",
-      "status": "complete",
+      "status": "live",
       "score": "4-2",
       "externalId": "PUBLIC-18",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -854,7 +854,7 @@
       "home": "Chequia",
       "away": "México",
       "venue": "Mexico City",
-      "status": "complete",
+      "status": "live",
       "score": "0-3",
       "externalId": "PUBLIC-5",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -869,7 +869,7 @@
       "home": "Sudáfrica",
       "away": "Corea del Sur",
       "venue": "Guadalupe",
-      "status": "complete",
+      "status": "live",
       "score": "1-0",
       "externalId": "PUBLIC-6",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -884,7 +884,7 @@
       "home": "Turquía",
       "away": "Estados Unidos",
       "venue": "Inglewood",
-      "status": "complete",
+      "status": "live",
       "score": "3-2",
       "externalId": "PUBLIC-23",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -899,7 +899,7 @@
       "home": "Paraguay",
       "away": "Australia",
       "venue": "Santa Clara",
-      "status": "complete",
+      "status": "live",
       "score": "0-0",
       "externalId": "PUBLIC-24",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -914,7 +914,7 @@
       "home": "Ecuador",
       "away": "Alemania",
       "venue": "East Rutherford",
-      "status": "complete",
+      "status": "live",
       "score": "2-1",
       "externalId": "PUBLIC-30",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -929,7 +929,7 @@
       "home": "Curazao",
       "away": "Costa de Marfil",
       "venue": "Philadelphia",
-      "status": "complete",
+      "status": "live",
       "score": "0-2",
       "externalId": "PUBLIC-29",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -944,7 +944,7 @@
       "home": "Japón",
       "away": "Suecia",
       "venue": "Arlington",
-      "status": "complete",
+      "status": "live",
       "score": "1-1",
       "externalId": "PUBLIC-35",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -959,7 +959,7 @@
       "home": "Túnez",
       "away": "Países Bajos",
       "venue": "Kansas City",
-      "status": "complete",
+      "status": "live",
       "score": "1-3",
       "externalId": "PUBLIC-36",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -974,7 +974,7 @@
       "home": "Egipto",
       "away": "Irán",
       "venue": "Seattle",
-      "status": "complete",
+      "status": "live",
       "score": "1-1",
       "externalId": "PUBLIC-41",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -989,7 +989,7 @@
       "home": "Nueva Zelanda",
       "away": "Bélgica",
       "venue": "Vancouver",
-      "status": "complete",
+      "status": "live",
       "score": "1-5",
       "externalId": "PUBLIC-42",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -1004,7 +1004,7 @@
       "home": "Noruega",
       "away": "Francia",
       "venue": "Foxborough",
-      "status": "complete",
+      "status": "live",
       "score": "1-4",
       "externalId": "PUBLIC-53",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -1019,7 +1019,7 @@
       "home": "Senegal",
       "away": "Irak",
       "venue": "Toronto",
-      "status": "complete",
+      "status": "live",
       "score": "5-0",
       "externalId": "PUBLIC-54",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -1034,7 +1034,7 @@
       "home": "Cabo Verde",
       "away": "Arabia Saudita",
       "venue": "Houston",
-      "status": "complete",
+      "status": "live",
       "score": "0-0",
       "externalId": "PUBLIC-47",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -1049,7 +1049,7 @@
       "home": "Uruguay",
       "away": "España",
       "venue": "Zapopan / Guadalajara",
-      "status": "complete",
+      "status": "live",
       "score": "0-1",
       "externalId": "PUBLIC-48",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -1064,7 +1064,7 @@
       "home": "Argelia",
       "away": "Austria",
       "venue": "Kansas City",
-      "status": "complete",
+      "status": "live",
       "score": "3-3",
       "externalId": "PUBLIC-59",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -1079,7 +1079,7 @@
       "home": "Jordania",
       "away": "Argentina",
       "venue": "Arlington",
-      "status": "complete",
+      "status": "live",
       "score": "1-3",
       "externalId": "PUBLIC-60",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -1094,7 +1094,7 @@
       "home": "Panamá",
       "away": "Inglaterra",
       "venue": "East Rutherford",
-      "status": "complete",
+      "status": "live",
       "score": "0-2",
       "externalId": "PUBLIC-71",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -1109,7 +1109,7 @@
       "home": "Croacia",
       "away": "Ghana",
       "venue": "Philadelphia",
-      "status": "complete",
+      "status": "live",
       "score": "2-1",
       "externalId": "PUBLIC-72",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -1124,7 +1124,7 @@
       "home": "Colombia",
       "away": "Portugal",
       "venue": "Miami Gardens",
-      "status": "complete",
+      "status": "live",
       "score": "0-0",
       "externalId": "PUBLIC-65",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -1139,7 +1139,7 @@
       "home": "RD Congo",
       "away": "Uzbekistán",
       "venue": "Atlanta",
-      "status": "complete",
+      "status": "live",
       "score": "3-1",
       "externalId": "PUBLIC-66",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
@@ -1154,7 +1154,7 @@
       "home": "Sudáfrica",
       "away": "Canadá",
       "venue": "Inglewood",
-      "status": "complete",
+      "status": "live",
       "score": "0-1",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
@@ -1171,7 +1171,7 @@
       "home": "Brasil",
       "away": "Japón",
       "venue": "Houston",
-      "status": "complete",
+      "status": "live",
       "score": "2-1",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
@@ -1236,7 +1236,7 @@
       "home": "Costa de Marfil",
       "away": "Noruega",
       "venue": "Arlington",
-      "status": "complete",
+      "status": "live",
       "score": "1-2",
       "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
@@ -1253,7 +1253,7 @@
       "home": "Francia",
       "away": "Suecia",
       "venue": "East Rutherford",
-      "status": "complete",
+      "status": "live",
       "score": "3-0",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
@@ -1270,7 +1270,7 @@
       "home": "México",
       "away": "Ecuador",
       "venue": "Mexico City",
-      "status": "complete",
+      "status": "live",
       "score": "2-0",
       "manualFix": "R32 result verified and protected from stale public feeds on 2026-07-01",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
@@ -1287,7 +1287,7 @@
       "home": "Inglaterra",
       "away": "RD Congo",
       "venue": "Atlanta",
-      "status": "complete",
+      "status": "live",
       "score": "2-1",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
@@ -1310,7 +1310,7 @@
       "winner": "Bélgica",
       "resultProtection": "Resultado verificado: Bélgica 3-2 Senegal. La fuente publica podia devolver 2-2 y bloquear Ganador M082.",
       "externalId": "PUBLIC-82",
-      "resultProtectionUpdatedAt": "2026-07-04T15:07:36.269Z"
+      "resultProtectionUpdatedAt": "2026-07-04T15:20:42.507Z"
     },
     {
       "id": "M081",
@@ -1322,7 +1322,7 @@
       "home": "Estados Unidos",
       "away": "Bosnia y Herzegovina",
       "venue": "Santa Clara",
-      "status": "complete",
+      "status": "live",
       "score": "2-0",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
@@ -1338,7 +1338,7 @@
       "home": "Suiza",
       "away": "Argelia",
       "venue": "Vancouver",
-      "status": "complete",
+      "status": "live",
       "score": "2-0",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
@@ -1354,7 +1354,7 @@
       "home": "España",
       "away": "Austria",
       "venue": "Inglewood",
-      "status": "complete",
+      "status": "live",
       "score": "3-0",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
@@ -1370,7 +1370,7 @@
       "home": "Portugal",
       "away": "Croacia",
       "venue": "Toronto",
-      "status": "complete",
+      "status": "live",
       "score": "2-1",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
@@ -1386,8 +1386,8 @@
       "home": "Australia",
       "away": "Egipto",
       "venue": "Arlington",
-      "status": "scheduled",
-      "score": "",
+      "status": "live",
+      "score": "1-1",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "externalId": "PUBLIC-88",
@@ -1404,8 +1404,8 @@
       "home": "Argentina",
       "away": "Cabo Verde",
       "venue": "Miami Gardens",
-      "status": "scheduled",
-      "score": "",
+      "status": "live",
+      "score": "1-1",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
       "externalId": "PUBLIC-86",
@@ -1422,7 +1422,7 @@
       "home": "Colombia",
       "away": "Ghana",
       "venue": "Kansas City",
-      "status": "complete",
+      "status": "live",
       "score": "1-0",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
