@@ -1386,11 +1386,13 @@
       "home": "Australia",
       "away": "Egipto",
       "venue": "Arlington",
-      "status": "complete",
-      "score": "1-1",
+      "status": "scheduled",
+      "score": "",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-      "externalId": "PUBLIC-88"
+      "externalId": "PUBLIC-88",
+      "resultProtection": "Marcador 1-1 sin penales ni ganador removido: una eliminatoria empatada no puede quedar como finalizada sin winner.",
+      "resultProtectionUpdatedAt": "2026-07-04T00:00:00.000Z"
     },
     {
       "id": "M086",
@@ -1402,11 +1404,13 @@
       "home": "Argentina",
       "away": "Cabo Verde",
       "venue": "Miami Gardens",
-      "status": "complete",
-      "score": "1-1",
+      "status": "scheduled",
+      "score": "",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
-      "externalId": "PUBLIC-86"
+      "externalId": "PUBLIC-86",
+      "resultProtection": "Marcador 1-1 sin penales ni ganador removido: una eliminatoria empatada no puede quedar como finalizada sin winner.",
+      "resultProtectionUpdatedAt": "2026-07-04T00:00:00.000Z"
     },
     {
       "id": "M087",
