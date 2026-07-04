@@ -218,9 +218,12 @@ function isScoreValue(value) {
 function extractStatus(match, score) {
   const raw = String(pick(match, ["status", "state", "matchStatus", "gameStatus"]) || "").toLowerCase();
 
-  if (score) return "complete";
-  if (raw.includes("live") || raw.includes("playing") || raw.includes("progress")) return "live";
-  if (raw.includes("finished") || raw.includes("complete") || raw.includes("final")) return "complete";
+  if (raw.includes("live") || raw.includes("playing") || raw.includes("progress") || raw.includes("in play")) return "live";
+  if (raw.includes("finished") || raw.includes("complete") || raw.includes("final") || raw === "ft" || raw.includes("aet") || raw.includes("pen")) return "complete";
+
+  // Si el feed trae un marcador pero no confirma que terminó, lo tratamos como en curso.
+  // Esto evita que un 1-1 provisional de eliminatoria quede como "Finalizado".
+  if (score) return "live";
 
   return "scheduled";
 }
@@ -313,9 +316,20 @@ function mergeMatches(calendar, remoteMatches) {
   let changedCount = 0;
 
   for (const remote of remoteMatches) {
-    let index = remote.externalId ? byExternalId.get(String(remote.externalId)) : undefined;
-    if (index === undefined) index = byTeamDate.get(makeTeamDateKey(remote));
+    let index = byTeamDate.get(makeTeamDateKey(remote));
     if (index === undefined && remote.group) index = byGroupPair.get(makeGroupPairKey(remote));
+
+    if (index === undefined && remote.externalId) {
+      const candidateIndex = byExternalId.get(String(remote.externalId));
+      if (candidateIndex !== undefined) {
+        const candidate = current[candidateIndex];
+        if (makeTeamDateKey(candidate) === makeTeamDateKey(remote)) {
+          index = candidateIndex;
+        } else {
+          console.log(`ExternalId ignorado por no coincidir equipos/fecha: ${remote.externalId} -> ${remote.home} vs ${remote.away} ${remote.date}`);
+        }
+      }
+    }
 
     if (index === undefined) {
       // Los feeds publicos suelen traer eliminatorias o partidos cruzados de medianoche con otro ID/fecha.
@@ -324,12 +338,15 @@ function mergeMatches(calendar, remoteMatches) {
     }
 
     const existing = current[index];
+    const keepVerifiedKnockoutResult = isKnockoutMatch(existing) && hasResolvedWinner(existing) && remote.score && !hasResolvedWinner(remote);
+
     const merged = {
       ...existing,
       id: existing.id || remote.id,
-      externalId: remote.externalId || existing.externalId,
-      status: remote.status || existing.status,
-      score: remote.score || existing.score,
+      externalId: existing.externalId || remote.externalId,
+      status: keepVerifiedKnockoutResult ? existing.status : (remote.status || existing.status),
+      score: keepVerifiedKnockoutResult ? existing.score : (remote.score || existing.score),
+      winner: keepVerifiedKnockoutResult ? existing.winner : (remote.winner || existing.winner),
       source: remote.source || existing.source,
       venue: existing.venue || remote.venue,
       timeET: existing.timeET || remote.timeET,
@@ -392,6 +409,32 @@ function applyVerifiedResultFixes(calendar) {
   updated.matches = matches;
   if (fixCount) console.log(`Correcciones verificadas aplicadas: ${fixCount}`);
   return updated;
+}
+
+
+function parseScoreText(value) {
+  const text = String(value || "").trim();
+  const match = text.match(/^(\d+)\s*-\s*(\d+)(?:\s*\((\d+)\s*-\s*(\d+)\))?$/);
+  if (!match) return null;
+  return {
+    home: Number(match[1]),
+    away: Number(match[2]),
+    pensHome: match[3] !== undefined ? Number(match[3]) : null,
+    pensAway: match[4] !== undefined ? Number(match[4]) : null
+  };
+}
+
+function isKnockoutMatch(match) {
+  return !match.group;
+}
+
+function hasResolvedWinner(match) {
+  if (!match) return false;
+  if (match.winner) return true;
+  const score = parseScoreText(match.score);
+  if (!score) return false;
+  if (score.home !== score.away) return true;
+  return score.pensHome !== null && score.pensAway !== null;
 }
 
 function makeGroupPairKey(match) {
