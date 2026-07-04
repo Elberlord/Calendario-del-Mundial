@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-07-04T21:00:29.056Z",
+    "lastUpdated": "2026-07-04T22:59:48.334Z",
     "notes": "Calendario normalizado: resultados R32 actualizados, alias de nombres reforzados y proteccion contra fuentes publicas atrasadas.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -1311,7 +1311,7 @@
       "winner": "Bélgica",
       "resultProtection": "Resultado verificado: Bélgica 3-2 Senegal. La fuente publica podia devolver 2-2 y bloquear Ganador M082.",
       "externalId": "PUBLIC-82",
-      "resultProtectionUpdatedAt": "2026-07-04T21:00:29.055Z"
+      "resultProtectionUpdatedAt": "2026-07-04T22:59:48.333Z"
     },
     {
       "id": "M081",
@@ -1393,7 +1393,7 @@
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "externalId": "PUBLIC-88",
       "resultProtection": "Resultado verificado: Australia 1-1 Egipto, Egipto gana 4-2 en penales. La fuente publica podia devolver solo 1-1 y bloquear Ganador M088.",
-      "resultProtectionUpdatedAt": "2026-07-04T21:00:29.056Z",
+      "resultProtectionUpdatedAt": "2026-07-04T22:59:48.334Z",
       "winner": "Egipto"
     },
     {
@@ -1412,7 +1412,7 @@
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
       "externalId": "PUBLIC-86",
       "resultProtection": "Resultado verificado: Argentina 3-2 Cabo Verde. La fuente publica podia devolver un marcador incompleto y bloquear Ganador M086.",
-      "resultProtectionUpdatedAt": "2026-07-04T21:00:29.055Z",
+      "resultProtectionUpdatedAt": "2026-07-04T22:59:48.333Z",
       "winner": "Argentina"
     },
     {
