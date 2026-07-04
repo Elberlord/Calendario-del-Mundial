@@ -24,6 +24,26 @@ const VERIFIED_RESULT_FIXES = [
     score: "3-2",
     winner: "Bélgica",
     reason: "Resultado verificado: Bélgica 3-2 Senegal. La fuente publica podia devolver 2-2 y bloquear Ganador M082."
+  },
+  {
+    id: "M086",
+    home: "Argentina",
+    away: "Cabo Verde",
+    date: "2026-07-03",
+    status: "complete",
+    score: "3-2",
+    winner: "Argentina",
+    reason: "Resultado verificado: Argentina 3-2 Cabo Verde. La fuente publica podia devolver un marcador incompleto y bloquear Ganador M086."
+  },
+  {
+    id: "M088",
+    home: "Australia",
+    away: "Egipto",
+    date: "2026-07-03",
+    status: "complete",
+    score: "1-1 (2-4)",
+    winner: "Egipto",
+    reason: "Resultado verificado: Australia 1-1 Egipto, Egipto gana 4-2 en penales. La fuente publica podia devolver solo 1-1 y bloquear Ganador M088."
   }
 ];
 
@@ -149,10 +169,11 @@ function normalizeMatch(match, sourceUrl, index) {
 
   const score = extractScore(match);
   const status = extractStatus(match, score);
+  const winner = extractWinner(match);
   const roundRaw = String(pick(match, ["round", "stage", "phase", "matchday", "roundName"]) || "");
   const groupRaw = String(pick(match, ["group", "groupName", "pool"]) || "");
 
-  return {
+  const normalized = {
     id: String(pick(match, ["id", "matchId", "gameId", "_id"]) || `PUBLIC-${index + 1}`),
     externalId: String(pick(match, ["id", "matchId", "gameId", "_id"]) || `PUBLIC-${index + 1}`),
     stage: inferStage(roundRaw, groupRaw),
@@ -167,6 +188,9 @@ function normalizeMatch(match, sourceUrl, index) {
     score,
     source: sourceUrl
   };
+
+  if (winner) normalized.winner = translateTeamName(winner);
+  return normalized;
 }
 
 function pick(obj, keys) {
@@ -186,8 +210,15 @@ function pick(obj, keys) {
 }
 
 function extractScore(match) {
-  if (Array.isArray(match?.score?.ft)) return `${match.score.ft[0]}-${match.score.ft[1]}`;
-  if (Array.isArray(match?.score)) return `${match.score[0]}-${match.score[1]}`;
+  const penalties = extractPenaltyScore(match);
+
+  if (Array.isArray(match?.score?.ft)) {
+    return formatScoreWithPenalties(match.score.ft[0], match.score.ft[1], penalties);
+  }
+
+  if (Array.isArray(match?.score)) {
+    return formatScoreWithPenalties(match.score[0], match.score[1], penalties);
+  }
 
   const homeScore = firstDefined(
     match.homeScore, match.scoreHome, match.home_score, match.goalsHome, match.homeGoals,
@@ -198,13 +229,102 @@ function extractScore(match) {
     match?.score?.away, match?.goals?.away
   );
 
-  if (isScoreValue(homeScore) && isScoreValue(awayScore)) return `${homeScore}-${awayScore}`;
+  if (isScoreValue(homeScore) && isScoreValue(awayScore)) {
+    return formatScoreWithPenalties(homeScore, awayScore, penalties);
+  }
 
-  if (typeof match.result === "string" && /^\d+\s*-\s*\d+$/.test(match.result)) {
-    return match.result.replace(/\s+/g, "");
+  if (typeof match.result === "string") {
+    const result = match.result.trim();
+
+    if (/^\d+\s*-\s*\d+\s*\(\d+\s*-\s*\d+\)$/.test(result)) {
+      return result.replace(/\s+/g, "");
+    }
+
+    if (/^\d+\s*-\s*\d+$/.test(result)) {
+      const [home, away] = result.split("-").map(value => value.trim());
+      return formatScoreWithPenalties(home, away, penalties);
+    }
   }
 
   return "";
+}
+
+function formatScoreWithPenalties(homeScore, awayScore, penalties) {
+  const base = `${homeScore}-${awayScore}`;
+  if (!penalties) return base;
+
+  const home = Number(homeScore);
+  const away = Number(awayScore);
+
+  // Solo se añaden penales cuando el marcador principal terminó empatado.
+  if (home !== away) return base;
+
+  return `${base} (${penalties.home}-${penalties.away})`;
+}
+
+function extractPenaltyScore(match) {
+  const candidates = [
+    match?.score?.pens,
+    match?.score?.penalties,
+    match?.score?.penalty,
+    match?.score?.p,
+    match?.score?.pk,
+    match?.score?.shootout,
+    match?.penalties,
+    match?.penalty,
+    match?.shootout
+  ];
+
+  for (const candidate of candidates) {
+    const parsed = parsePenaltyCandidate(candidate);
+    if (parsed) return parsed;
+  }
+
+  const homePens = firstDefined(
+    match.homePenaltyScore, match.penaltyHome, match.penaltiesHome, match.homePenalties,
+    match.pen_home, match.home_penalty_score, match?.score?.penaltiesHome, match?.score?.homePenalties
+  );
+  const awayPens = firstDefined(
+    match.awayPenaltyScore, match.penaltyAway, match.penaltiesAway, match.awayPenalties,
+    match.pen_away, match.away_penalty_score, match?.score?.penaltiesAway, match?.score?.awayPenalties
+  );
+
+  if (isScoreValue(homePens) && isScoreValue(awayPens)) {
+    return { home: Number(homePens), away: Number(awayPens) };
+  }
+
+  return null;
+}
+
+function parsePenaltyCandidate(candidate) {
+  if (!candidate) return null;
+
+  if (Array.isArray(candidate) && candidate.length >= 2 && isScoreValue(candidate[0]) && isScoreValue(candidate[1])) {
+    return { home: Number(candidate[0]), away: Number(candidate[1]) };
+  }
+
+  if (typeof candidate === "string") {
+    const match = candidate.trim().match(/^(\d+)\s*-\s*(\d+)$/);
+    if (match) return { home: Number(match[1]), away: Number(match[2]) };
+  }
+
+  if (typeof candidate === "object") {
+    const home = firstDefined(candidate.home, candidate.homeScore, candidate.scoreHome, candidate.team1, candidate.local);
+    const away = firstDefined(candidate.away, candidate.awayScore, candidate.scoreAway, candidate.team2, candidate.visitor);
+
+    if (isScoreValue(home) && isScoreValue(away)) {
+      return { home: Number(home), away: Number(away) };
+    }
+  }
+
+  return null;
+}
+
+function extractWinner(match) {
+  return pick(match, [
+    "winner", "winnerTeam", "winner_team", "winnerName", "winningTeam", "winning_team",
+    "qualifiedTeam", "qualified_team", "advanceTeam", "advancingTeam"
+  ]);
 }
 
 function firstDefined(...values) {
@@ -338,21 +458,22 @@ function mergeMatches(calendar, remoteMatches) {
     }
 
     const existing = current[index];
-    const keepVerifiedKnockoutResult = isKnockoutMatch(existing) && hasResolvedWinner(existing) && remote.score && !hasResolvedWinner(remote);
+    const safeRemote = protectKnockoutRemoteResult(remote, existing);
+    const keepVerifiedKnockoutResult = isKnockoutMatch(existing) && hasResolvedWinner(existing) && safeRemote.score && !hasResolvedWinner(safeRemote);
 
     const merged = {
       ...existing,
-      id: existing.id || remote.id,
-      externalId: existing.externalId || remote.externalId,
-      status: keepVerifiedKnockoutResult ? existing.status : (remote.status || existing.status),
-      score: keepVerifiedKnockoutResult ? existing.score : (remote.score || existing.score),
-      winner: keepVerifiedKnockoutResult ? existing.winner : (remote.winner || existing.winner),
-      source: remote.source || existing.source,
-      venue: existing.venue || remote.venue,
-      timeET: existing.timeET || remote.timeET,
-      round: existing.round || remote.round,
-      stage: existing.stage || remote.stage,
-      group: existing.group || remote.group
+      id: existing.id || safeRemote.id,
+      externalId: existing.externalId || safeRemote.externalId,
+      status: keepVerifiedKnockoutResult ? existing.status : (safeRemote.status || existing.status),
+      score: keepVerifiedKnockoutResult ? existing.score : (safeRemote.score || existing.score),
+      winner: keepVerifiedKnockoutResult ? existing.winner : (safeRemote.winner || existing.winner),
+      source: safeRemote.source || existing.source,
+      venue: existing.venue || safeRemote.venue,
+      timeET: existing.timeET || safeRemote.timeET,
+      round: existing.round || safeRemote.round,
+      stage: existing.stage || safeRemote.stage,
+      group: existing.group || safeRemote.group
     };
 
     if (JSON.stringify(existing) !== JSON.stringify(merged)) {
@@ -435,6 +556,37 @@ function hasResolvedWinner(match) {
   if (!score) return false;
   if (score.home !== score.away) return true;
   return score.pensHome !== null && score.pensAway !== null;
+}
+
+function isIncompleteKnockoutTie(match) {
+  if (!isKnockoutMatch(match)) return false;
+
+  const score = parseScoreText(match.score);
+  if (!score) return false;
+
+  const isTie = score.home === score.away;
+  const hasPenalties = score.pensHome !== null && score.pensAway !== null;
+  const hasWinner = Boolean(match.winner);
+
+  return isTie && !hasPenalties && !hasWinner;
+}
+
+function protectKnockoutRemoteResult(remote, existing) {
+  const remoteInLocalSlot = { ...remote, group: existing.group };
+
+  if (!isIncompleteKnockoutTie(remoteInLocalSlot)) {
+    return remote;
+  }
+
+  console.log(
+    `Resultado incompleto de eliminatoria protegido: ${existing.id || remote.id} ${remote.home} ${remote.score} ${remote.away}. Falta winner o penales.`
+  );
+
+  return {
+    ...remote,
+    status: remote.status === "complete" ? "live" : remote.status,
+    winner: ""
+  };
 }
 
 function makeGroupPairKey(match) {
