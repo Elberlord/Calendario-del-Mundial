@@ -6,7 +6,7 @@
 - Sportmonks: fixtures pasados, presentes y futuros; livescores para tiempo real.
 - Custom provider: cualquier API que devuelva el formato normalizado.
 
-## Formato normalizado que espera el frontend
+## Formato normalizado que espera elx frontend
 
 ```json
 {
