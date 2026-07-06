@@ -65,10 +65,22 @@ function setupFilters() {
 }
 
 function parseScore(score) {
-  if (!score || !score.includes("-")) return null;
-  const [home, away] = score.split("-").map(Number);
-  if (!Number.isFinite(home) || !Number.isFinite(away)) return null;
-  return { home, away };
+  const text = String(score || "").trim();
+  const main = text.match(/^(\d+)\s*-\s*(\d+)/);
+  if (!main) return null;
+  const parsed = {
+    home: Number(main[1]),
+    away: Number(main[2]),
+    pensHome: null,
+    pensAway: null
+  };
+  const pens = text.match(/\((\d+)\s*-\s*(\d+)\)/);
+  if (pens) {
+    parsed.pensHome = Number(pens[1]);
+    parsed.pensAway = Number(pens[2]);
+  }
+  if (!Number.isFinite(parsed.home) || !Number.isFinite(parsed.away)) return null;
+  return parsed;
 }
 
 function calculateStandings() {
