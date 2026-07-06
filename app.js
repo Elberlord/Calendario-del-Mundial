@@ -651,6 +651,12 @@ function watchButtonHtml(match) {
   return `<button class="watch-btn" type="button">Ver</button>`;
 }
 
+function statusLabel(status) {
+  if (status === "complete") return "Finalizado";
+  if (status === "live") return "En vivo";
+  return "Pendiente";
+}
+
 function renderGroupedMatches(data, bracketState = buildBracketState()) {
   const grouped = data.reduce((acc, match) => {
     acc[match.date] ||= [];
@@ -663,7 +669,7 @@ function renderGroupedMatches(data, bracketState = buildBracketState()) {
       <h3>${formatDay(date)}</h3>
       ${dayMatches.map(match => `
         <article class="match" id="${match.id}">
-          <span class="badge ${match.status}">${match.status === "complete" ? "Finalizado" : "Pendiente"}</span>
+          <span class="badge ${match.status}">${statusLabel(match.status)}</span>
           <div>
             <strong>${match.stage}</strong>
             <div class="meta">${match.round}${match.group ? " · " + match.group : ""}</div>
@@ -690,7 +696,7 @@ function formatDay(value) {
 }
 
 function goToNextMatch() {
-  const now = new Date("2026-06-18T00:00:00");
+  const now = new Date();
   const next = matches.find(m => m.status !== "complete" && new Date(m.date + "T12:00:00") >= now);
   if (next) {
     document.querySelector(`[data-tab="calendar"]`).click();
