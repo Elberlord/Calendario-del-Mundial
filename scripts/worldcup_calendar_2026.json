@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-07-06T15:56:37.716Z",
+    "lastUpdated": "2026-07-07T14:54:26.249Z",
     "notes": "Calendario normalizado: resultados R32 actualizados, alias de nombres reforzados y proteccion contra fuentes publicas atrasadas.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -1510,8 +1510,10 @@
       "home": "Portugal",
       "away": "España",
       "venue": "Arlington",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "0-1",
+      "winner": "España",
+      "resultProtection": "Resultado verificado: Portugal 0-1 España. Octavos actualizado para alimentar cuartos."
     },
     {
       "id": "M094",
@@ -1523,8 +1525,10 @@
       "home": "Estados Unidos",
       "away": "Bélgica",
       "venue": "Seattle",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "1-4",
+      "winner": "Bélgica",
+      "resultProtection": "Resultado verificado: Estados Unidos 1-4 Bélgica. Octavos actualizado para alimentar cuartos."
     },
     {
       "id": "M095",
@@ -1572,8 +1576,8 @@
       "group": "",
       "date": "2026-07-10",
       "timeET": "3:00 PM ET",
-      "home": "Ganador M093",
-      "away": "Ganador M094",
+      "home": "España",
+      "away": "Bélgica",
       "venue": "Inglewood",
       "status": "scheduled",
       "score": ""

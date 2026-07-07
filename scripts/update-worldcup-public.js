@@ -14,6 +14,7 @@ const path = require("path");
 
 const CALENDAR_FILE = process.env.CALENDAR_FILE || "worldcup_calendar_2026.json";
 const PUBLIC_CALENDAR_FILE = process.env.PUBLIC_CALENDAR_FILE || "public/worldcup_calendar_2026.json";
+const SCRIPT_CALENDAR_FILE = process.env.SCRIPT_CALENDAR_FILE || "scripts/worldcup_calendar_2026.json";
 const DEFAULT_PUBLIC_SOURCE_URLS = [
   "https://worldcup26.ir/get/games",
   "https://raw.githubusercontent.com/upbound-web/worldcup-live.json/master/2026/worldcup.json",
@@ -96,6 +97,26 @@ const VERIFIED_RESULT_FIXES = [
     score: "2-3",
     winner: "Inglaterra",
     reason: "Resultado verificado: México 2-3 Inglaterra. Octavos actualizado para alimentar cuartos."
+  },
+  {
+    id: "M093",
+    home: "Portugal",
+    away: "España",
+    date: "2026-07-06",
+    status: "complete",
+    score: "0-1",
+    winner: "España",
+    reason: "Resultado verificado: Portugal 0-1 España. Octavos actualizado para alimentar cuartos."
+  },
+  {
+    id: "M094",
+    home: "Estados Unidos",
+    away: "Bélgica",
+    date: "2026-07-06",
+    status: "complete",
+    score: "1-4",
+    winner: "Bélgica",
+    reason: "Resultado verificado: Estados Unidos 1-4 Bélgica. Octavos actualizado para alimentar cuartos."
   }
 ];
 
@@ -150,6 +171,10 @@ async function writeCalendar(calendar) {
   await fs.writeFile(CALENDAR_FILE, output, "utf8");
   await fs.mkdir(path.dirname(PUBLIC_CALENDAR_FILE), { recursive: true });
   await fs.writeFile(PUBLIC_CALENDAR_FILE, output, "utf8");
+  if (SCRIPT_CALENDAR_FILE && SCRIPT_CALENDAR_FILE !== CALENDAR_FILE && SCRIPT_CALENDAR_FILE !== PUBLIC_CALENDAR_FILE) {
+    await fs.mkdir(path.dirname(SCRIPT_CALENDAR_FILE), { recursive: true });
+    await fs.writeFile(SCRIPT_CALENDAR_FILE, output, "utf8");
+  }
 }
 
 async function fetchAvailableSources() {
