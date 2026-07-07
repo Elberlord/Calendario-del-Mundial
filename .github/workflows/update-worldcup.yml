@@ -3,7 +3,7 @@ name: Actualizar Mundial sin API key
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "0 * * * *"
 
 permissions:
   contents: write
@@ -29,6 +29,7 @@ jobs:
         env:
           CALENDAR_FILE: "worldcup_calendar_2026.json"
           PUBLIC_CALENDAR_FILE: "public/worldcup_calendar_2026.json"
+          SCRIPT_CALENDAR_FILE: "scripts/worldcup_calendar_2026.json"
           UPDATE_AFTER_MINUTES: "180"
           PUBLIC_SOURCE_URLS: "https://worldcup26.ir/get/games,https://raw.githubusercontent.com/upbound-web/worldcup-live.json/master/2026/worldcup.json,https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
         run: node scripts/update-worldcup-public.js
@@ -37,6 +38,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add worldcup_calendar_2026.json public/worldcup_calendar_2026.json
+          git add worldcup_calendar_2026.json public/worldcup_calendar_2026.json scripts/worldcup_calendar_2026.json
           git commit -m "Actualizar calendario mundial desde fuente publica" || echo "Sin cambios para guardar"
           git push
