@@ -1,6 +1,7 @@
 let calendarData = null;
 let matches = [];
 
+const AUTO_REFRESH_INTERVAL_MS = 60 * 60 * 1000;
 const YOUTUBE_SUBSCRIBE_URL = "https://www.youtube.com/@Elberlord?sub_confirmation=1";
 const WATCH_ONLINE_URL = "https://viprow.im/sports/football/";
 
@@ -21,13 +22,20 @@ function setupFilters() {
   const groupFilter = $("#groupFilter");
   const standingsGroupFilter = $("#standingsGroupFilter");
 
+  const currentStage = stageFilter.value || "all";
+  const currentGroup = groupFilter.value || "all";
+  const currentStandingGroup = standingsGroupFilter.value || "all";
+
   const stages = [...new Set(matches.map(m => m.stage))];
   stageFilter.innerHTML = `<option value="all">Todas las rondas</option>` + stages.map(s => `<option value="${s}">${s}</option>`).join("");
+  stageFilter.value = stages.includes(currentStage) ? currentStage : "all";
 
   const groups = [...new Set(matches.map(m => m.group).filter(Boolean))].sort();
   const groupOptions = `<option value="all">Todos los grupos</option>` + groups.map(g => `<option value="${g}">${g}</option>`).join("");
   groupFilter.innerHTML = groupOptions;
   standingsGroupFilter.innerHTML = groupOptions;
+  groupFilter.value = groups.includes(currentGroup) ? currentGroup : "all";
+  standingsGroupFilter.value = groups.includes(currentStandingGroup) ? currentStandingGroup : "all";
 
   $("#matchCount").textContent = matches.length;
 }
@@ -779,3 +787,10 @@ loadCalendar().catch(error => {
   $("#statusLine").textContent = error.message;
   $("#standingsStatusLine").textContent = error.message;
 });
+
+setInterval(() => {
+  loadCalendar().catch(error => {
+    $("#statusLine").textContent = error.message;
+    $("#standingsStatusLine").textContent = error.message;
+  });
+}, AUTO_REFRESH_INTERVAL_MS);

@@ -116,27 +116,19 @@ const YOUTUBE_SUBSCRIBE_URL = "https://www.youtube.com/@Elberlord?sub_confirmati
 ```
 
 
-# Actualización inteligente cada 5 minutos
+# Actualización inteligente cada hora
 
 Esta versión agrega GitHub Actions para actualizar el calendario automáticamente, pero solo durante horario de partido.
 
 ## Cómo funciona
 
-El workflow corre cada 5 minutos:
+El workflow corre cada hora, aunque no haya partido activo:
 
 ```yaml
-cron: "*/5 * * * *"
+cron: "0 * * * *"
 ```
 
-Pero el script revisa `worldcup_calendar_2026.json` primero.
-
-Solo llama la API si hay un partido:
-
-- 30 minutos antes de empezar.
-- Durante el partido.
-- Hasta 150 minutos después del inicio.
-
-Fuera de ese rango no consume API.
+El script consulta fuentes públicas sin API key, aplica resultados verificados cuando una fuente falla o devuelve datos incompletos, y guarda cambios solo si el calendario cambió realmente.
 
 ## Archivos agregados
 
@@ -197,14 +189,7 @@ https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcu
 
 ## Cómo funciona
 
-Corre cada 5 minutos, pero solo consulta fuentes públicas si hay partido cerca o en curso.
-
-Ventana activa:
-
-```txt
-30 minutos antes
-180 minutos después del inicio
-```
+Corre cada hora y consulta fuentes públicas siempre. Además, la página abierta recarga el JSON una vez por hora para recibir el archivo más nuevo sin tocar diseño ni estado visual principal.
 
 ## Archivos importantes
 
