@@ -2,6 +2,8 @@ let calendarData = null;
 let matches = [];
 let sourceMode = "local";
 
+const AUTO_REFRESH_INTERVAL_MS = 60 * 60 * 1000;
+
 const $ = (s) => document.querySelector(s);
 const $$ = (s) => Array.from(document.querySelectorAll(s));
 
@@ -280,3 +282,11 @@ $("#refreshBtn").addEventListener("click", () => sourceMode === "local" ? loadLo
 $("#todayBtn").addEventListener("click", goToNextMatch);
 
 syncFromApi();
+
+setInterval(() => {
+  if (sourceMode === "local") {
+    loadLocalCalendar();
+  } else {
+    syncFromApi();
+  }
+}, AUTO_REFRESH_INTERVAL_MS);
