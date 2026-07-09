@@ -1,7 +1,7 @@
 let calendarData = null;
 let matches = [];
 
-const AUTO_REFRESH_INTERVAL_MS = 60 * 60 * 1000;
+const AUTO_REFRESH_INTERVAL_MS = 5 * 60 * 1000;
 const YOUTUBE_SUBSCRIBE_URL = "https://www.youtube.com/@Elberlord?sub_confirmation=1";
 const WATCH_ONLINE_URL = "https://viprow.im/sports/football/";
 
@@ -9,7 +9,7 @@ const $ = (s) => document.querySelector(s);
 const $$ = (s) => Array.from(document.querySelectorAll(s));
 
 async function loadCalendar() {
-  const response = await fetch("worldcup_calendar_2026.json", { cache: "no-store" });
+  const response = await fetch(`worldcup_calendar_2026.json?refresh=${Date.now()}`, { cache: "no-store" });
   if (!response.ok) throw new Error("No pude cargar worldcup_calendar_2026.json");
   calendarData = await response.json();
   matches = normalizeMatches(calendarData.matches || []);
@@ -630,7 +630,7 @@ function renderCalendar() {
   const data = filteredMatches();
 
   $("#calendarTitle").textContent = $("#stageFilter").value === "all" ? "Calendario completo" : $("#stageFilter").value;
-  $("#statusLine").textContent = `${data.length} partidos visibles · Actualizado: ${calendarData.competition.lastUpdated}`;
+  $("#statusLine").textContent = `${data.length} partidos visibles · Actualizado: ${calendarData.competition?.lastUpdated || "sin fecha"}`;
 
   list.innerHTML = renderGroupedMatches(data) || `<p class="meta">No hay partidos con ese filtro.</p>`;
 }
