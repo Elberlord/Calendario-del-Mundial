@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calendario Mundial 2026 API Sync</title>
+  <title>Calendario Mundial 2026 + Grupos</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,9 +11,9 @@
     <header class="hero">
       <div>
         <p class="eyebrow">FIFA World Cup 2026</p>
-        <h1>Calendario + API Sync</h1>
+        <h1>Calendario y grupos</h1>
         <p class="sub">
-          Tabla de grupos y calendario conectados a un backend proxy. Si la API falla, la app usa el calendario local.
+          Calendario por rondas con tabla de posiciones automática: puntos, diferencia de goles, goles a favor y orden de grupo.
         </p>
       </div>
       <div class="scorebox">
@@ -22,22 +22,10 @@
       </div>
     </header>
 
-    <section class="sync-bar">
-      <div>
-        <strong id="sourceLabel">Fuente: local</strong>
-        <p id="syncStatus">Esperando sincronización...</p>
-      </div>
-      <div class="sync-actions">
-        <button id="syncApiBtn">Sincronizar API</button>
-        <button id="loadLocalBtn" class="ghost">Usar local</button>
-      </div>
-    </section>
-
     <section class="tabs">
       <button class="tab-btn active" data-tab="standings">Grupos y puntos</button>
       <button class="tab-btn" data-tab="calendar">Calendario</button>
       <button class="tab-btn" data-tab="knockout">Eliminatorias</button>
-      <button class="tab-btn" data-tab="settings">API</button>
     </section>
 
     <section id="standings" class="tab-view active-tab">
@@ -58,7 +46,7 @@
         </div>
         <div id="standingsList" class="standings-grid"></div>
       </section>
-    </section>
+</section>
 
     <section id="calendar" class="tab-view">
       <section class="toolbar">
@@ -69,7 +57,7 @@
         <select id="groupFilter">
           <option value="all">Todos los grupos</option>
         </select>
-        <button id="refreshBtn">Recargar</button>
+        <button id="refreshBtn">Recargar JSON</button>
       </section>
 
       <section class="overview" id="stageOverview"></section>
@@ -94,51 +82,46 @@
             <p class="meta">Round of 32, octavos, cuartos, semifinales, tercer lugar y final.</p>
           </div>
         </div>
-        <div id="knockoutList" class="calendar-list"></div>
-      </section>
-    </section>
-
-    <section id="settings" class="tab-view">
-      <section class="panel">
-        <h2>Conexión API</h2>
-        <p class="meta">
-          El navegador no guarda API keys. La key vive en el backend como variable de entorno.
-        </p>
-        <div class="api-grid">
-          <div class="api-card">
-            <strong>Backend proxy</strong>
-            <code>/api/worldcup/calendar</code>
-            <span>Normaliza calendario y resultados.</span>
+        <div id="knockoutBracket" class="knockout-bracket-wrap"></div>
+        <div id="thirdPlaceList" class="third-place-board"></div>
+        <div class="knockout-extra">
+          <div class="panel-head mini-head">
+            <div>
+              <h3>Detalle por fechas</h3>
+              <p class="meta">Además del árbol, aquí sigue disponible la vista cronológica de eliminatorias.</p>
+            </div>
           </div>
-          <div class="api-card">
-            <strong>Health check</strong>
-            <code>/api/health</code>
-            <span>Verifica proveedor, cache y modo.</span>
-          </div>
-          <div class="api-card">
-            <strong>Fallback local</strong>
-            <code>/worldcup_calendar_2026.json</code>
-            <span>Funciona aunque no tengas key todavía.</span>
-          </div>
+          <div id="knockoutList" class="calendar-list"></div>
         </div>
       </section>
-
-      <section class="panel muted-panel">
-        <h2>Cómo correrlo</h2>
-        <pre class="code-block">npm install
-cp .env.example .env
-npm start</pre>
-        <p class="meta">Después abre <code>http://localhost:3000</code>.</p>
-      </section>
     </section>
+</main>
 
-    <section class="panel muted-panel">
-      <h2>Importante</h2>
-      <p>
-        Esto conecta calendario y standings deportivos. No conecta pagos, cuotas ni apuestas.
-      </p>
-    </section>
-  </main>
+
+    <div id="watchModal" class="watch-modal hidden" aria-hidden="true">
+      <div class="watch-modal-card">
+        <button id="closeWatchModal" class="modal-close" aria-label="Cerrar">×</button>
+
+        <p class="eyebrow">Ver partido online</p>
+        <h2>Apoya mi canal</h2>
+
+        <p class="modal-copy">
+          Para desbloquear el acceso, primero toca el botón de suscripción.
+          Al dar click en <strong>Apoyar mi canal</strong>, aparecerá el botón para ver el partido online.
+        </p>
+
+        <a id="youtubeSubscribeBtn" class="youtube-sub-btn" href="https://www.youtube.com/@Elberlord?sub_confirmation=1" target="_blank" rel="noopener">
+          Apoyar mi canal
+        </a>
+
+        <a id="onlineWatchBtn" class="online-watch-btn hidden-link" href="#" target="_blank" rel="noopener">
+          Ver partido online
+        </a>
+
+        <p id="unlockHint" class="unlock-hint">Primero toca “Apoyar mi canal”.</p>
+      </div>
+    </div>
+
 
   <script src="app.js"></script>
 </body>
