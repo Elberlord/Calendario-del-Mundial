@@ -117,7 +117,27 @@ const VERIFIED_RESULT_FIXES = [
     score: "1-4",
     winner: "Bélgica",
     reason: "Resultado verificado: Estados Unidos 1-4 Bélgica. Octavos actualizado para alimentar cuartos."
-  }
+  },
+  {
+    id: "M095",
+    home: "Argentina",
+    away: "Egipto",
+    date: "2026-07-07",
+    status: "complete",
+    score: "3-2",
+    winner: "Argentina",
+    reason: "Resultado verificado: Argentina 3-2 Egipto. Octavos actualizado para alimentar cuartos."
+  },
+  {
+    id: "M096",
+    home: "Suiza",
+    away: "Colombia",
+    date: "2026-07-07",
+    status: "complete",
+    score: "0-0 (4-3)",
+    winner: "Suiza",
+    reason: "Resultado verificado: Suiza 0-0 Colombia, Suiza gana 4-3 en penales. Octavos actualizado para alimentar cuartos."
+  },
 ];
 
 main().catch((error) => {

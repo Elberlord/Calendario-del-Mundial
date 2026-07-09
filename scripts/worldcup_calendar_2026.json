@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-07-07T14:54:26.249Z",
+    "lastUpdated": "2026-07-09T17:53:09.930Z",
     "notes": "Calendario normalizado: resultados R32 actualizados, alias de nombres reforzados y proteccion contra fuentes publicas atrasadas.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key",
@@ -1540,8 +1540,10 @@
       "home": "Argentina",
       "away": "Egipto",
       "venue": "Atlanta",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "3-2",
+      "winner": "Argentina",
+      "resultProtection": "Resultado verificado: Argentina 3-2 Egipto. Octavos actualizado para alimentar cuartos."
     },
     {
       "id": "M096",
@@ -1553,8 +1555,10 @@
       "home": "Suiza",
       "away": "Colombia",
       "venue": "Vancouver",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "0-0 (4-3)",
+      "winner": "Suiza",
+      "resultProtection": "Resultado verificado: Suiza 0-0 Colombia, Suiza gana 4-3 en penales. Octavos actualizado para alimentar cuartos."
     },
     {
       "id": "M097",
@@ -1602,8 +1606,8 @@
       "group": "",
       "date": "2026-07-11",
       "timeET": "9:00 PM ET",
-      "home": "Ganador M095",
-      "away": "Ganador M096",
+      "home": "Argentina",
+      "away": "Suiza",
       "venue": "Kansas City",
       "status": "scheduled",
       "score": ""
