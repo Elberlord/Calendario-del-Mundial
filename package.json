@@ -1,7 +1,11 @@
 {
   "scripts": {
     "start": "node server/server.js",
-    "dev": "node --watch server/server.js"
+    "dev": "node --watch server/server.js",
+    "update:worldcup": "node scripts/update-worldcup-public.js",
+    "validate:calendar": "node scripts/validate-calendar.js",
+    "check": "npm run validate:calendar && npm run test:updater",
+    "test:updater": "node scripts/test-updater.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

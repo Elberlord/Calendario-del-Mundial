@@ -16,7 +16,6 @@ const CALENDAR_FILE = process.env.CALENDAR_FILE || "worldcup_calendar_2026.json"
 const PUBLIC_CALENDAR_FILE = process.env.PUBLIC_CALENDAR_FILE || "public/worldcup_calendar_2026.json";
 const SCRIPT_CALENDAR_FILE = process.env.SCRIPT_CALENDAR_FILE || "scripts/worldcup_calendar_2026.json";
 const DEFAULT_PUBLIC_SOURCE_URLS = [
-  "https://worldcup26.ir/get/games",
   "https://raw.githubusercontent.com/upbound-web/worldcup-live.json/master/2026/worldcup.json",
   "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
 ];
@@ -24,132 +23,125 @@ const PUBLIC_SOURCE_URLS = String(process.env.PUBLIC_SOURCE_URLS || DEFAULT_PUBL
   .split(",")
   .map((url) => url.trim())
   .filter(Boolean);
+const SOURCE_TIMEOUT_MS = Number(process.env.SOURCE_TIMEOUT_MS || 15000);
+const SOURCE_RETRIES = Math.max(1, Number(process.env.SOURCE_RETRIES || 2));
+const AUTOMATIC_UPDATE_START = new Date("2026-07-18T00:00:00Z");
+const AUTOMATIC_UPDATE_END = new Date("2026-07-21T00:00:00Z");
 
 // Correcciones verificadas para casos donde una fuente publica se queda con un marcador viejo
 // o incompleto. Esto evita que una actualizacion automatica vuelva a romper cruces ya confirmados.
 const VERIFIED_RESULT_FIXES = [
   {
-    id: "M082",
-    home: "Bélgica",
-    away: "Senegal",
-    date: "2026-07-01",
-    status: "complete",
-    score: "3-2",
-    winner: "Bélgica",
-    reason: "Resultado verificado: Bélgica 3-2 Senegal. La fuente publica podia devolver 2-2 y bloquear Ganador M082."
+    id: "M082", home: "Bélgica", away: "Senegal", date: "2026-07-01",
+    status: "complete", score: "3-2", winner: "Bélgica",
+    reason: "Resultado verificado: Bélgica 3-2 Senegal."
   },
   {
-    id: "M086",
-    home: "Argentina",
-    away: "Cabo Verde",
-    date: "2026-07-03",
-    status: "complete",
-    score: "3-2",
-    winner: "Argentina",
-    reason: "Resultado verificado: Argentina 3-2 Cabo Verde. La fuente publica podia devolver un marcador incompleto y bloquear Ganador M086."
+    id: "M086", home: "Argentina", away: "Cabo Verde", date: "2026-07-03",
+    status: "complete", score: "3-2", winner: "Argentina",
+    reason: "Resultado verificado: Argentina 3-2 Cabo Verde tras tiempo extra."
   },
   {
-    id: "M088",
-    home: "Australia",
-    away: "Egipto",
-    date: "2026-07-03",
-    status: "complete",
-    score: "1-1 (2-4)",
-    winner: "Egipto",
-    reason: "Resultado verificado: Australia 1-1 Egipto, Egipto gana 4-2 en penales. La fuente publica podia devolver solo 1-1 y bloquear Ganador M088."
+    id: "M088", home: "Australia", away: "Egipto", date: "2026-07-03",
+    status: "complete", score: "1-1 (2-4)", winner: "Egipto",
+    reason: "Resultado verificado: Australia 1-1 Egipto; Egipto ganó 4-2 en penales."
   },
   {
-    id: "M089",
-    home: "Canadá",
-    away: "Marruecos",
-    date: "2026-07-04",
-    status: "complete",
-    score: "0-3",
-    winner: "Marruecos",
-    reason: "Resultado verificado: Canadá 0-3 Marruecos. Octavos actualizado para alimentar cuartos."
+    id: "M089", home: "Paraguay", away: "Francia", date: "2026-07-04",
+    timeET: "5:00 PM ET", venue: "Philadelphia",
+    status: "complete", score: "0-1", winner: "Francia",
+    reason: "Resultado e ID oficial corregidos: M089 Paraguay 0-1 Francia."
   },
   {
-    id: "M090",
-    home: "Paraguay",
-    away: "Francia",
-    date: "2026-07-04",
-    status: "complete",
-    score: "0-1",
-    winner: "Francia",
-    reason: "Resultado verificado: Paraguay 0-1 Francia. Octavos actualizado para alimentar cuartos."
+    id: "M090", home: "Canadá", away: "Marruecos", date: "2026-07-04",
+    timeET: "1:00 PM ET", venue: "Houston",
+    status: "complete", score: "0-3", winner: "Marruecos",
+    reason: "Resultado e ID oficial corregidos: M090 Canadá 0-3 Marruecos."
   },
   {
-    id: "M091",
-    home: "Brasil",
-    away: "Noruega",
-    date: "2026-07-05",
-    status: "complete",
-    score: "1-2",
-    winner: "Noruega",
-    reason: "Resultado verificado: Brasil 1-2 Noruega. Octavos actualizado para alimentar cuartos."
+    id: "M091", home: "Brasil", away: "Noruega", date: "2026-07-05",
+    status: "complete", score: "1-2", winner: "Noruega",
+    reason: "Resultado verificado: Brasil 1-2 Noruega."
   },
   {
-    id: "M092",
-    home: "México",
-    away: "Inglaterra",
-    date: "2026-07-05",
-    status: "complete",
-    score: "2-3",
-    winner: "Inglaterra",
-    reason: "Resultado verificado: México 2-3 Inglaterra. Octavos actualizado para alimentar cuartos."
+    id: "M092", home: "México", away: "Inglaterra", date: "2026-07-05",
+    status: "complete", score: "2-3", winner: "Inglaterra",
+    reason: "Resultado verificado: México 2-3 Inglaterra."
   },
   {
-    id: "M093",
-    home: "Portugal",
-    away: "España",
-    date: "2026-07-06",
-    status: "complete",
-    score: "0-1",
-    winner: "España",
-    reason: "Resultado verificado: Portugal 0-1 España. Octavos actualizado para alimentar cuartos."
+    id: "M093", home: "Portugal", away: "España", date: "2026-07-06",
+    status: "complete", score: "0-1", winner: "España",
+    reason: "Resultado verificado: Portugal 0-1 España."
   },
   {
-    id: "M094",
-    home: "Estados Unidos",
-    away: "Bélgica",
-    date: "2026-07-06",
-    status: "complete",
-    score: "1-4",
-    winner: "Bélgica",
-    reason: "Resultado verificado: Estados Unidos 1-4 Bélgica. Octavos actualizado para alimentar cuartos."
+    id: "M094", home: "Estados Unidos", away: "Bélgica", date: "2026-07-06",
+    status: "complete", score: "1-4", winner: "Bélgica",
+    reason: "Resultado verificado: Estados Unidos 1-4 Bélgica."
   },
   {
-    id: "M095",
-    home: "Argentina",
-    away: "Egipto",
-    date: "2026-07-07",
-    status: "complete",
-    score: "3-2",
-    winner: "Argentina",
-    reason: "Resultado verificado: Argentina 3-2 Egipto. Octavos actualizado para alimentar cuartos."
+    id: "M095", home: "Argentina", away: "Egipto", date: "2026-07-07",
+    status: "complete", score: "3-2", winner: "Argentina",
+    reason: "Resultado verificado: Argentina 3-2 Egipto."
   },
   {
-    id: "M096",
-    home: "Suiza",
-    away: "Colombia",
-    date: "2026-07-07",
-    status: "complete",
-    score: "0-0 (4-3)",
-    winner: "Suiza",
-    reason: "Resultado verificado: Suiza 0-0 Colombia, Suiza gana 4-3 en penales. Octavos actualizado para alimentar cuartos."
+    id: "M096", home: "Suiza", away: "Colombia", date: "2026-07-07",
+    status: "complete", score: "0-0 (4-3)", winner: "Suiza",
+    reason: "Resultado verificado: Suiza 0-0 Colombia; Suiza ganó 4-3 en penales."
   },
+  {
+    id: "M097", home: "Francia", away: "Marruecos", date: "2026-07-09",
+    status: "complete", score: "2-0", winner: "Francia",
+    reason: "Resultado oficial: Francia 2-0 Marruecos."
+  },
+  {
+    id: "M098", home: "España", away: "Bélgica", date: "2026-07-10",
+    status: "complete", score: "2-1", winner: "España",
+    reason: "Resultado oficial: España 2-1 Bélgica."
+  },
+  {
+    id: "M099", home: "Noruega", away: "Inglaterra", date: "2026-07-11",
+    status: "complete", score: "1-2", winner: "Inglaterra",
+    reason: "Resultado oficial: Noruega 1-2 Inglaterra tras tiempo extra."
+  },
+  {
+    id: "M100", home: "Argentina", away: "Suiza", date: "2026-07-11",
+    status: "complete", score: "3-1", winner: "Argentina",
+    reason: "Resultado oficial: Argentina 3-1 Suiza tras tiempo extra."
+  },
+  {
+    id: "M101", home: "Francia", away: "España", date: "2026-07-14",
+    status: "complete", score: "0-2", winner: "España",
+    reason: "Resultado oficial: Francia 0-2 España."
+  },
+  {
+    id: "M102", home: "Inglaterra", away: "Argentina", date: "2026-07-15",
+    status: "complete", score: "1-2", winner: "Argentina",
+    reason: "Resultado oficial: Inglaterra 1-2 Argentina."
+  }
 ];
 
-main().catch((error) => {
-  console.error("Updater failed:", error);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch((error) => {
+    console.error("Updater failed:", error);
+    process.exit(1);
+  });
+}
 
 async function main() {
+  if (shouldSkipScheduledRun()) {
+    console.log("Ejecución programada fuera de la ventana final del Mundial 2026. No se consulta ninguna fuente.");
+    return;
+  }
+
   const original = await readCalendar();
   let calendar = normalizeCalendar(original);
 
-  console.log("Revision programada: se consultan fuentes publicas y se repara el bracket si hay resultados pendientes.");
+  if (isTournamentComplete(calendar)) {
+    console.log("El calendario ya tiene los 104 partidos finalizados. No se requieren más consultas automáticas.");
+    return;
+  }
+
+  console.log("Revisión programada: se consultan fuentes públicas y se repara el bracket si hay resultados pendientes.");
 
   const sourceCandidates = await fetchAvailableSources();
   const remoteMatches = combineCandidateMatches(sourceCandidates);
@@ -163,10 +155,12 @@ async function main() {
 
   calendar.competition = {
     ...(calendar.competition || {}),
-    updateMode: "github-actions-public-no-key",
+    updateMode: "github-actions-public-no-key-stable",
     publicSources: PUBLIC_SOURCE_URLS,
     autoStatusRepair: true,
-    knockoutAutoAdvance: true
+    knockoutAutoAdvance: true,
+    automaticUpdateWindow: "2026-07-18/2026-07-20",
+    sourceTimeoutMs: SOURCE_TIMEOUT_MS
   };
 
   const changed = comparableCalendar(original) !== comparableCalendar(calendar);
@@ -205,19 +199,7 @@ async function fetchAvailableSources() {
 
     try {
       console.log(`Consultando fuente publica: ${url}`);
-      const response = await fetch(url, {
-        headers: {
-          "Accept": "application/json,text/plain,*/*",
-          "User-Agent": "mundial-calendar-updater/1.0 (+github-actions)"
-        }
-      });
-
-      if (!response.ok) {
-        console.log(`Fuente fallo con HTTP ${response.status}: ${url}`);
-        continue;
-      }
-
-      const payload = await response.json();
+      const payload = await fetchJsonWithRetry(url);
       const matches = normalizePayload(payload, url, priority);
       const stats = getSourceStats(matches);
 
@@ -249,6 +231,54 @@ async function fetchAvailableSources() {
   }
 
   return candidates;
+}
+
+function shouldSkipScheduledRun() {
+  if (process.env.GITHUB_EVENT_NAME !== "schedule") return false;
+  const now = new Date();
+  return now < AUTOMATIC_UPDATE_START || now >= AUTOMATIC_UPDATE_END;
+}
+
+function isTournamentComplete(calendar) {
+  const matches = calendar?.matches || [];
+  return matches.length === 104 && matches.every((match) => match.status === "complete");
+}
+
+async function fetchJsonWithRetry(url) {
+  let lastError = null;
+
+  for (let attempt = 1; attempt <= SOURCE_RETRIES; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), SOURCE_TIMEOUT_MS);
+
+    try {
+      const response = await fetch(url, {
+        signal: controller.signal,
+        headers: {
+          "Accept": "application/json,text/plain,*/*",
+          "User-Agent": "mundial-calendar-updater/2.0 (+github-actions)"
+        }
+      });
+
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const raw = await response.text();
+      if (!raw.trim()) throw new Error("respuesta vacía");
+      return JSON.parse(raw);
+    } catch (error) {
+      lastError = error;
+      const reason = error?.name === "AbortError" ? `timeout de ${SOURCE_TIMEOUT_MS} ms` : error.message;
+      console.log(`Intento ${attempt}/${SOURCE_RETRIES} falló para ${url}: ${reason}`);
+      if (attempt < SOURCE_RETRIES) await sleep(1000 * attempt);
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+
+  throw lastError || new Error("No se pudo consultar la fuente");
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function combineCandidateMatches(candidates) {
@@ -755,7 +785,8 @@ function mergeMatches(calendar, remoteMatches) {
     }
 
     const existing = current[index];
-    const safeRemote = protectKnockoutRemoteResult(remote, existing);
+    const alignedRemote = alignRemoteOrientation(remote, existing);
+    const safeRemote = protectKnockoutRemoteResult(alignedRemote, existing);
     const merged = mergeSingleMatch(existing, safeRemote);
 
     if (JSON.stringify(existing) !== JSON.stringify(merged)) {
@@ -768,6 +799,33 @@ function mergeMatches(calendar, remoteMatches) {
 
   console.log(`Partidos modificados/agregados: ${changedCount}`);
   return updated;
+}
+
+function alignRemoteOrientation(remote, existing) {
+  if (!remote || !existing) return remote;
+
+  const direct = normalizeName(remote.home) === normalizeName(existing.home) &&
+    normalizeName(remote.away) === normalizeName(existing.away);
+  const reversed = normalizeName(remote.home) === normalizeName(existing.away) &&
+    normalizeName(remote.away) === normalizeName(existing.home);
+
+  if (direct || !reversed) return remote;
+
+  return {
+    ...remote,
+    home: existing.home,
+    away: existing.away,
+    score: reverseScoreText(remote.score)
+  };
+}
+
+function reverseScoreText(value) {
+  const score = parseScoreText(value);
+  if (!score) return value;
+
+  const base = `${score.away}-${score.home}`;
+  if (score.pensHome === null || score.pensAway === null) return base;
+  return `${base} (${score.pensAway}-${score.pensHome})`;
 }
 
 function mergeSingleMatch(existing, remote) {
@@ -888,6 +946,9 @@ function applyVerifiedResultFixes(calendar) {
       ...existing,
       home: fix.home || existing.home,
       away: fix.away || existing.away,
+      date: fix.date || existing.date,
+      timeET: fix.timeET || existing.timeET,
+      venue: fix.venue || existing.venue,
       status: fix.status,
       score: fix.score,
       winner: fix.winner,
@@ -1274,3 +1335,10 @@ function translateTeamName(value) {
 
   return display[normalized] || value;
 }
+
+module.exports = {
+  alignRemoteOrientation,
+  reverseScoreText,
+  parseScoreText,
+  normalizeCalendar
+};

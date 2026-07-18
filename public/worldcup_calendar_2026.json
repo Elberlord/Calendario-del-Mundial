@@ -8,12 +8,11 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-07-09T17:53:09.930Z",
-    "notes": "Calendario normalizado: resultados R32 actualizados, alias de nombres reforzados y proteccion contra fuentes publicas atrasadas.",
+    "lastUpdated": "2026-07-18T19:17:13.166Z",
+    "notes": "Calendario actualizado hasta semifinales; IDs M089/M090 corregidos y automatización estabilizada para evitar fallos repetitivos.",
     "completedNoClickPatch": true,
-    "updateMode": "github-actions-public-no-key",
+    "updateMode": "github-actions-public-no-key-stable",
     "publicSources": [
-      "https://worldcup26.ir/get/games",
       "https://raw.githubusercontent.com/upbound-web/worldcup-live.json/master/2026/worldcup.json",
       "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json"
     ],
@@ -21,7 +20,11 @@
     "r32ResultProtection": true,
     "manualResultFix": "M086 Argentina 3-2 Cabo Verde; M088 Australia 1-1 Egipto, Egipto gana 4-2 en penales.",
     "autoStatusRepair": true,
-    "knockoutAutoAdvance": true
+    "knockoutAutoAdvance": true,
+    "automaticUpdateWindow": "2026-07-18/2026-07-20",
+    "sourceTimeoutMs": 15000,
+    "latestVerifiedMatch": "M102",
+    "latestVerifiedDate": "2026-07-15"
   },
   "stages": [
     {
@@ -1313,7 +1316,7 @@
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "winner": "Bélgica",
-      "resultProtection": "Resultado verificado: Bélgica 3-2 Senegal. La fuente publica podia devolver 2-2 y bloquear Ganador M082.",
+      "resultProtection": "Resultado verificado: Bélgica 3-2 Senegal.",
       "externalId": "PUBLIC-82",
       "resultProtectionUpdatedAt": "2026-07-06T15:40:09.091Z"
     },
@@ -1400,7 +1403,7 @@
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "externalId": "PUBLIC-88",
-      "resultProtection": "Resultado verificado: Australia 1-1 Egipto, Egipto gana 4-2 en penales. La fuente publica podia devolver solo 1-1 y bloquear Ganador M088.",
+      "resultProtection": "Resultado verificado: Australia 1-1 Egipto; Egipto ganó 4-2 en penales.",
       "resultProtectionUpdatedAt": "2026-07-06T15:40:09.091Z",
       "winner": "Egipto"
     },
@@ -1419,7 +1422,7 @@
       "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
       "manualFix": "Round of 32 audited/corrected against current public schedule and completed results on 2026-06-29",
       "externalId": "PUBLIC-86",
-      "resultProtection": "Resultado verificado: Argentina 3-2 Cabo Verde. La fuente publica podia devolver un marcador incompleto y bloquear Ganador M086.",
+      "resultProtection": "Resultado verificado: Argentina 3-2 Cabo Verde tras tiempo extra.",
       "resultProtectionUpdatedAt": "2026-07-06T15:40:09.091Z",
       "winner": "Argentina"
     },
@@ -1441,7 +1444,7 @@
       "winner": "Colombia"
     },
     {
-      "id": "M089",
+      "id": "M090",
       "stage": "Octavos de final",
       "round": "Octavos",
       "group": "",
@@ -1453,10 +1456,10 @@
       "status": "complete",
       "score": "0-3",
       "winner": "Marruecos",
-      "resultProtection": "Resultado verificado: Canadá 0-3 Marruecos. Octavos actualizado para alimentar cuartos."
+      "resultProtection": "Resultado e ID oficial corregidos: M090 Canadá 0-3 Marruecos."
     },
     {
-      "id": "M090",
+      "id": "M089",
       "stage": "Octavos de final",
       "round": "Octavos",
       "group": "",
@@ -1468,7 +1471,7 @@
       "status": "complete",
       "score": "0-1",
       "winner": "Francia",
-      "resultProtection": "Resultado verificado: Paraguay 0-1 Francia. Octavos actualizado para alimentar cuartos."
+      "resultProtection": "Resultado e ID oficial corregidos: M089 Paraguay 0-1 Francia."
     },
     {
       "id": "M091",
@@ -1483,7 +1486,7 @@
       "status": "complete",
       "score": "1-2",
       "winner": "Noruega",
-      "resultProtection": "Resultado verificado: Brasil 1-2 Noruega. Octavos actualizado para alimentar cuartos."
+      "resultProtection": "Resultado verificado: Brasil 1-2 Noruega."
     },
     {
       "id": "M092",
@@ -1498,7 +1501,7 @@
       "status": "complete",
       "score": "2-3",
       "winner": "Inglaterra",
-      "resultProtection": "Resultado verificado: México 2-3 Inglaterra. Octavos actualizado para alimentar cuartos."
+      "resultProtection": "Resultado verificado: México 2-3 Inglaterra."
     },
     {
       "id": "M093",
@@ -1513,7 +1516,7 @@
       "status": "complete",
       "score": "0-1",
       "winner": "España",
-      "resultProtection": "Resultado verificado: Portugal 0-1 España. Octavos actualizado para alimentar cuartos."
+      "resultProtection": "Resultado verificado: Portugal 0-1 España."
     },
     {
       "id": "M094",
@@ -1528,7 +1531,7 @@
       "status": "complete",
       "score": "1-4",
       "winner": "Bélgica",
-      "resultProtection": "Resultado verificado: Estados Unidos 1-4 Bélgica. Octavos actualizado para alimentar cuartos."
+      "resultProtection": "Resultado verificado: Estados Unidos 1-4 Bélgica."
     },
     {
       "id": "M095",
@@ -1543,7 +1546,7 @@
       "status": "complete",
       "score": "3-2",
       "winner": "Argentina",
-      "resultProtection": "Resultado verificado: Argentina 3-2 Egipto. Octavos actualizado para alimentar cuartos."
+      "resultProtection": "Resultado verificado: Argentina 3-2 Egipto."
     },
     {
       "id": "M096",
@@ -1558,7 +1561,7 @@
       "status": "complete",
       "score": "0-0 (4-3)",
       "winner": "Suiza",
-      "resultProtection": "Resultado verificado: Suiza 0-0 Colombia, Suiza gana 4-3 en penales. Octavos actualizado para alimentar cuartos."
+      "resultProtection": "Resultado verificado: Suiza 0-0 Colombia; Suiza ganó 4-3 en penales."
     },
     {
       "id": "M097",
@@ -1567,11 +1570,13 @@
       "group": "",
       "date": "2026-07-09",
       "timeET": "4:00 PM ET",
-      "home": "Marruecos",
-      "away": "Francia",
+      "home": "Francia",
+      "away": "Marruecos",
       "venue": "Foxborough",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "2-0",
+      "winner": "Francia",
+      "resultProtection": "Resultado oficial: Francia 2-0 Marruecos."
     },
     {
       "id": "M098",
@@ -1583,8 +1588,10 @@
       "home": "España",
       "away": "Bélgica",
       "venue": "Inglewood",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "2-1",
+      "winner": "España",
+      "resultProtection": "Resultado oficial: España 2-1 Bélgica."
     },
     {
       "id": "M099",
@@ -1596,8 +1603,10 @@
       "home": "Noruega",
       "away": "Inglaterra",
       "venue": "Miami Gardens",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "1-2",
+      "winner": "Inglaterra",
+      "resultProtection": "Resultado oficial: Noruega 1-2 Inglaterra tras tiempo extra."
     },
     {
       "id": "M100",
@@ -1609,8 +1618,10 @@
       "home": "Argentina",
       "away": "Suiza",
       "venue": "Kansas City",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "3-1",
+      "winner": "Argentina",
+      "resultProtection": "Resultado oficial: Argentina 3-1 Suiza tras tiempo extra."
     },
     {
       "id": "M101",
@@ -1619,11 +1630,13 @@
       "group": "",
       "date": "2026-07-14",
       "timeET": "3:00 PM ET",
-      "home": "Ganador M097",
-      "away": "Ganador M098",
+      "home": "Francia",
+      "away": "España",
       "venue": "Arlington",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "0-2",
+      "winner": "España",
+      "resultProtection": "Resultado oficial: Francia 0-2 España."
     },
     {
       "id": "M102",
@@ -1632,11 +1645,13 @@
       "group": "",
       "date": "2026-07-15",
       "timeET": "3:00 PM ET",
-      "home": "Ganador M099",
-      "away": "Ganador M100",
+      "home": "Inglaterra",
+      "away": "Argentina",
       "venue": "Atlanta",
-      "status": "scheduled",
-      "score": ""
+      "status": "complete",
+      "score": "1-2",
+      "winner": "Argentina",
+      "resultProtection": "Resultado oficial: Inglaterra 1-2 Argentina."
     },
     {
       "id": "M103",
@@ -1645,8 +1660,8 @@
       "group": "",
       "date": "2026-07-18",
       "timeET": "5:00 PM ET",
-      "home": "Perdedor M101",
-      "away": "Perdedor M102",
+      "home": "Francia",
+      "away": "Inglaterra",
       "venue": "Miami Gardens",
       "status": "scheduled",
       "score": ""
@@ -1658,8 +1673,8 @@
       "group": "",
       "date": "2026-07-19",
       "timeET": "3:00 PM ET",
-      "home": "Ganador M101",
-      "away": "Ganador M102",
+      "home": "España",
+      "away": "Argentina",
       "venue": "East Rutherford / New York New Jersey Stadium",
       "status": "scheduled",
       "score": ""
