@@ -8,7 +8,7 @@
       "Estados Unidos"
     ],
     "totalMatches": 104,
-    "lastUpdated": "2026-07-19T00:13:12.043Z",
+    "lastUpdated": "2026-07-19T22:11:36.603Z",
     "notes": "Calendario actualizado hasta semifinales; IDs M089/M090 corregidos y automatización estabilizada para evitar fallos repetitivos.",
     "completedNoClickPatch": true,
     "updateMode": "github-actions-public-no-key-stable",
@@ -1759,10 +1759,11 @@
       "home": "España",
       "away": "Argentina",
       "venue": "East Rutherford / New York New Jersey Stadium",
-      "status": "scheduled",
-      "score": "",
+      "status": "complete",
+      "score": "1-0",
       "externalId": "PUBLIC-104",
-      "source": "https://raw.githubusercontent.com/upbound-web/worldcup-live.json/master/2026/worldcup.json"
+      "source": "https://raw.githubusercontent.com/upbound-web/worldcup-live.json/master/2026/worldcup.json",
+      "winner": "España"
     }
   ],
   "groups": [
